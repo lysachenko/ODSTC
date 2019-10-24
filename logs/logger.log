@@ -1,0 +1,12 @@
+13:14:14,200  INFO Version:56 - Hibernate Validator 4.0.2.GA
+13:14:14,228  INFO DefaultTraversableResolver:89 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+14:05:42,545  INFO Version:56 - Hibernate Validator 4.0.2.GA
+14:05:42,583  INFO DefaultTraversableResolver:89 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+14:42:01,366  INFO Version:56 - Hibernate Validator 4.0.2.GA
+14:42:01,387  INFO DefaultTraversableResolver:89 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+14:52:11,194  INFO Version:56 - Hibernate Validator 4.0.2.GA
+14:52:11,217  INFO DefaultTraversableResolver:89 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+15:07:01,027  INFO Version:56 - Hibernate Validator 4.0.2.GA
+15:07:01,036  INFO DefaultTraversableResolver:89 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+15:13:32,634  INFO Version:56 - Hibernate Validator 4.0.2.GA
+15:13:32,644  INFO DefaultTraversableResolver:89 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.

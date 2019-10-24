@@ -1,0 +1,77 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+             xmlns:custom="urn:import:com.netcracker.tc.client.ui.widget.simple">
+
+    <ui:style>
+        .label200 {
+            width: 200px;
+            text-align: right;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .label150 {
+            width: 150px;
+            text-align: right;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .timefield {
+            margin-left: 4px;
+        }
+    </ui:style>
+
+    <g:DialogBox modal="true" text="Новое собеседование">
+        <b:Form type="HORIZONTAL" width="550px">
+            <b:Column size="12">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Дата</b:HelpInline>
+                    <d:DateBox ui:field="startDateTime"/>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Время собеседования</b:HelpInline>
+                    <custom:TimeBox ui:field="startTimeBox"/>
+                    <b:HelpInline>-</b:HelpInline>
+                    <custom:TimeBox addStyleNames="{style.timefield}" ui:field="endTimeBox"/>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Количество интервьюверов</b:HelpInline>
+                    <b:IntegerBox width="66px" ui:field="interviewerCountField"/>
+                    <b:HelpInline addStyleNames="{style.label150}">Время интервью(мин):</b:HelpInline>
+                    <b:IntegerBox width="66px" ui:field="interviewerTimeField"/>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Количество ейчаров</b:HelpInline>
+                    <b:IntegerBox width="66px" ui:field="hrCountField"/>
+                    <b:HelpInline addStyleNames="{style.label150}">Время интервью(мин):</b:HelpInline>
+                    <b:IntegerBox width="66px" ui:field="hrTimeField"/>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Количество мест</b:HelpInline>
+                    <b:IntegerBox width="66px" readOnly="true" ui:field="totalPlaceCountField"/>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Позиция</b:HelpInline>
+                    <b:ListBox width="80px" ui:field="positionListBox">
+                        <g:item>Dev</g:item>
+                        <g:item>QA</g:item>
+                    </b:ListBox>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label150}">Активировать регистрацию</b:HelpInline>
+                    <b:ListBox width="80px" ui:field="activateInterviewListBox">
+                        <g:item>Нет</g:item>
+                        <g:item>Да</g:item>
+                    </b:ListBox>
+                </b:Row>
+                <b:Row>
+                    <b:Button ui:field="saveButton" type="INFO">Добавить</b:Button>
+                    <b:Button ui:field="cancelButton" type="INFO">Отмена</b:Button>
+                </b:Row>
+            </b:Column>
+        </b:Form>
+    </g:DialogBox>
+</ui:UiBinder>

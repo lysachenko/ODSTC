@@ -1,0 +1,97 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:custom="urn:import:com.netcracker.tc.client.ui.widget.simple">
+
+    <ui:with field='image' type='com.netcracker.tc.client.resource.ImageBundle'/>
+
+    <g:DialogBox modal="true">
+        <!--<b:WellForm>-->
+        <b:Fieldset>
+            <b:Legend>
+                Добавить пользователя
+            </b:Legend>
+            <b:ControlGroup>
+                <b:ControlLabel>Логин</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="loginField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Роль</b:ControlLabel>
+                <b:Controls>
+                    <custom:RoleListBox ui:field="roleListBox" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Пароль</b:ControlLabel>
+                <b:Controls>
+                    <b:PasswordTextBox ui:field="passwordField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Подтверждение пароля</b:ControlLabel>
+                <b:Controls>
+                    <b:PasswordTextBox ui:field="confirmPasswordField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+            <b:ControlLabel>Имя</b:ControlLabel>
+            <b:Controls>
+                <b:TextBox ui:field="nameField" alternateSize="XLARGE" />
+            </b:Controls>
+        </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Фамилия</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="surnameField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+            <b:ControlGroup>
+                <b:ControlLabel>Имя (на английском)</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="engNameField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Фамилия (на английском)</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="engSurnameField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Почта</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="emailField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Телефон</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="telephoneField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:ControlGroup>
+                <b:ControlLabel>Скайп</b:ControlLabel>
+                <b:Controls>
+                    <b:TextBox ui:field="skypeField" alternateSize="XLARGE" />
+                </b:Controls>
+            </b:ControlGroup>
+
+            <b:FormActions>
+                <b:Button ui:field="saveButton" type="INFO">Добавить</b:Button>
+                <b:Button ui:field="cancelButton" type="INFO">Отмена</b:Button>
+            </b:FormActions>
+        </b:Fieldset>
+        <!--</b:WellForm>-->
+    </g:DialogBox>
+</ui:UiBinder> 

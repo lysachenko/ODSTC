@@ -1,0 +1,81 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+
+    <ui:with field='image' type='com.netcracker.tc.client.resource.ImageBundle'/>
+
+    <b:ResponsiveNavbar position="TOP" height="50px">
+        <b:Nav alignment="LEFT">
+            <!--<b:NavWidget>-->
+                <b:Image resource='{image.logoNetcracker}'/>
+            <!--</b:NavWidget>-->
+        </b:Nav>
+
+        <b:Nav ui:field="centerMenuBar"/>
+        <b:Nav ui:field="rigthMenuBar" alignment="RIGHT">
+            <b:Button text="Войти" ui:field="signInButton"/>
+            <b:NavText>или</b:NavText>
+            <b:Dropdown text="Создать аккаунт">
+                <b:WellForm type="HORIZONTAL">
+                    <b:Fieldset>
+                        <b:Legend>Регистрация</b:Legend>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel for="input01">Имя</b:ControlLabel>
+                            <b:Controls>
+                                <b:TextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel>Фамилия</b:ControlLabel>
+                            <b:Controls>
+                                <b:TextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel>Email</b:ControlLabel>
+                            <b:Controls>
+                                <b:TextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel>Пароль</b:ControlLabel>
+                            <b:Controls>
+                                <b:PasswordTextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel>Подтверждение пароля</b:ControlLabel>
+                            <b:Controls>
+                                <b:PasswordTextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel>Номер телефона</b:ControlLabel>
+                            <b:Controls>
+                                <b:TextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:ControlGroup>
+                            <b:ControlLabel>Skype</b:ControlLabel>
+                            <b:Controls>
+                                <b:TextBox/>
+                            </b:Controls>
+                        </b:ControlGroup>
+
+                        <b:FormActions>
+                            <b:Button type="PRIMARY">Регистрация</b:Button>
+                            <b:Button type="PRIMARY">Отмена</b:Button>
+                        </b:FormActions>
+                    </b:Fieldset>
+                </b:WellForm>
+            </b:Dropdown>
+        </b:Nav>
+    </b:ResponsiveNavbar>
+</ui:UiBinder> 

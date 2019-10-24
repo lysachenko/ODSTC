@@ -1,0 +1,317 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:b2="urn:import:com.github.gwtbootstrap.datetimepicker.client.ui"
+             xmlns:custom="urn:import:com.netcracker.tc.client.ui.widget.simple"
+             xmlns:photo="urn:import:com.netcracker.tc.client.ui.widget.resume">
+
+    <ui:style>
+        .label {
+            width: 130px;
+            text-align: center;
+            vertical-align: middle;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .label250 {
+            width: 250px;
+            text-align: right;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .row {
+            margin-left: -7px;
+        }
+    </ui:style>
+    <!--<b:Form type="HORIZONTAL">-->
+    <g:HTMLPanel>
+        <b:Fieldset>
+            <b:Legend>Персональная информация</b:Legend>
+
+            <b:Row addStyleNames="{style.row}">
+                <b:Column size="4">
+                    <b:ControlGroup ui:field="surnameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Фамилия*</b:HelpInline>
+                            <b:TextBox ui:field="surnameField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="nameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Имя*</b:HelpInline>
+                            <b:TextBox ui:field="nameField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="lastNameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Отчество*</b:HelpInline>
+                            <b:TextBox ui:field="lastNameField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="engSurnameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Фамилия(на английском)*</b:HelpInline>
+                            <b:TextBox ui:field="engSurnameField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="engNameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Имя(на английском)*</b:HelpInline>
+                            <b:TextBox ui:field="engNameField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+
+                    <b:ControlGroup ui:field="instituteNameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">ВУЗ*</b:HelpInline>
+                            <custom:InstituteListBox ui:field="instituteListBox"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="instituteNameOtherGroup">
+                        <b:Row ui:field="otherInstituteRow" visible="false">
+                            <b:HelpInline addStyleNames="{style.label}"></b:HelpInline>
+                            <b:TextBox ui:field="otherInstituteField" placeholder="Введите название ВУЗа"
+                                       width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="courseGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Курс*</b:HelpInline>
+                            <b:ListBox ui:field="courseField" width="206px">
+                                <g:item>1</g:item>
+                                <g:item>2</g:item>
+                                <g:item>3</g:item>
+                                <g:item>4</g:item>
+                                <g:item>5</g:item>
+                                <g:item>6</g:item>
+                                <g:item>Окончил(а)</g:item>
+                            </b:ListBox>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="facultyGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Факультет (полное название)*</b:HelpInline>
+                            <b:TextBox ui:field="facultyField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="departmentGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Кафедра (полное название)*</b:HelpInline>
+                            <b:TextBox ui:field="departmentField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="specialtyGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Специальность (полное название)*</b:HelpInline>
+                            <b:TextBox ui:field="specialtyField" width="206px"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="graduationYearGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Год окончания*</b:HelpInline>
+                            <b2:DateTimeBoxAppended format="yyyy" autoClose="true" icon="CALENDAR"
+                                                    ui:field="graduationYearField"
+                                                    startView="DECADE" minView="DECADE" startDate="null"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                </b:Column>
+
+                <b:Column size="4">
+                    <b:Row>
+                        <b:ControlGroup ui:field="photoPathGroup">
+                            <photo:UploadPhotoWidget ui:field="uploadPhotoWidget"/>
+                        </b:ControlGroup>
+                    </b:Row>
+                    <!-- <b:Row>
+                         <b:Button ui:field="downloadButton" width="150px">Скачать резюме</b:Button>
+                     </b:Row>-->
+                </b:Column>
+            </b:Row>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Контакты</b:Legend>
+
+            <b:Row addStyleNames="{style.row}">
+                <b:Column size="8">
+                    <b:Row>
+                        <b:ControlGroup ui:field="emailGroup">
+                            <b:HelpInline addStyleNames="{style.label}">E-mail*</b:HelpInline>
+                            <b:TextBox ui:field="emailField" alternateSize="XLARGE"/>
+                        </b:ControlGroup>
+                    </b:Row>
+
+                    <b:Row>
+                        <b:ControlGroup ui:field="telephoneNumGroup">
+                            <b:HelpInline addStyleNames="{style.label}">Телефон*</b:HelpInline>
+                            <custom:MaskedTextBox mask="(999)999-99-99" ui:field="telephoneField"
+                                                  alternateSize="XLARGE"/>
+                        </b:ControlGroup>
+                    </b:Row>
+
+                    <b:Row>
+                        <b:ControlGroup ui:field="skypeGroup">
+                            <b:HelpInline addStyleNames="{style.label}">Skype</b:HelpInline>
+                            <b:TextBox ui:field="skypeField" alternateSize="XLARGE"/>
+                        </b:ControlGroup>
+                    </b:Row>
+
+                    <b:Row>
+                        <b:ControlGroup ui:field="otherContactGroup">
+                            <b:HelpInline addStyleNames="{style.label}">Другие контакты</b:HelpInline>
+                            <b:TextArea ui:field="otherContactField" width="274px"/>
+                        </b:ControlGroup>
+                    </b:Row>
+                </b:Column>
+            </b:Row>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Интересы</b:Legend>
+            <g:Label addStyleNames="{style.center}">(допускается несколько вариантов ответа)</g:Label>
+            <b:Paragraph>Что заинтересовало (+, ±, –, ?):</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label}">Учебный центр/стажировка*</b:HelpInline>
+                    <custom:CheckListBox ui:field="trainingCenterInterestListBox" alternateSize="MINI"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label}">Работа в компании Netcracker*</b:HelpInline>
+                    <custom:CheckListBox ui:field="workInNetCrackerInterestListBox" alternateSize="MINI"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:ControlGroup ui:field="otherJobInterestGroup">
+                        <b:HelpInline addStyleNames="{style.label}">Другое</b:HelpInline>
+                        <b:TextArea ui:field="otherJobInterestTextArea" width="485px" height="70px"/>
+                    </b:ControlGroup>
+                </b:Row>
+            </b:Column>
+
+            <b:Paragraph>Тип работы:</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label}">Back-end</b:HelpInline>
+                    <custom:CheckListBox ui:field="backEndInterestField" alternateSize="MINI"/>
+                    <b:HelpInline addStyleNames="{style.label}">Front-end</b:HelpInline>
+                    <custom:CheckListBox ui:field="frontEndInterestField" alternateSize="MINI"/>
+                </b:Row>
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label}">Базы данных</b:HelpInline>
+                    <custom:CheckListBox ui:field="dbInterestField" alternateSize="MINI"/>
+                </b:Row>
+                <b:Row>
+                    <b:ControlGroup ui:field="otherWorkTypeSpecificGroup">
+                        <b:HelpInline addStyleNames="{style.label}">Другое (уточните)</b:HelpInline>
+                        <b:TextArea ui:field="otherWorkTypeSpecificField" width="485px" height="70px"/>
+                    </b:ControlGroup>
+                </b:Row>
+            </b:Column>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Техническая информация</b:Legend>
+
+            <b:Paragraph>Владение языками программирования (по шкале от 1 до 5): 1 – писал простые программы с
+                книгой/справкой; 3 – хорошо помню синтаксис и нек. библиотеки; 5 – написал крупный проект
+            </b:Paragraph>
+
+            <custom:ResumeKnowledgeWidget ui:field="resumeKnowledgeWidget"/>
+
+            <b:Paragraph>Как вы оцениваете свои знания по разделам (по шкале от 0 до 5):</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Объектно-ориент. программирование</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="OOPLevelField" alternateSize="MINI" minValue="0"/>
+                    <b:HelpInline addStyleNames="{style.label250}">Базы данных</b:HelpInline>
+                    <custom:SkillLevelListBox minValue="0" ui:field="dbLevelField" alternateSize="MINI"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Web</b:HelpInline>
+                    <custom:SkillLevelListBox minValue="0" ui:field="webLevelField" alternateSize="MINI"/>
+                    <b:HelpInline addStyleNames="{style.label250}">UI (не Web)</b:HelpInline>
+                    <custom:SkillLevelListBox minValue="0" ui:field="userInterfaceLevelField" alternateSize="MINI"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Проектирование программ</b:HelpInline>
+                    <custom:SkillLevelListBox minValue="0" ui:field="umlLevelField" alternateSize="MINI"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:ControlGroup ui:field="otherSkillsLevelGroup">
+                        <b:HelpInline addStyleNames="{style.label250}">Другие разделы (в области IT, сетей, языков
+                            программирования)
+                        </b:HelpInline>
+                        <b:TextArea ui:field="otherSkillsLevelField" width="366px" height="70px"/>
+                    </b:ControlGroup>
+                </b:Row>
+            </b:Column>
+
+            <b:Paragraph>Если у вас уже есть опыт работы и/или выполненные учебные проекты, опишите их</b:Paragraph>
+            <b:ControlGroup ui:field="workExperienceGroup">
+                <b:TextArea ui:field="workExperienceField" width="622px" height="70px"/>
+            </b:ControlGroup>
+
+            <b:HelpInline>Уровень английского языка (от 1 = elementary до 5 = advanced):</b:HelpInline>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label}">чтение</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="englishReadLevelField" alternateSize="MINI"/>
+                    <b:HelpInline addStyleNames="{style.label}">письмо</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="englishWriteLevelField" alternateSize="MINI"/>
+                    <b:HelpInline addStyleNames="{style.label}">устная речь</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="englishSpeakLevelField" alternateSize="MINI"/>
+                </b:Row>
+            </b:Column>
+
+            <b:Paragraph>Откуда вы узнали о наборе в Учебный центр?</b:Paragraph>
+            <b:ControlGroup ui:field="whereYouKnowAboutTCGroup">
+                <b:TextArea ui:field="whereYouKnowAboutTCField" width="622px" height="70px"/>
+            </b:ControlGroup>
+
+            <b:Paragraph>Почему вас обязательно надо взять в Netcracker (важные достоинства; возможно, обещания)
+            </b:Paragraph>
+            <b:ControlGroup ui:field="whyTakeYouInNetCrackerGroup">
+                <b:TextArea ui:field="whyTakeYouInNetCrackerField" width="622px" height="70px"/>
+            </b:ControlGroup>
+
+            <b:Paragraph>Дополнительные сведения о себе: олимпиады, поощрения, курсы, сертификаты, личные качества,
+                др.
+            </b:Paragraph>
+            <b:ControlGroup ui:field="moreInformationAboutYouGroup">
+                <b:TextArea ui:field="moreInformationAboutYouField" width="622px" height="70px"/>
+            </b:ControlGroup>
+        </b:Fieldset>
+        <b:Fieldset>
+            <b:Legend>Соглашение</b:Legend>
+
+            <b:Column size="8">
+                <b:ControlGroup ui:field="agreementGroup">
+                    <b:Row>
+                        <b:CheckBox ui:field="agreementCheckBox"
+                                    text="Я даю согласие на хранение, обработку и использование моих персональных данных с целью возможного обучения и трудоустройства в компании НЕТКРЕКЕР на данный момент и в будущем "/>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+
+        </b:Fieldset>
+        <b:Fieldset>
+            <b:AlertBlock type="ERROR" close="false" animation="true" visible="false" ui:field="errorAlertBlock"/>
+        </b:Fieldset>
+
+    </g:HTMLPanel>
+    <!--</b:Form>-->
+</ui:UiBinder>

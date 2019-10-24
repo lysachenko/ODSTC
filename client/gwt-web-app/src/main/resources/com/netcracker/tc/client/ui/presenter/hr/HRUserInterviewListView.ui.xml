@@ -1,0 +1,64 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:user="urn:import:com.netcracker.tc.client.ui.widget.user"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:resume="urn:import:com.netcracker.tc.client.ui.widget.resume"
+             xmlns:hr="urn:import:com.netcracker.tc.client.ui.widget.hr"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+
+    <ui:style>
+        .dock {
+            margin: 5px;
+        }
+
+        .borderDock {
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+            display: block;
+        }
+
+        .test {
+            float: left;
+        }
+
+    </ui:style>
+
+    <g:DockPanel>
+        <g:Dock direction="NORTH">
+            <user:UserFilterWidget ui:field="userFilterWidget" addStyleNames="{style.borderDock}"/>
+        </g:Dock>
+
+        <g:Dock direction="WEST">
+            <user:UserTableWidget ui:field="userTableWidget" addStyleNames="{style.borderDock}"/>
+        </g:Dock>
+
+        <g:Dock direction="CENTER">
+            <g:TabPanel width="820px" animationEnabled="true" addStyleNames="{style.dock}">
+                <g:Tab text="Собеседование">
+                    <g:DeckPanel ui:field="interviewDeckPanel">
+                        <hr:DevUserInterviewResultWidget ui:field="devUserInterviewResultWidget"/>
+                        <hr:QAUserInterviewResultWidget ui:field="qaUserInterviewResultWidget"/>
+                    </g:DeckPanel>
+                </g:Tab>
+
+                <g:Tab text="Анкета">
+
+                    <g:DeckPanel ui:field="resumeDeckPanel">
+                        <b:AccordionGroup defaultOpen="true">
+                            <b:ButtonGroup>
+                                <b:Button ui:field="rejectButton" type="INFO">Не подходит</b:Button>
+                                <b:Button ui:field="moveToDateButton" type="INFO">Подходит</b:Button>
+                                <b:Button ui:field="printResumeButton" type="INFO">Скачать анкету</b:Button>
+                            </b:ButtonGroup>
+                            <!--Пользователь находится в стутусе:-->
+                            <!--<span ui:field='userStatusSpan'/>-->
+                            <resume:DevResumeWidget ui:field="devResumeWidget"/>
+                            <!--<resume:QAResumeWidget ui:field="qaResumeWidget" />-->
+                        </b:AccordionGroup>
+                    </g:DeckPanel>
+                </g:Tab>
+            </g:TabPanel>
+        </g:Dock>
+    </g:DockPanel>
+</ui:UiBinder>

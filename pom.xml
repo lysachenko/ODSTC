@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.netcracker.tc</groupId>
+    <artifactId>nc-training-center</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging> 
+    <name>TC [${project.packaging}] - Training Center Super {${project.version}}</name>
+
+    <properties>
+        <!-- client -->
+        <gwt.version>2.6.1</gwt.version>
+        <gwtp.version>1.2.1</gwtp.version>
+        <gin.version>2.1.2</gin.version>
+        <gwt.style>OBF</gwt.style>
+
+        <!-- server -->
+        <guice.version>3.0</guice.version>
+
+        <!-- maven -->
+        <maven-gae-plugin.version>0.9.6</maven-gae-plugin.version>
+        <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
+        <maven.deploy.version>2.7</maven.deploy.version>
+        <maven-processor-plugin.version>2.1.0</maven-processor-plugin.version>
+        <maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
+        <maven.surfire.version>2.12</maven.surfire.version>
+        <maven.war.version>2.3</maven.war.version>
+        <maven.compiler.version>2.3.2</maven.compiler.version>
+        <maven-source-plugin.version>2.2</maven-source-plugin.version>
+
+        <!-- testing -->
+        <junit.version>4.11</junit.version>
+        <jukito.version>1.4</jukito.version>
+
+        <target.jdk>1.7</target.jdk>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+    </properties>
+
+    <repositories>
+        <!-- GWTP Framework repository -->
+        <repository>
+            <id>sonatype.snapshots</id>
+            <name>Sonatype snapshot repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <layout>default</layout>
+        </repository>
+
+        <!-- GWT Bootstrap repository -->
+        <repository>
+            <id>sonatype</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+
+
+    </repositories>
+
+    <modules>
+        <module>util</module>
+        <module>server</module>
+        <module>client</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.gwtplatform</groupId>
+                <artifactId>gwtp-mvp-client</artifactId>
+                <version>${gwtp.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.gwtplatform</groupId>
+                <artifactId>gwtp-dispatch-rpc-client</artifactId>
+                <version>${gwtp.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.gwtplatform</groupId>
+                <artifactId>gwtp-dispatch-rpc-server-spring</artifactId>
+                <version>${gwtp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gwtplatform</groupId>
+                <artifactId>gwtp-all</artifactId>
+                <version>${gwtp.version}</version>
+            </dependency>
+
+
+            <!-- GWT dependencies -->
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>oracle</groupId>
+                <artifactId>ojdbc14</artifactId>
+                <version>11.2.0.3.0</version>
+                <scope>provided</scope>
+                <type>pom</type>
+            </dependency>
+
+            <!-- DI dependencies -->
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-servlet</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-assistedinject</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt.inject</groupId>
+                <artifactId>gin</artifactId>
+                <version>${gin.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--    LOG     -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.7</version>
+            </dependency>
+
+
+
+
+            <!--    Testing    -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

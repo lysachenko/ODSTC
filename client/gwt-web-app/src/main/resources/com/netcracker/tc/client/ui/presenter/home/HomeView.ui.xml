@@ -1,0 +1,85 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+>
+
+    <ui:with field='image' type='com.netcracker.tc.client.resource.ImageBundle'/>
+
+    <ui:style>
+        .content {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            background: #ffffff;
+        }
+
+        .header_left {
+            margin-left: 10px;
+        }
+
+        .header_right {
+            margin-left: auto;
+            margin-right: 10px;
+            align: right;
+            width: 250px;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .link_button {
+            border: 2px outset #0066cc;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .content > p {
+            <!--text-indent: 20px;-->
+        }
+    </ui:style>
+
+
+    <g:HTMLPanel>
+        <center>
+            <g:Image resource='{image.mainHeader}'/>
+        </center>
+
+        <g:HTML addStyleNames="{style.content}">
+            <p>
+                <strong>
+                    <font color="#0070C0" size="5">Учебный центр Netcracker</font>
+                </strong>
+            </p>
+            <p class="maintext">
+                Приглашаем на бесплатные курсы от компании <strong>Netcracker</strong> с возможностью дальнейшего трудоустройства на позицию  <strong>Junior Software Developer</strong> по специальности Java, Oracle DB.
+            </p>
+            <p class="maintext">Зачисление конкурсное по результатам собеседования с HR и техническим специалистом.
+                <br/> Будем рады видеть вас среди участников следующего набора в сентябре 2019:
+                <ul>
+                    <li>Регистрация на собеседования - 2-9 сентября</li>
+                    <li>Презентация компании и Учебного Центра - 3 сентября в 13:00 (ОНАПТ, ауд. 314), 4 сентября в 15:45 (ОНУ им.Мечникова), 5 сентября в 13:30 (ОНПУ, ИКС, корпус 3, ауд. 409) </li>
+                    <li>Собеседования - 9-11 сентября</li>
+                    <li>Отбор претендентов - 12-19 сентября</li>
+                    <li>Начало занятий - 23 сентября</li>
+                </ul>
+            </p>
+            <p class="maintext">Минимальные требования для участия:
+                <ul>
+                    <li>техническое, телеком или профильное образование в данной области (студенты 4-6 курса и выпускники);</li>
+                    <li>знание и понимание основ ООП;</li>
+                    <li>знание баз данных;</li>
+                    <li>опыт программирования на любом языке программирования;</li>
+                    <li>уровень английского – Intermediate и выше;</li>
+                    <li>желание и готовность к интенсивному обучению.</li>
+                </ul>
+            </p>
+            <p class="maintext">
+                Больше о том, чем занимается компания Netcracker, какие решения разрабатываем для глобальных телеком
+                операторов, смотрите на официальном сайте <a href="https://www.netcracker.com">Netcracker</a>
+            </p>
+            <p class="maintext">
+                Рады помочь по вопросам - hr.odessa@Netcracker.com. До встречи!
+            </p>
+        </g:HTML>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -1,0 +1,77 @@
+package com.netcracker.tc.server.mail;
+
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class TestMail {
+
+    public static void main( String[] args )
+            throws Exception
+    {
+        /*
+         *   first, get and initialize an engine
+         */
+
+        VelocityEngine ve = new VelocityEngine();
+        ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        ve.init();
+
+        /*
+         *   organize our data
+         */
+
+        ArrayList list = new ArrayList();
+
+        Map map = new HashMap();
+        map.put("name", "Cow");
+        map.put("price", "$100.00");
+        list.add( map );
+
+        map = new HashMap();
+        map.put("name", "Eagle");
+        map.put("price", "$59.99");
+        list.add( map );
+
+        map = new HashMap();
+        map.put("name", "Shark");
+        map.put("price", "$3.99");
+        list.add( map );
+
+        /*
+         *  add that list to a VelocityContext
+         */
+
+        VelocityContext context = new VelocityContext();
+        context.put("petList", list);
+
+        /*
+         *   get the Template
+         */
+        Template t = ve.getTemplate("com/netcracker/tc/server/mail/email_html.vm" );
+
+        /*
+         *  now render the template into a Writer, here
+         *  a StringWriter
+         */
+
+        StringWriter writer = new StringWriter();
+
+        t.merge( context, writer );
+
+        /*
+         *  use the output in the body of your emails
+         */
+
+        System.out.println( writer.toString() );
+    }
+
+}

@@ -1,0 +1,388 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:b2="urn:import:com.github.gwtbootstrap.datetimepicker.client.ui"
+             xmlns:custom="urn:import:com.netcracker.tc.client.ui.widget.simple"
+             xmlns:photo="urn:import:com.netcracker.tc.client.ui.widget.resume">
+
+    <ui:style>
+        .label {
+            width: 130px;
+            text-align: right;
+            vertical-align: middle;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .label250 {
+            width: 250px;
+            text-align: right;
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+
+        .paragraph {
+            font-weight: bold;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <b:Fieldset>
+            <b:Legend>Персональная информация</b:Legend>
+
+            <b:Row>
+                <b:Column size="4">
+                    <b:ControlGroup ui:field="surnameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Фамилия*</b:HelpInline>
+                            <b:Tooltip ui:field="surnameTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <b:TextBox ui:field="surnameField" width="206px"/>
+                            </b:Tooltip>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="nameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Имя*</b:HelpInline>
+                            <b:Tooltip ui:field="nameTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <b:TextBox ui:field="nameField" width="206px"/>
+                            </b:Tooltip>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="lastNameGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Отчество*</b:HelpInline>
+                            <b:Tooltip ui:field="lastNameTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <b:TextBox ui:field="lastNameField" width="206px"/>
+                            </b:Tooltip>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label}">ВУЗ*</b:HelpInline>
+                        <custom:InstituteListBox ui:field="instituteListBox"/>
+                    </b:Row>
+                    <b:ControlGroup ui:field="otherInstituteGroup">
+                        <b:Row ui:field="otherInstituteRow" visible="false">
+                            <b:HelpInline addStyleNames="{style.label}"/>
+                            <b:Tooltip ui:field="otherInstituteTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <b:TextBox ui:field="otherInstituteField" placeholder="Введите название ВУЗа"
+                                           width="206px"/>
+                            </b:Tooltip>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="courseGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Курс*</b:HelpInline>
+                            <b:Tooltip ui:field="courseTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <b:TextBox ui:field="courseField" width="206px"/>
+                            </b:Tooltip>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="facultyGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}"> Факультет (полное название)*</b:HelpInline>
+                            <b:Tooltip ui:field="facultyTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <b:TextBox ui:field="facultyField" width="206px"/>
+                            </b:Tooltip>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:ControlGroup ui:field="graduationYearGroup">
+                        <b:Row>
+                            <b:HelpInline addStyleNames="{style.label}">Год окончания</b:HelpInline>
+                            <b2:DateTimeBoxAppended format="yyyy" autoClose="true" icon="CALENDAR"
+                                                    ui:field="graduationYearField"
+                                                    startView="DECADE" minView="DECADE" startDate="null"/>
+                        </b:Row>
+                    </b:ControlGroup>
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label}">Я</b:HelpInline>
+                        <b:ListBox ui:field="isStudentBox">
+                            <g:item>Выпускник</g:item>
+                            <g:item>Ещё учусь</g:item>
+                        </b:ListBox>
+                    </b:Row>
+                </b:Column>
+
+                <b:ControlGroup ui:field="uploadPhotoGroup">
+                    <b:Column size="4">
+                        <b:Row>
+                            <b:Tooltip ui:field="uploadPhotoTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                                <photo:UploadPhotoWidget ui:field="uploadPhotoWidget"/>
+                            </b:Tooltip>
+                        </b:Row>
+                      <!--  <b:Row>
+                            <b:Button ui:field="downloadButton" width="150px">Скачать резюме</b:Button>
+                        </b:Row>-->
+                    </b:Column>
+                </b:ControlGroup>
+            </b:Row>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Контакты</b:Legend>
+
+            <b:Column size="8">
+                <b:ControlGroup ui:field="emailGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label}">E-mail*</b:HelpInline>
+                        <b:Tooltip ui:field="emailTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextBox ui:field="emailField" alternateSize="XLARGE"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+
+                <b:ControlGroup ui:field="telephoneGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label}">Телефон*</b:HelpInline>
+                        <b:Tooltip ui:field="telephoneTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <custom:MaskedTextBox mask="(999)999-99-99" ui:field="telephoneField"
+                                                  alternateSize="XLARGE"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+
+                <b:ControlGroup ui:field="skypeGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label}">Skype</b:HelpInline>
+                        <b:Tooltip ui:field="skypeTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextBox ui:field="skypeField" alternateSize="XLARGE"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+
+                <b:ControlGroup ui:field="otherContactGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label}">Другие контакты</b:HelpInline>
+                        <b:Tooltip ui:field="otherContactTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextArea ui:field="otherContactField" width="274px"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+        </b:Fieldset>
+        <b:Fieldset>
+            <b:Legend>Интересы</b:Legend>
+            <b:Paragraph addStyleNames="{style.paragraph}">Что заинтересовало:</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="trainingCenterInterestField" text="Учебный центр/стажировка"/>
+                    </b:Column>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="workInNetCrackerInterestField" text="Работа в компании Netcracker"/>
+                    </b:Column>
+                </b:Row>
+                <b:ControlGroup ui:field="otherInterestGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label250}">Другое (указать, что именно)</b:HelpInline>
+                        <b:Tooltip ui:field="otherInterestTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextArea ui:field="otherInterestTextArea" width="366px" height="70px"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+
+            <b:Paragraph addStyleNames="{style.paragraph}">Область деятельности:</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="qaDevelopmentField" text="Обеспечение качества ПО (QA)"/>
+                    </b:Column>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="softwareDevelopmentField" text="Разработка ПО"/>
+                    </b:Column>
+                </b:Row>
+                <b:ControlGroup ui:field="otherJobGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label250}">Другое (указать, что именно)</b:HelpInline>
+                        <b:Tooltip ui:field="otherJobTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextArea ui:field="otherJobInterestTextArea" width="366px" height="70px"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+
+            <b:Paragraph addStyleNames="{style.paragraph}">Какой тип работы привлекает:</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="qaExpertWorkTypeField"
+                                    text="QA эксперт в одной/нескольких областях разрабатываемого ПО"/>
+                    </b:Column>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="qaAutomationWorkTypeField" text="QA Automation"/>
+                    </b:Column>
+                </b:Row>
+                <b:Row>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="qaDevelopmentWorkTypeField"
+                                    text="Разработка и внедрение методологий тестирования и QA"/>
+                    </b:Column>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="softwareDevelopmentWorkTypeField" text="Разработка ПО"/>
+                    </b:Column>
+                </b:Row>
+                <b:Row>
+                    <b:Column size="4">
+                        <b:CheckBox ui:field="leadershipWorkTypeField" text="Менеджмент"/>
+                    </b:Column>
+                </b:Row>
+                <b:ControlGroup ui:field="otherWorkTypeSpecificGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label250}">Другое (указать, что именно)</b:HelpInline>
+                        <b:Tooltip ui:field="otherWorkTypeSpecificTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextArea ui:field="otherWorkTypeSpecificField" width="366px" height="70px"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Навыки</b:Legend>
+
+            <b:Paragraph addStyleNames="{style.paragraph}">
+                Понимание и владение основами QA и теорией разработки программного обеспечения:
+            </b:Paragraph>
+
+            <b:Paragraph>
+                1 – не осведомлён, 2 – читал/смотрел, 3 – читал/смотрел и хорошо разобрался, 4 – имел опыт практического
+                применения
+            </b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Жизненный цикл разработки ПО</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="softwareDevLifeCycleField" alternateSize="MINI" maxValue="4"/>
+                    <b:HelpInline addStyleNames="{style.label250}">Место QA в жизненном цикле разработки ПО
+                    </b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="qaRoleInLifeCycleField" alternateSize="MINI" maxValue="4"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Что такое (и жизненный цикл) Test Case</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="whatIsTestCaseField" alternateSize="MINI" maxValue="4"/>
+                    <b:HelpInline addStyleNames="{style.label250}">Что такое (и жизненный цикл) Defect</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="whatIsDefectField" alternateSize="MINI" maxValue="4"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Типы тестирования (понимание 3х и более)
+                    </b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="testingTypeField" alternateSize="MINI" maxValue="4"/>
+                </b:Row>
+            </b:Column>
+
+            <b:Paragraph addStyleNames="{style.paragraph}">Технические навыки:</b:Paragraph>
+
+            <b:Paragraph>
+                1 – не осведомлён, 2 – теоретические знания, 3 – уровень лабораторных работ, 4 – практическое применения
+                в производстве
+            </b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">Сетевые технологии</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="networkTechnologyLevelField" alternateSize="MINI" maxValue="4"/>
+                    <b:HelpInline addStyleNames="{style.label250}">Основы программирования и ООП</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="OOPLevelField" alternateSize="MINI" maxValue="4"/>
+                </b:Row>
+
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label250}">БД и SQL</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="dbSqlLevelField" alternateSize="MINI" maxValue="4"/>
+                    <b:HelpInline addStyleNames="{style.label250}">Client-Server Architecture and WEB</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="clientServerArchitectureAndWebField" alternateSize="MINI"
+                                              maxValue="4"/>
+                </b:Row>
+
+                <b:ControlGroup ui:field="otherSkillsLevelGroup">
+                    <b:Row>
+                        <b:HelpInline addStyleNames="{style.label250}">Другое (указать, что именно)</b:HelpInline>
+                        <b:Tooltip ui:field="otherSkillsLevelTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:TextArea ui:field="otherSkillsLevelField" width="366px" height="70px"/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+
+            <b:ControlGroup ui:field="workExperienceGroup">
+                <b:Paragraph>Опыт работы/выполненные проекты (краткое описание)</b:Paragraph>
+                <b:Tooltip ui:field="workExperienceTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                    <b:TextArea ui:field="workExperienceField" width="622px" height="70px"/>
+                </b:Tooltip>
+            </b:ControlGroup>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Английский язык</b:Legend>
+
+            <b:Paragraph>Оценка 1 (elementary) - 5 (advanced)</b:Paragraph>
+
+            <b:Column size="8">
+                <b:Row>
+                    <b:HelpInline addStyleNames="{style.label}">Чтение</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="englishReadLevelField" alternateSize="MINI"/>
+                    <b:HelpInline addStyleNames="{style.label}">Письмо</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="englishWriteLevelField" alternateSize="MINI"/>
+                    <b:HelpInline addStyleNames="{style.label}">Устная речь</b:HelpInline>
+                    <custom:SkillLevelListBox ui:field="englishSpeakLevelField" alternateSize="MINI"/>
+                </b:Row>
+            </b:Column>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Другое</b:Legend>
+
+            <b:ControlGroup ui:field="whereYouKnowAboutTCGroup">
+                <b:Paragraph>Откуда Вы узнали о наборе в учебный центр?</b:Paragraph>
+                <b:Tooltip ui:field="whereYouKnowAboutTCTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                    <b:TextArea ui:field="whereYouKnowAboutTCField" width="622px" height="70px"
+                                placeholder="Интернет, объявление, друзья, другое (укажите, что именно)"/>
+                </b:Tooltip>
+            </b:ControlGroup>
+
+            <b:ControlGroup ui:field="whyTakeYouInNetCrackerGroup">
+                <b:Paragraph>Почему именно Вас нужно зачислить в группу на обучение</b:Paragraph>
+                <b:Tooltip ui:field="whyTakeYouInNetCrackerTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                    <b:TextArea ui:field="whyTakeYouInNetCrackerField" width="622px" height="70px"/>
+                </b:Tooltip>
+            </b:ControlGroup>
+
+            <b:ControlGroup ui:field="moreInformationAboutYouGroup">
+                <b:Paragraph>Дополнительные сведения: все, что считаете нужным указать дополнительно (олимпиады,
+                    поощрения,
+                    курсы, сертификаты, личные качества)
+                </b:Paragraph>
+                <b:Tooltip ui:field="moreInformationAboutYouTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                    <b:TextArea ui:field="moreInformationAboutYouField" width="622px" height="70px"/>
+                </b:Tooltip>
+            </b:ControlGroup>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:Legend>Соглашение</b:Legend>
+
+            <b:Column size="8">
+                <b:ControlGroup ui:field="agreementGroup">
+                    <b:Row>
+                        <b:Tooltip ui:field="agreementTooltip" text="" placement="RIGHT" trigger="FOCUS">
+                            <b:CheckBox ui:field="agreementCheckBox"
+                                        text="Я даю согласие на хранение, обработку и использование моих персональных данных с целью возможного обучения и трудоустройства в компании НЕТКРЕКЕР на данный момент и в будущем "/>
+                        </b:Tooltip>
+                    </b:Row>
+                </b:ControlGroup>
+            </b:Column>
+        </b:Fieldset>
+
+        <b:Fieldset>
+            <b:AlertBlock type="ERROR" close="false" animation="true" visible="false" ui:field="errorAlertBlock"/>
+        </b:Fieldset>
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -1,0 +1,23 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+
+
+    <g:HTMLPanel>
+        <g:HTML>
+            <p>
+                <strong>
+                    <strong>
+                        <font color="#0070C0" size="4">Спасибо за интерес к нашему Учебному центру и заполненную анкету!</font>
+                    </strong>
+                </strong>
+            </p>
+        </g:HTML>
+
+        <b:WellForm>
+            <g:HTML ui:field="messageHTML" />
+        </b:WellForm>
+    </g:HTMLPanel>
+
+
+</ui:UiBinder>

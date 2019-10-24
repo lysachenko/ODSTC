@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 4.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.netcracker.tc.server.persistence.model.resume.DevResumeDetail" table="DEV_RESUME_DETAIL" >
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+
+        <property name="instituteOtherName" type="string">
+            <column name="INSTITUTE_OTHER_NAME" length="50"/>
+        </property>
+
+        <property name="course" type="string">
+            <column name="COURCE" not-null="true" length="100"/>
+        </property>
+
+        <property name="faculty" type="string">
+            <column name="FACULTY" not-null="true" length="100"/>
+        </property>
+
+        <property name="department" type="string">
+            <column name="DEPARTMENT" not-null="true" length="100"/>
+        </property>
+
+        <property name="specialty" type="string">
+            <column name="SPECIALTY" not-null="true" length="100"/>
+        </property>
+
+        <property name="graduationYear" type="java.lang.Integer">
+            <column name="GRADUATION_YEAR" />
+        </property>
+
+        <property name="otherContacts" type="string">
+            <column name="UTHER_CONTACTS" length="250"/>
+        </property>
+
+        <property name="trainingCenterInterest" type="string">
+            <column name="TRAINING_CENTER_INTEREST" not-null="true" length="1"/>
+        </property>
+
+        <property name="workInNetCrackerInterest" type="string">
+            <column name="WORK_IN_NETCRACKER_INTEREST" not-null="true" length="1"/>
+        </property>
+
+        <property name="otherJobInterests" type="string">
+            <column name="OTHER_JOB_INTERESTS" length="250" />
+        </property>
+
+        <property name="backEndInterest" type="string">
+            <column name="BACK_END_INTEREST" not-null="true" length="1"/>
+        </property>
+
+        <property name="frontEndInterest" type="string">
+            <column name="FRONT_END_INTEREST" not-null="true" length="1"/>
+        </property>
+
+        <property name="dbInterest" type="string">
+            <column name="DB_INTEREST" not-null="true" length="1"/>
+        </property>
+
+        <property name="otherWorkTypeSpecific" type="string">
+            <column name="OTHER_WORK_TYPE_SPECIFIC" length="250" />
+        </property>
+
+        <property name="OOPLevel" type="java.lang.Integer">
+            <column name="OOP_LEVEL" not-null="true" />
+        </property>
+
+        <property name="dbLevel" type="java.lang.Integer">
+            <column name="DB_LEVEL" not-null="true" />
+        </property>
+
+        <property name="webLevel" type="java.lang.Integer">
+            <column name="WEB_LEVEL" not-null="true" />
+        </property>
+
+        <property name="userInterfaceLevel" type="java.lang.Integer">
+            <column name="USER_INTERFACE_LEVEL" not-null="true" />
+        </property>
+
+        <property name="umlLevel" type="java.lang.Integer">
+            <column name="UML_LEVEL" not-null="true" length="250"/>
+        </property>
+
+        <property name="otherSkillsLevel" type="string">
+            <column name="OTHER_SKILL_LEVEL" length="250"/>
+        </property>
+
+        <property name="workExperience" type="string">
+            <column name="WORK_EXPERIENCE" length="250" />
+        </property>
+
+        <property name="englishReadLevel" type="java.lang.Integer">
+            <column name="ENGLISH_READ_LEVEL" not-null="true" />
+        </property>
+
+        <property name="englishWriteLevel" type="java.lang.Integer">
+            <column name="ENGLISH_WRITE_LEVEL" not-null="true" />
+        </property>
+
+        <property name="englishSpeakLevel" type="java.lang.Integer">
+            <column name="ENGLISH_SPEAK_LEVEL" not-null="true" />
+        </property>
+
+        <property name="whereYouKnowAboutTC" type="string">
+            <column name="WHERE_YOU_KNOW_ABOUT_TC" length="250"/>
+        </property>
+
+        <property name="whyTakeYouInNetCracker" type="string">
+            <column name="WHY_TAKE_YOU_IN_NETCRACKER" length="250"/>
+        </property>
+
+        <property name="moreInformationAboutYou" type="string">
+            <column name="MORE_INFORMATION_ABOUT_YOU" length="250"/>
+        </property>
+
+        <many-to-one name="institute" class="com.netcracker.tc.server.persistence.model.resume.Institute"
+                    column="INSTITUTE_ID" not-null="true" cascade="save-update">
+        </many-to-one>
+
+        <many-to-one name="resume" class="com.netcracker.tc.server.persistence.model.resume.Resume"
+                    column="RESUME_ID" unique="true" not-null="true">
+        </many-to-one>
+    </class>
+</hibernate-mapping>

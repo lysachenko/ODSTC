@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>com.netcracker.tc.server.spring.ServerModule</param-value>
+    </context-param>
+
+    <!-- Creates the Spring Container shared by all Servlets and Filters -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+
+    <servlet>
+        <servlet-name>dispatch</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatch</servlet-name>
+        <url-pattern>/dispatch/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>fileUpload</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.FileUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>fileUpload</servlet-name>
+        <url-pattern>/fileupload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>fileDownload</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.UserResumeDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>fileDownload</servlet-name>
+        <url-pattern>/filedownload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>stubServlet</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.StudentDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>stubServlet</servlet-name>
+        <url-pattern>/resumedownload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>interviewResultServlet</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.InterviewResultServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>interviewResultServlet</servlet-name>
+        <url-pattern>/interview-result-xls</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>totalDevResultReportServlet</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.TotalDevResultReportServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>totalDevResultReportServlet</servlet-name>
+        <url-pattern>/total-dev-result-report-xls</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>gwtCacheControlFilter</filter-name>
+        <filter-class>com.netcracker.tc.server.filter.GWTCacheControlFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>gwtCacheControlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.RegistrationCaptchaServlet</servlet-class>
+        <init-param>
+            <param-name>width</param-name>
+            <param-value>200</param-value>
+        </init-param>
+        <init-param>
+            <param-name>height</param-name>
+            <param-value>50</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <url-pattern>/SimpleCaptcha.jpg</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>Starter.html</welcome-file>
+    </welcome-file-list>
+
+    <session-config>
+        <session-timeout>-1</session-timeout>
+    </session-config>
+
+    <servlet>
+        <servlet-name>remoteLogging</servlet-name>
+        <servlet-class>com.google.gwt.logging.server.RemoteLoggingServiceImpl</servlet-class>
+    </servlet>
+
+
+    <!-- Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>remoteLogging</servlet-name>
+        <url-pattern>/main/remote_logging</url-pattern>
+    </servlet-mapping>
+</web-app>

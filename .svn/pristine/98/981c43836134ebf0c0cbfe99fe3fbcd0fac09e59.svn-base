@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+
+    <g:PopupPanel>
+        <b:AlertBlock type="WARNING" text="К сожалению, регистрация для участия в наборе УЦ уже закрыта.
+Вы сможете принять участие в следующем наборе, который состоится в следующем году."/>
+    </g:PopupPanel>
+</ui:UiBinder>

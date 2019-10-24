@@ -1,0 +1,68 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+        >
+
+    <g:DeckPanel ui:field="registrationDockPanel">
+        <g:HTMLPanel>
+            <b:Fieldset>
+                <b:AlertBlock ui:field="errorMessageAlertBlock1" type="ERROR" close="false" visible="false"/>
+
+                <b:ControlGroup ui:field="loginGroup">
+                    <b:ControlLabel>Email</b:ControlLabel>
+                    <b:Controls>
+                        <b:Tooltip text='Введите Ваш email.' trigger="FOCUS">
+                            <b:TextBox ui:field="loginField" alternateSize="XLARGE"/>
+                        </b:Tooltip>
+                    </b:Controls>
+                </b:ControlGroup>
+
+                <b:ControlGroup ui:field="passwordGroup">
+                    <b:ControlLabel>Пароль</b:ControlLabel>
+                    <b:Controls>
+                        <b:Tooltip text='Пароль должен состоять из букв латинского алфавита, содержать минимум одну строчную букву, заглавную букву и цифру. Длина пароля от 6 до 15 символов' trigger="FOCUS">
+                            <b:PasswordTextBox ui:field="passwordField" alternateSize="XLARGE"/>
+                        </b:Tooltip>
+                    </b:Controls>
+                </b:ControlGroup>
+
+                <b:ControlGroup ui:field="passwordGroup2">
+                    <b:ControlLabel>Подтверждение пароля</b:ControlLabel>
+                    <b:Controls>
+                        <b:PasswordTextBox ui:field="confirmPasswordField" alternateSize="XLARGE"/>
+                    </b:Controls>
+                </b:ControlGroup>
+
+                <g:Image ui:field="captchaImage" url="/SimpleCaptcha.jpg"/>
+                <b:Button icon="REFRESH" ui:field="refreshCaptchaButton"/>
+
+                <b:ControlGroup>
+                    <b:ControlLabel for="passwordInput">Введите код указанный на картинке:</b:ControlLabel>
+                    <b:Controls>
+                        <b:TextBox ui:field="captchaField" alternateSize="XLARGE"/>
+                    </b:Controls>
+                </b:ControlGroup>
+            </b:Fieldset>
+        </g:HTMLPanel>
+        <g:HTMLPanel>
+            <b:Fieldset>
+                <b:AlertBlock ui:field="errorMessageAlertBlock2" type="ERROR" close="false" visible="false"/>
+
+                <b:Paragraph>Вам на почту было отправлено письмо с кодом подтверждения.
+                    Введите код подтверждения чтобы завершить регистрацию</b:Paragraph>
+
+                <b:ControlGroup ui:field="emailCodeGroup">
+                    <b:ControlLabel>Код:</b:ControlLabel>
+                    <b:Controls>
+                        <b:TextBox ui:field="emailCodeField" alternateSize="XLARGE"/>
+                    </b:Controls>
+                </b:ControlGroup>
+            </b:Fieldset>
+        </g:HTMLPanel>
+        <g:HTMLPanel>
+            <b:Fieldset>
+                <b:Paragraph>Регистрация успешно завершена, можете войти, используя регистрационные данные. </b:Paragraph>
+            </b:Fieldset>
+        </g:HTMLPanel>
+    </g:DeckPanel>
+</ui:UiBinder>

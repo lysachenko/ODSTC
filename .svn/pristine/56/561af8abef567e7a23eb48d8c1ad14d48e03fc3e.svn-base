@@ -1,0 +1,127 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <g:DeckPanel ui:field="mainPanel">
+        <b:Form>
+            <b:Paragraph ui:field="interviewDate"/>
+
+            <b:Row>
+                <b:Column size="3">
+                    <g:Label>Явка на собеседование:</g:Label>
+                    <b:ListBox ui:field="comeListBox" width="164px">
+                        <g:item></g:item>
+                        <g:item>Да</g:item>
+                        <g:item>Нет</g:item>
+                    </b:ListBox>
+                </b:Column>
+                <b:Column size="3" ui:field="hrInterviewerColumn">
+                    <g:Label>HR:</g:Label>
+                    <b:TextBox ui:field="hrTextBox" readOnly="true"/>
+                </b:Column>
+                <b:Column size="3" ui:field="technicalInterviewerColumn">
+                    <g:Label>Тех. интервьювер:</g:Label>
+                    <b:TextBox ui:field="devTextBox" readOnly="true"/>
+                </b:Column>
+            </b:Row>
+
+            <b:Row ui:field="hrResultRow">
+                <b:Column size="10">
+                    <b:Legend/>
+
+                    <b:Paragraph>Результаты HR собеседования:</b:Paragraph>
+
+                    <b:Row>
+                        <b:Column size="5">
+                            <g:Label>Общая информация, личные впечатления:</g:Label>
+                        </b:Column>
+                        <b:Column size="5">
+                            <g:Label>Готов ли я работать в команде с ним:</g:Label>
+                        </b:Column>
+                    </b:Row>
+                    <b:Row>
+                        <b:Column size="5">
+                            <g:TextArea ui:field="hrOtherInformationTextArea" visibleLines="4" width="350px"/>
+                        </b:Column>
+                        <b:Column size="5">
+                            <b:ListBox ui:field="hrWorkWiUserListBox">
+                                <g:item></g:item>
+                                <g:item>Да</g:item>
+                                <g:item>Нет</g:item>
+                            </b:ListBox>
+                            <g:Label>Зачисление, брать ли:</g:Label>
+                            <b:ListBox ui:field="hrFinalAssessmentListBox">
+                                <g:item></g:item>
+                                <g:item>Точно нет</g:item>
+                                <g:item>Скорее нет</g:item>
+                                <g:item>Скорее да</g:item>
+                                <g:item>Точно да</g:item>
+                            </b:ListBox>
+                        </b:Column>
+                    </b:Row>
+                </b:Column>
+            </b:Row>
+
+            <b:Row ui:field="technicalResultRow">
+                <b:Column size="10">
+                    <b:Legend/>
+
+                    <b:Paragraph>Результаты технического собеседования:</b:Paragraph>
+
+                    <b:Row>
+                        <b:Column size="5">
+                            <g:Label>Знания Java:</g:Label>
+                        </b:Column>
+                        <b:Column size="5">
+                            <g:Label>Знания SQL:</g:Label>
+                        </b:Column>
+                    </b:Row>
+                    <b:Row>
+                        <b:Column size="5">
+                            <g:TextArea ui:field="javaSkillTextArea" visibleLines="4" width="350px"/>
+                        </b:Column>
+                        <b:Column size="5">
+                            <g:TextArea ui:field="sqlSkillTextArea" visibleLines="4" width="350px"/>
+                        </b:Column>
+                    </b:Row>
+                    <b:Row>
+                        <b:Column size="5">
+                            <g:Label>Общая информация, личные впечатления:</g:Label>
+                        </b:Column>
+                        <b:Column size="5">
+                            <g:Label>Готов ли я работать в команде с ним:</g:Label>
+                        </b:Column>
+                    </b:Row>
+                    <b:Row>
+                        <b:Column size="5">
+                            <g:TextArea ui:field="devOtherInformationTextArea" visibleLines="4" width="350px"/>
+                        </b:Column>
+                        <b:Column size="5">
+                            <b:ListBox ui:field="devWorkWiUserListBox">
+                                <g:item></g:item>
+                                <g:item>Да</g:item>
+                                <g:item>Нет</g:item>
+                            </b:ListBox>
+                            <g:Label>Зачисление, брать ли:</g:Label>
+                            <b:ListBox ui:field="devFinalAssessmentListBox">
+                                <g:item></g:item>
+                                <g:item>Точно нет</g:item>
+                                <g:item>Скорее нет</g:item>
+                                <g:item>Скорее да</g:item>
+                                <g:item>Точно да</g:item>
+                            </b:ListBox>
+                        </b:Column>
+                    </b:Row>
+                </b:Column>
+            </b:Row>
+
+            <b:FormActions>
+                <b:Tooltip ui:field="saveInterviewResultTooltip" trigger="HOVER">
+                    <b:Button ui:field="saveInterviewResultButton" type="INFO">Сохранить изменения</b:Button>
+                </b:Tooltip>
+            </b:FormActions>
+        </b:Form>
+        <g:HTMLPanel/>
+        <b:AlertBlock>Пользователь не записан на собеседование</b:AlertBlock>
+    </g:DeckPanel>
+</ui:UiBinder>
