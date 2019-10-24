@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <recruitment>
-        <status>close</status>
-    </recruitment>
-    <beforeRegistration>
-        <message>На данный момент регистрация закрыта, пожалуйста следите за новостями.</message>
-    </beforeRegistration>
-</configuration>
