@@ -34,7 +34,7 @@
         </property>
 
         <property name="otherContacts" type="string">
-            <column name="UTHER_CONTACTS" length="250"/>
+            <column name="UTHER_CONTACTS" length="4000"/>
         </property>
 
         <property name="trainingCenterInterest" type="string">
@@ -46,7 +46,7 @@
         </property>
 
         <property name="otherJobInterests" type="string">
-            <column name="OTHER_JOB_INTERESTS" length="250" />
+            <column name="OTHER_JOB_INTERESTS" length="4000" />
         </property>
 
         <property name="backEndInterest" type="string">
@@ -62,7 +62,7 @@
         </property>
 
         <property name="otherWorkTypeSpecific" type="string">
-            <column name="OTHER_WORK_TYPE_SPECIFIC" length="250" />
+            <column name="OTHER_WORK_TYPE_SPECIFIC" length="4000" />
         </property>
 
         <property name="OOPLevel" type="java.lang.Integer">
@@ -82,15 +82,15 @@
         </property>
 
         <property name="umlLevel" type="java.lang.Integer">
-            <column name="UML_LEVEL" not-null="true" length="250"/>
+            <column name="UML_LEVEL" not-null="true" length="4000"/>
         </property>
 
         <property name="otherSkillsLevel" type="string">
-            <column name="OTHER_SKILL_LEVEL" length="250"/>
+            <column name="OTHER_SKILL_LEVEL" length="4000"/>
         </property>
 
         <property name="workExperience" type="string">
-            <column name="WORK_EXPERIENCE" length="250" />
+            <column name="WORK_EXPERIENCE" length="4000" />
         </property>
 
         <property name="englishReadLevel" type="java.lang.Integer">
@@ -106,15 +106,15 @@
         </property>
 
         <property name="whereYouKnowAboutTC" type="string">
-            <column name="WHERE_YOU_KNOW_ABOUT_TC" length="250"/>
+            <column name="WHERE_YOU_KNOW_ABOUT_TC" length="4000"/>
         </property>
 
         <property name="whyTakeYouInNetCracker" type="string">
-            <column name="WHY_TAKE_YOU_IN_NETCRACKER" length="250"/>
+            <column name="WHY_TAKE_YOU_IN_NETCRACKER" length="4000"/>
         </property>
 
         <property name="moreInformationAboutYou" type="string">
-            <column name="MORE_INFORMATION_ABOUT_YOU" length="250"/>
+            <column name="MORE_INFORMATION_ABOUT_YOU" length="4000"/>
         </property>
 
         <many-to-one name="institute" class="com.netcracker.tc.server.persistence.model.resume.Institute"
