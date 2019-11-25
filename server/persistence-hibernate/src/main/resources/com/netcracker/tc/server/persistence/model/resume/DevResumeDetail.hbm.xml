@@ -82,6 +82,7 @@
         </property>
 
         <property name="umlLevel" type="java.lang.Integer">
+            <!-- strange -->
             <column name="UML_LEVEL" not-null="true" length="4000"/>
         </property>
 

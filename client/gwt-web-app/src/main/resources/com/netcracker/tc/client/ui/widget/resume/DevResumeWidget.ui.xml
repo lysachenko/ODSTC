@@ -8,10 +8,11 @@
     <ui:style>
         .label {
             width: 130px;
-            text-align: center;
+            text-align: right;
             vertical-align: middle;
             padding-left: 0px;
-            padding-right: 5px;
+            padding-right: 10px;
+            margin-right: 5px;
         }
 
         .label250 {
@@ -165,7 +166,8 @@
                     <b:Row>
                         <b:ControlGroup ui:field="otherContactGroup">
                             <b:HelpInline addStyleNames="{style.label}">Другие контакты</b:HelpInline>
-                            <b:TextArea ui:field="otherContactField" width="274px"/>
+                            <custom:TextAreaHjb ui:field="otherContactField" width="274px"/>
+                            <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="otherContactFieldLengthInfo"/>
                         </b:ControlGroup>
                     </b:Row>
                 </b:Column>
@@ -191,7 +193,8 @@
                 <b:Row>
                     <b:ControlGroup ui:field="otherJobInterestGroup">
                         <b:HelpInline addStyleNames="{style.label}">Другое</b:HelpInline>
-                        <b:TextArea ui:field="otherJobInterestTextArea" width="485px" height="70px"/>
+                        <custom:TextAreaHjb ui:field="otherJobInterestTextArea" width="485px" height="70px"/>
+                        <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="otherJobInterestLengthInfo"/>
                     </b:ControlGroup>
                 </b:Row>
             </b:Column>
@@ -212,7 +215,8 @@
                 <b:Row>
                     <b:ControlGroup ui:field="otherWorkTypeSpecificGroup">
                         <b:HelpInline addStyleNames="{style.label}">Другое (уточните)</b:HelpInline>
-                        <b:TextArea ui:field="otherWorkTypeSpecificField" width="485px" height="70px"/>
+                        <custom:TextAreaHjb ui:field="otherWorkTypeSpecificField" width="485px" height="70px"/>
+                        <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="otherWorkTypeSpecificFieldLengthInfo"/>
                     </b:ControlGroup>
                 </b:Row>
             </b:Column>
@@ -254,14 +258,16 @@
                         <b:HelpInline addStyleNames="{style.label250}">Другие разделы (в области IT, сетей, языков
                             программирования)
                         </b:HelpInline>
-                        <b:TextArea ui:field="otherSkillsLevelField" width="366px" height="70px"/>
+                        <custom:TextAreaHjb ui:field="otherSkillsLevelField" width="366px" height="70px"/>
+                        <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="otherSkillsLevelFieldLengthInfo"/>
                     </b:ControlGroup>
                 </b:Row>
             </b:Column>
 
             <b:Paragraph>Если у вас уже есть опыт работы и/или выполненные учебные проекты, опишите их</b:Paragraph>
             <b:ControlGroup ui:field="workExperienceGroup">
-                <b:TextArea ui:field="workExperienceField" width="622px" height="70px"/>
+                <custom:TextAreaHjb ui:field="workExperienceField" width="622px" height="70px"/>
+                <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="workExperienceFieldLengthInfo"/>
             </b:ControlGroup>
 
             <b:HelpInline>Уровень английского языка (от 1 = elementary до 5 = advanced):</b:HelpInline>
@@ -279,20 +285,23 @@
 
             <b:Paragraph>Откуда вы узнали о наборе в Учебный центр?</b:Paragraph>
             <b:ControlGroup ui:field="whereYouKnowAboutTCGroup">
-                <b:TextArea ui:field="whereYouKnowAboutTCField" width="622px" height="70px"/>
+                <custom:TextAreaHjb ui:field="whereYouKnowAboutTCField" width="622px" height="70px"/>
+                <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="whereYouKnowAboutTCFieldLengthInfo"/>
             </b:ControlGroup>
 
             <b:Paragraph>Почему вас обязательно надо взять в Netcracker (важные достоинства; возможно, обещания)
             </b:Paragraph>
             <b:ControlGroup ui:field="whyTakeYouInNetCrackerGroup">
-                <b:TextArea ui:field="whyTakeYouInNetCrackerField" width="622px" height="70px"/>
+                <custom:TextAreaHjb ui:field="whyTakeYouInNetCrackerField" width="622px" height="70px"/>
+                <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="whyTakeYouInNetCrackerFieldLengthInfo"/>
             </b:ControlGroup>
 
             <b:Paragraph>Дополнительные сведения о себе: олимпиады, поощрения, курсы, сертификаты, личные качества,
                 др.
             </b:Paragraph>
             <b:ControlGroup ui:field="moreInformationAboutYouGroup">
-                <b:TextArea ui:field="moreInformationAboutYouField" width="622px" height="70px"/>
+                <custom:TextAreaHjb ui:field="moreInformationAboutYouField" width="622px" height="70px"/>
+                <b:AlertBlock addStyleNames="{style.center}" type="INFO" close="false" animation="true" visible="false" ui:field="moreInformationAboutYouFieldLengthInfo"/>
             </b:ControlGroup>
         </b:Fieldset>
         <b:Fieldset>
