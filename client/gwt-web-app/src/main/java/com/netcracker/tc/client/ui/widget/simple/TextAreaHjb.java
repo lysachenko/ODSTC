@@ -37,7 +37,6 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
 
         // For all browsers - catch onKeyUp
         sinkEvents(Event.ONKEYUP);
-        sinkEvents(Event.ONCLICK); //TODO ??
         sinkEvents(Event.ONFOCUS);
         sinkEvents(Event.ONBLUR);
 
@@ -48,7 +47,7 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
         setOnInputJSHandler(this.getElement());
         setBlurJSHandler(this.getElement());
         setFocusJSHandler(this.getElement());
-        //setDefaultListeners();
+        setDefaultListeners();
     }
 
     public void setAlertBlock(AlertBlock alertBlock) {
@@ -65,15 +64,23 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
         TripleHandler tripleHandler = new TripleHandler(){
             @Override
             public void onTextChange(TextChangeEvent textChangeEvent) {
-                if (getText().length() > 4000){
+                int len = getText().length();
+                if ( len > 4000){
                     alertBlock.setType(AlertType.ERROR);
                 } else {
                     alertBlock.setType(AlertType.INFO);
                 }
                 LOGGER.log(Level.INFO, "symbol pressed in dev resume");
-                alertBlock.setText("Введено " + getText().length() + " символов из " + "4000");
+                alertBlock.setText("Введено " + len + " символов из " + "4000");
                 setHeight("auto");
-                setHeight(getElement().getScrollHeight() + "px");
+
+                //getElement().getInnerText().length()
+            if ( getElement().getScrollHeight() < 500){
+                    setHeight(getElement().getScrollHeight() + "px");
+                } else {
+                setHeight(500 + "px");
+            }
+
             }
 
             @Override
