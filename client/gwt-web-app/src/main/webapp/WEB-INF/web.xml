@@ -64,6 +64,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>detail-info</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.DetailInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>detail-info</servlet-name>
+        <url-pattern>/detail-info</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>interviewResultServlet</servlet-name>
         <servlet-class>com.netcracker.tc.server.servlet.InterviewResultServlet</servlet-class>
     </servlet>
