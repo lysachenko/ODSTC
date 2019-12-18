@@ -46,14 +46,20 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
 
     @Inject
     private DevResumeWidget devResumeWidget;
+    @Inject
+    private CurrentUser currentUser;
+    @Inject
+    private final DispatchAsync dispatcher;
 
     @Inject
     public UserVerificationCVPresenter(
             final EventBus eventBus,
             final ViewImpl view,
-            final Proxy proxy
+            final Proxy proxy,
+            DispatchAsync dispatcher
     ) {
         super(eventBus, view, proxy);
+        this.dispatcher = dispatcher;
     }
 
     @Override
@@ -73,6 +79,8 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
                 //TODO: submit resume
             }
         });
+
+        loadUserInformation(currentUser.getUser());
     }
 
     @Override
@@ -93,5 +101,19 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
     @GatekeeperParams(value = {RoleDTO.ROLE_USER})
     @NameToken(NameTokens.User.STEP_VERIFICATION_CV)
     public interface Proxy extends ProxyPlace<UserVerificationCVPresenter> {
+    }
+
+    private void loadUserInformation(UserDTO currUser) {
+        dispatcher.execute(new GetUserInformationAction(currUser.getId()), new DefaultAsyncCallback<GetUserInformationResult>() {
+            @Override
+            public void onSuccess(GetUserInformationResult result) {
+                getView().getDevResumeWidget().clearFields();
+
+                getView().getDevResumeWidget().setKnowledgeTypes(result.getKnowledgeTypeDTOList());
+                getView().getDevResumeWidget().setInstitutes(result.getInstituteDTOList());
+                getView().getDevResumeWidget().setDevResume(result.getResume());
+
+            }
+        });
     }
 }
