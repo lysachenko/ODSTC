@@ -4,18 +4,30 @@
 
 
     <g:HTMLPanel>
+
         <g:HTML>
             <p>
                 <strong>
                     <strong>
-                        <font color="#0070C0" size="4">Спасибо за интерес к нашему Учебному центру и заполненную анкету!</font>
+                        <font color="#0070C0" size="4">Спасибо за интерес к нашему Учебному центру и заполненную
+                            анкету!
+                        </font>
                     </strong>
                 </strong>
             </p>
         </g:HTML>
 
         <b:WellForm>
-            <g:HTML ui:field="messageHTML" />
+            <g:HTML ui:field="messageHTML"/>
         </b:WellForm>
+
+        <g:HTMLPanel ui:field="resumePanel"/>
+
+        <b:FormActions>
+            <b:Button type="PRIMARY" ui:field="editResumeButton">Редактировать</b:Button>
+            <b:Button type="PRIMARY" ui:field="submitResumeButton">Отправить</b:Button>
+        </b:FormActions>
+
     </g:HTMLPanel>
-</ui:UiBinder> 
+
+</ui:UiBinder>
