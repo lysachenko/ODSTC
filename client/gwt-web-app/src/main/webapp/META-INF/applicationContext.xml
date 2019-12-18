@@ -13,17 +13,16 @@
 
     <context:component-scan base-package="com.gwtplatform.dispatch.rpc.server.spring" scoped-proxy="targetClass"/>
 
-    <context:component-scan base-package="com.netcracker.tc.server" />
+    <context:component-scan base-package="com.netcracker.tc.server"/>
 
-    <bean id="scheduler" class="com.netcracker.tc.server.spring.Scheduler" />
-    <task:scheduled-tasks >
-        <task:scheduled  ref="scheduler" method="process" fixed-delay="61000"/>
+    <bean id="scheduler" class="com.netcracker.tc.server.spring.Scheduler"/>
+    <task:scheduled-tasks>
+        <task:scheduled ref="scheduler" method="process" fixed-delay="61000"/>
     </task:scheduled-tasks>
 
 
-
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="mappingLocations">
             <list>
                 <value>classpath*:com/netcracker/tc/server/persistence/model/user/*.hbm.xml</value>
@@ -34,11 +33,9 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
-                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>-->
+                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
@@ -46,21 +43,14 @@
 
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
-        <property name="username" value="postgres" />
-        <property name="password" value="postgres" />
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+        <property name="username" value="nc1"/>
+        <property name="password" value="1234"/>
     </bean>
 
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-            <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-            <property name="url" value="jdbc:oracle:thin:@XXX:YYYY:ZZZ" />
-            <property name="username" value="XXX" />
-            <property name="password" value="YYYY" />
-    </bean>-->
-
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
