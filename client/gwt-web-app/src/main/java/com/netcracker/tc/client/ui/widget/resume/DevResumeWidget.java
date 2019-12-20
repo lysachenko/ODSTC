@@ -37,7 +37,7 @@ import static org.apache.poi.ss.formula.functions.NumericFunction.LOG;
 public class DevResumeWidget extends Composite {
 
     private static Logger LOGGER = Logger.getLogger(DevResumeWidget.class.toString());
-//private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DevResumeWidget.class);
+    //private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DevResumeWidget.class);
     private static Binder uiBinder = GWT.create(Binder.class);
     @UiField
     UploadPhotoWidget uploadPhotoWidget;
@@ -194,7 +194,7 @@ public class DevResumeWidget extends Composite {
     }
 
     public ResumeDTO getDevResume() {
-        LOGGER.log(Level.FINE,"get " + engSurnameField.getText() );
+        LOGGER.log(Level.FINE, "get " + engSurnameField.getText());
         ResumeDTO resume = new ResumeDTO();
 
         resume.setSurname(surnameField.getText());
@@ -247,7 +247,6 @@ public class DevResumeWidget extends Composite {
             devResumeDetailDTO.setInstituteOtherName(null);
         }
 
-
         resume.setDevResumeDetail(devResumeDetailDTO);
 
         return resume;
@@ -256,7 +255,7 @@ public class DevResumeWidget extends Composite {
     public void setDevResume(ResumeDTO resume) {
         otherInstituteRow.setVisible(false);
         if (resume != null) {
-            LOGGER.log(Level.ALL,"set " + resume.getEngSurname() );
+            LOGGER.log(Level.ALL, "set " + resume.getEngSurname());
             DevResumeDetailDTO devResumeDetailDTO = resume.getDevResumeDetail();
 
             uploadPhotoWidget.setUserImage(resume.getPhotoPath());
@@ -308,6 +307,7 @@ public class DevResumeWidget extends Composite {
                     otherInstituteRow.setVisible(true);
                     otherInstituteField.setText(devResumeDetailDTO.getInstituteOtherName());
                 }
+                agreementCheckBox.setValue(true);
             }
         }
     }
@@ -461,7 +461,7 @@ public class DevResumeWidget extends Composite {
         }
 
         StringBuffer errorMessageText = new StringBuffer("Ошибка при валидации полей. Проверьте корректность значений. <br> <ul>");
-        for(String errorMessage: errorMessages) {
+        for (String errorMessage : errorMessages) {
             errorMessageText.append("<li>" + errorMessage + "</li>");
         }
         errorMessageText.append("</ul>");
@@ -479,7 +479,7 @@ public class DevResumeWidget extends Composite {
     private void cleanTooltip() {
 //        LOGGER.log(Level.FINE, "clean tooltip");
         for (Tooltip tooltip : tooltips.values())
-            if(!actualTooltips.containsValue(tooltip)) {
+            if (!actualTooltips.containsValue(tooltip)) {
                 tooltip.setText("");
                 tooltip.reconfigure();
                 tooltip.clear();
@@ -492,7 +492,7 @@ public class DevResumeWidget extends Composite {
     private void addTooltip(Widget widget, String message) {
 //        LOGGER.log(Level.FINE, " add addTooltip ");
         if (tooltips.containsKey(widget)) {
-            actualTooltips.put(widget,tooltips.get(widget));
+            actualTooltips.put(widget, tooltips.get(widget));
             return;
         }
 
@@ -565,7 +565,7 @@ public class DevResumeWidget extends Composite {
         facultyField.setReadOnly(true);
         departmentField.setReadOnly(true);
         specialtyField.setReadOnly(true);
-        graduationYearField.setReadOnly(false);
+        graduationYearField.setReadOnly(true);
         emailField.setReadOnly(true);
         telephoneField.setReadOnly(true);
         skypeField.setReadOnly(true);
@@ -632,7 +632,7 @@ public class DevResumeWidget extends Composite {
         whereYouKnowAboutTCField.setText("");
         whyTakeYouInNetCrackerField.setText("");
         moreInformationAboutYouField.setText("");
-        agreementCheckBox.setEnabled(false);
+        agreementCheckBox.setValue(false);
     }
 
   /*  public Button getDownloadButton() {
