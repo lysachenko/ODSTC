@@ -22,6 +22,8 @@ public class InterviewListView extends ViewImpl implements InterviewListPresente
     Button stopRegistrationButton;
     @UiField
     Button getInterviewResultsButton;
+    @UiField
+    Button getDetailInfoButton;
 
     @Inject
     InterviewListView(Binder uiBinder) {
@@ -51,6 +53,8 @@ public class InterviewListView extends ViewImpl implements InterviewListPresente
     public Button getGetInterviewResultsButton() {
         return this.getInterviewResultsButton;
     }
+
+    public Button getDetailInfoButton() { return this.getDetailInfoButton; }
 
     static abstract interface Binder extends UiBinder<Widget, InterviewListView> {
     }
