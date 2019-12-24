@@ -26,7 +26,12 @@ public class UserEditingCVView extends com.gwtplatform.mvp.client.ViewImpl
     @UiField
     Button saveChangesButton;
 
-    private static String MESSAGE = "<center><h4>тут должно быть какое-то сообщение </h4>\n </center>";
+    private static String MESSAGE = "<center><h4>Редактирование анкеты</h4></center>" +
+            "<p><i>Тут Вы можете вносить изменения в Вашу анкету." +
+            "Для сохранения изменений анкеты в Личном кабинете нажмите \"Сохранить\" внизу страницы." +
+            "<br>Когда будете готовы предоставить нам конечный вариант анкеты - нажмите кнопку \"Отправить\"." +
+            "<br><b>Внимание:</b> отправлять на проверку измененную версию анкеты Вы можете только один раз." +
+            "</i></p>";
 
     @Inject
     UserEditingCVView(UserEditingCVView.Binder uiBinder) {

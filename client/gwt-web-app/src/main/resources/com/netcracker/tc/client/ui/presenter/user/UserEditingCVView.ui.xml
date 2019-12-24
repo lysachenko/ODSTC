@@ -6,15 +6,21 @@
     <g:HTMLPanel>
 
         <g:HTML>
-            <p>
+            <p align="center">
                 <strong>
-                    <strong>
-                        <font color="#0070C0" size="4">EDIT PAGE Спасибо за интерес к нашему Учебному центру и заполненную
-                            анкету!
-                        </font>
-                    </strong>
+                    <font color="#0070C0" size="4">
+                        Спасибо за интерес к нашему Учебному центру и заполненную анкету!
+                    </font>
                 </strong>
             </p>
+
+            <h3 align="center">
+                <strong>
+                    <font color="#000000">
+                        Личный кабинет
+                    </font>
+                </strong>
+            </h3>
         </g:HTML>
 
         <b:WellForm>
