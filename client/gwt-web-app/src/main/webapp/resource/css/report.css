@@ -2,10 +2,15 @@ body{
     background-color:#C9DDE8;
 }
 
+.logoDiv{
+
+}
+
 .container{
     background-color:white;
     border-radius:8px;
     padding-left:10px;
+    padding-right: 13px;
 }
 .btns{
     padding-bottom:5px;

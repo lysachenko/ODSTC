@@ -8,13 +8,11 @@
 </head>
 <body>
 
-<div class="container">
-
 <div class ="logoDiv">
     <img src='<c:url value="/resource/loading/logoNC.JPG"></c:url>' />
 </div>
 
-
+<div class="container">
     <div class ="btns">
         <button  onclick="func()">Фильтрация</button>
         <input   id="downloadBtn" type="submit" value="Загрузить"/>
