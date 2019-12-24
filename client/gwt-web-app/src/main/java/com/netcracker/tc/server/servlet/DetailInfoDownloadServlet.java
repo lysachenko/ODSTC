@@ -34,7 +34,7 @@ public class DetailInfoDownloadServlet extends AutoinjectingRemoteServiceServlet
 
     private void downloadDetailInfoReport(HttpServletResponse response) throws IOException, ServiceException, SessionExpiredException {
             response.setContentType("application/vnd.ms-excel");
-            response.addHeader("Content-Disposition", "attachment; filename=detail-info.xlsx");
+            response.addHeader("Content-Disposition", "attachment; filename=detailInfo.xlsx");
 
             xlsService.createDetailInfoXls(response.getOutputStream());
             response.getOutputStream().flush();

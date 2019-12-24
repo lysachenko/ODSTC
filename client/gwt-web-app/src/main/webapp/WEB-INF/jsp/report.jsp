@@ -16,7 +16,11 @@
 <div class="container">
     <div class ="btns">
         <button  onclick="func()">Фильтрация</button>
-        <input   id="downloadBtn" type="submit" value="Загрузить"/>
+
+        <form action="downloadDetailInfo">
+        <input   type="submit"  id="downloadBtn"  value="Загрузить"/>
+        </form>
+
         <input   id="printBtn" type="submit" value="Печать"/>
     </div>
 
@@ -37,7 +41,6 @@
         </tr>
 
         <%
-            int i = 1;
             List<Report> list = (List) request.getAttribute("reportList");
         %>
 

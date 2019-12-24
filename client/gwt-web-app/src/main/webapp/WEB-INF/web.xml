@@ -74,6 +74,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>downloadDetailInfo</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.DetailInfoDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>downloadDetailInfo</servlet-name>
+        <url-pattern>/downloadDetailInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>interviewResultServlet</servlet-name>
         <servlet-class>com.netcracker.tc.server.servlet.InterviewResultServlet</servlet-class>
     </servlet>

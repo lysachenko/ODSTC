@@ -18,6 +18,7 @@ public class DetailInfoXlsManager {
     };
 
     private  Workbook workbook;
+    private List<PreparedData> data;
 
     public void createWorkbook() {
         workbook =  new HSSFWorkbook();
@@ -46,6 +47,8 @@ public class DetailInfoXlsManager {
             cell.setCellValue(columns[i]);
             cell.setCellStyle(headerCellStyle);
         }
+        //convert into data-format
+
 
 
 
@@ -55,11 +58,11 @@ public class DetailInfoXlsManager {
             Row row = sheet.createRow(rowNum++);
 
             row.createCell(0).setCellValue(report.getStudent());
-            row.createCell(1).setCellValue(report.getDateInterview());
-            row.createCell(2).setCellValue(report.getStartTimeHr());
-            row.createCell(3).setCellValue(report.getEndTimeHr());
-            row.createCell(4).setCellValue(report.getStartTimeInterviewer());
-            row.createCell(5).setCellValue(report.getEndTimeInterviewer());
+            row.createCell(1).setCellValue(report.getDateInterview().toString());
+            row.createCell(2).setCellValue(report.getStartTimeHr().toString());
+            row.createCell(3).setCellValue(report.getEndTimeHr().toString());
+            row.createCell(4).setCellValue(report.getStartTimeInterviewer().toString());
+            row.createCell(5).setCellValue(report.getEndTimeInterviewer().toString());
 
         }
 
@@ -70,8 +73,20 @@ public class DetailInfoXlsManager {
     }
 
 
+
+
     public void writeToStream(OutputStream stream) throws IOException {
         this.workbook.write(stream);
         stream.close();
     }
+
+    private class PreparedData{
+        String student;
+        String dateInterview;
+        String startHr;
+        String endHr;
+        String startInterview;
+        String endInterview;
+    }
+
 }
