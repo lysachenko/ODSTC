@@ -34,8 +34,13 @@ public class UserVerificationCVView extends com.gwtplatform.mvp.client.ViewImpl 
     @UiField
     Button submitResumeButton;
 
-    private static String MESSAGE = "<center><h4>Ваша анкета находится на рассмотрении " +
-            "у HR специалистов. <br> Ожидайте результата. </h4>\n </center>";
+    private static String MESSAGE = "<center><h4>Ваша анкета находится на рассмотрении у HR специалистов." +
+            "<br>Ожидайте результата.</h4></center>" +
+            "<p><i>Вы можете редактировать и сохранять Вашу анкету в Личном кабинете " +
+            "до того, как она будет рассмотрена. Для этого нажмите на кнопку \"Редактировать\" внизу страницы." +
+            "<br>Когда будете готовы предоставить нам конечный вариант анкеты - нажмите кнопку \"Отправить\"." +
+            "<br><b>Внимание:</b> отправлять на проверку измененную версию анкеты Вы можете только один раз." +
+            "</i></p>";
 
     @Inject
     UserVerificationCVView(UserVerificationCVView.Binder uiBinder) {
