@@ -1,4 +1,5 @@
-
+<%@ page import="java.util.List" %>
+<%@ page import="com.netcracker.tc.server.persistence.model.report.Report" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -35,42 +36,25 @@
             <th>Конец интервью с INTERVIEWER</th>
         </tr>
 
-        <tr>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
+        <%
+            int i = 1;
+            List<Report> list = (List) request.getAttribute("reportList");
+        %>
 
-        </tr>
+        <%
+            for (Report report : list) {
+        %>
         <tr>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-
+            <td><%=report.getStudent()%></td>
+            <td><%=report.getDateInterview()%></td>
+            <td><%=report.getStartTimeHr()%></td>
+            <td><%=report.getEndTimeHr()%></td>
+            <td><%=report.getStartTimeInterviewer()%></td>
+            <td><%=report.getEndTimeInterviewer()%></td>
         </tr>
-        <tr>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-
-        </tr>
-        <tr>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-            <td>bla</td>
-
-        </tr>
+        <%
+            }
+        %>
 
     </table>
 
