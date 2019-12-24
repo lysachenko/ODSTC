@@ -28,9 +28,24 @@ import com.netcracker.tc.shared.model.user.CurrentUser;
 import com.netcracker.tc.shared.model.user.RoleDTO;
 
 public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.ViewImpl, UserFillingCVPresenter.Proxy> {
-//    @Autowired
-//    private Logger LOGGER ;
 
+    @ProxyCodeSplit
+    @UseGatekeeper(LoggedInGatekeeper.class)
+    @GatekeeperParams(value = {RoleDTO.ROLE_USER})
+    @NameToken(NameTokens.User.STEP_RESUME)
+    public interface Proxy extends ProxyPlace<UserFillingCVPresenter> {
+    }
+
+    public interface ViewImpl extends View {
+        void setResumePanel(Widget widget);
+
+        Button getBackStepButton();
+
+        Button getNextStepButton();
+    }
+//    @Autowired
+
+    //    private Logger LOGGER ;
     @Inject
     private PlaceManager placeManager;
     @Inject
@@ -39,6 +54,7 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
     private DevResumeWidget devResumeWidget;
     @Inject
     private QAResumeWidget qaResumeWidget;
+
     @Inject
     private DispatchAsync dispatcher;
 
@@ -52,11 +68,13 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
 
     @Override
     protected void onBind() {
+        super.onBind();
+
         getView().getNextStepButton().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
 //                if (currentUser.getPosition().isDev()) {
-                    saveDevResume();
+                saveDevResume();
 //                } else {
 //                    saveQAResume();
 //                }
@@ -110,28 +128,21 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
 //                }
 //            });
 //        }
+
 //    }
 
     private void saveDevResume() {
-
         if (devResumeWidget.isValid()) {
             dispatcher.execute(new CreateDevResumeAction(devResumeWidget.getDevResume()), new DefaultAsyncCallback<IsDevResumeValid>() {
-
                 @Override
                 public void onSuccess(IsDevResumeValid result) {
-//                    if(result.isIsValid()){
-//                        redirectToDatePage();
-                        redirectToVerification();
-//                    } else {
-//                        redirectToExit();
-//                    }
-
+                    redirectToVerification();
                 }
             });
         }
     }
 
-    private void redirectToExit(){
+    private void redirectToExit() {
         placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.User.BAD_RESUME).build());
     }
 
@@ -139,29 +150,13 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
         placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.User.STEP_VERIFICATION_CV).build());
     }
 
-
 //    private void redirectToDatePage() {
 //        placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.User.STEP_REGISTRATION_ON_INTERVIEW).build());
+
 //    }
 
     @Override
     protected void revealInParent() {
         RevealContentEvent.fire(this, MainLayoutPresenter.CONTENT_SLOT, this);
-    }
-
-    public interface ViewImpl extends View {
-
-        Button getBackStepButton();
-
-        Button getNextStepButton();
-
-        void setResumePanel(Widget widget);
-    }
-
-    @ProxyCodeSplit
-    @UseGatekeeper(LoggedInGatekeeper.class)
-    @GatekeeperParams(value = {RoleDTO.ROLE_USER})
-    @NameToken(NameTokens.User.STEP_RESUME)
-    public interface Proxy extends ProxyPlace<UserFillingCVPresenter> {
     }
 }

@@ -32,6 +32,7 @@ public class NameTokens {
         public static final String STEP_RESUME = "interview.resume";
         public static final String STEP_REGISTRATION_ON_INTERVIEW = "interview.date";
         public static final String STEP_VERIFICATION_CV = "interview.verification";
+        public static final String STEP_EDITING_CV = "interview.editing";
         public static final String QA_PAGE = "user.qa";
         public static final String RESUME = "user.resume";
         public static final String INTERVIEW = "user.interview";

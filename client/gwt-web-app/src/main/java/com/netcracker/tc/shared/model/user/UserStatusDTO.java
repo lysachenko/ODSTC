@@ -7,12 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserStatusDTO implements Serializable {
-//TODO Create hash map instead values
+    //TODO Create hash map instead values
     public static final long USER_STATUS_STEP_POSITION = 1;
     public static final long FILLING_CV = 2;
     public static final long REGISTRATION_ON_INTERVIEW = 3;
     public static final long USER_HAS_BAD_RESUME = 4;
     public static final long VERIFICATION_CV = 5;
+    public static final long EDITING_CV = 6;
     public static Map<Long,String> userStatus;
     public static Map<Long,String> userStatusDesctiprion;
     private long id;
@@ -26,6 +27,9 @@ public class UserStatusDTO implements Serializable {
 
         userStatus.put(VERIFICATION_CV, NameTokens.User.STEP_VERIFICATION_CV);
         userStatusDesctiprion.put(VERIFICATION_CV,"Ожидание HR проверки");
+
+        userStatus.put(EDITING_CV, NameTokens.User.STEP_EDITING_CV);
+        userStatusDesctiprion.put(EDITING_CV,"Редактирования анкеты");
 
         userStatus.put(REGISTRATION_ON_INTERVIEW,NameTokens.User.STEP_REGISTRATION_ON_INTERVIEW);
         userStatusDesctiprion.put(REGISTRATION_ON_INTERVIEW,"Регистрации на собеседование");
