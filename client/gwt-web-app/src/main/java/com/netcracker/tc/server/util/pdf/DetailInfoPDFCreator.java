@@ -37,6 +37,10 @@ public class DetailInfoPDFCreator {
         this.list =list;
     }
 
+    public void setList(List<Report> list) {
+        this.list = list;
+    }
+
     public void createPDF(OutputStream stream){
         Document document = new Document();
         try {

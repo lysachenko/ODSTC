@@ -84,6 +84,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>downloadDetailInfoPdf</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.DetailInfoPdfDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>downloadDetailInfoPdf</servlet-name>
+        <url-pattern>/downloadDetailInfoPdf</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>interviewResultServlet</servlet-name>
         <servlet-class>com.netcracker.tc.server.servlet.InterviewResultServlet</servlet-class>
     </servlet>

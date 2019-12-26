@@ -1,8 +1,10 @@
 package com.netcracker.tc.server.service.impl;
 
 import com.itextpdf.text.DocumentException;
+import com.netcracker.tc.server.persistence.dao.impl.ReportDao;
 import com.netcracker.tc.server.service.api.*;
 import com.netcracker.tc.server.service.exception.ServiceException;
+import com.netcracker.tc.server.util.pdf.DetailInfoPDFCreator;
 import com.netcracker.tc.server.util.pdf.DevResumePDFCreator;
 import com.netcracker.tc.server.util.pdf.QAResumePDFCreator;
 import com.netcracker.tc.shared.model.interview.InterviewSlotDTO;
@@ -40,10 +42,12 @@ public class PDFServiceImpl implements PDFService {
 
     private DevResumePDFCreator devResumePDFCreator;
     private QAResumePDFCreator qaResumePDFCreator;
+    private DetailInfoPDFCreator detailInfoPDFCreator;
 
     public PDFServiceImpl(){
         devResumePDFCreator = new DevResumePDFCreator();
         qaResumePDFCreator = new QAResumePDFCreator();
+        detailInfoPDFCreator = new DetailInfoPDFCreator();
     }
 
     @Autowired
@@ -86,6 +90,14 @@ public class PDFServiceImpl implements PDFService {
         } else {
             createQAPDF(resume, activeUserInterview, outputStream);
         }
+    }
+
+    @Override
+    public void createActiveDetailInfoPDF(OutputStream outputStream) {
+        ReportDao reportDao = new ReportDao();
+        detailInfoPDFCreator.setList(reportDao.getReportList());
+        detailInfoPDFCreator.createPDF(outputStream);
+        LOGGER.info("Created pdf for DetailInfoReport");
     }
 
     private void createQAPDF(ResumeDTO resume, InterviewSlotDTO activeUserInterview, OutputStream outputStream) throws ServiceException {

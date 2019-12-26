@@ -21,7 +21,7 @@
              <input   type="submit"  id="downloadBtn"  value="Загрузить"/>
         </form>
 
-        <form  style="display: inline-block" action="printDetailInfo">
+        <form  style="display: inline-block" action="downloadDetailInfoPdf">
             <input   id="printBtn" type="submit" value="Печать"/>
         </form>
 
