@@ -1,8 +1,10 @@
 package com.netcracker.tc.server.util.xls;
 
 import com.netcracker.tc.server.persistence.model.report.Report;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -17,29 +19,29 @@ public class DetailInfoXlsManager {
             "endWithInterview"
     };
 
-    private  Workbook workbook;
+    private Workbook workbook;
     private List<PreparedData> data;
 
     public void createWorkbook() {
-        workbook =  new HSSFWorkbook();
+        this.workbook =  new XSSFWorkbook();
     }
 
     public void writeWorkbook(List<Report> list) {
         // Create a Sheet
-        Sheet sheet = workbook.createSheet("DetailInfo");
+        Sheet sheet =  workbook.createSheet("DetailInfo");
 
         // Create a Font for styling header cells
-        Font headerFont = workbook.createFont();
+        Font headerFont =  workbook.createFont();
         headerFont.setBold(true);
         headerFont.setFontHeightInPoints((short) 14);
 
 
         // Create a CellStyle with the font
-        CellStyle headerCellStyle = workbook.createCellStyle();
+        CellStyle headerCellStyle =  workbook.createCellStyle();
         headerCellStyle.setFont(headerFont);
 
         // Create a Row
-        Row headerRow = sheet.createRow(0);
+        Row headerRow = sheet.createRow((short) 0);
 
         // Create cells
         for(int i = 0; i < columns.length; i++) {
@@ -48,8 +50,6 @@ public class DetailInfoXlsManager {
             cell.setCellStyle(headerCellStyle);
         }
         //convert into data-format
-
-
 
 
         // Create Other rows and cells with employees data
