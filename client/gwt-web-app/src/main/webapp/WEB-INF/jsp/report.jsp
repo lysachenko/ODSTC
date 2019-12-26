@@ -15,13 +15,16 @@
 
 <div class="container">
     <div class ="btns">
-        <button  onclick="func()">Фильтрация</button>
+        <button style="display: inline-block" onclick="func()">Фильтрация</button>
 
-        <form action="downloadDetailInfo">
-        <input   type="submit"  id="downloadBtn"  value="Загрузить"/>
+        <form style="display: inline-block"   action="downloadDetailInfo">
+             <input   type="submit"  id="downloadBtn"  value="Загрузить"/>
         </form>
 
-        <input   id="printBtn" type="submit" value="Печать"/>
+        <form  style="display: inline-block" action="printDetailInfo">
+            <input   id="printBtn" type="submit" value="Печать"/>
+        </form>
+
     </div>
 
     <br/>
