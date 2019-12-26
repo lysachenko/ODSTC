@@ -70,4 +70,5 @@ public class Report {
     public void setEndTimeInterviewer(Long endTimeInterviewer) {
         this.endTimeInterviewer = endTimeInterviewer;
     }
+
 }
