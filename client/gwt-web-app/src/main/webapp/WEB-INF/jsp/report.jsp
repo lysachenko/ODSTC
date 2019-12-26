@@ -28,9 +28,11 @@
     </div>
 
     <br/>
-        <input  id="nameFiltr" style="display: none" type="text" placeholder="По студенту" size="20">
-        <input id="dateFiltr"  style="display: none"type="text" placeholder="По дате" size="20">
-        <input class ="btn" id="filtrBtn"  style="display: none" type="submit" value="Фильтрация"/>
+    <form name="frm" action="filtrate" method="post">
+        <input  id="nameFiltr" name="nameFiltr" style="display: none" type="text" placeholder="По студенту" size="20">
+        <input  id="dateFiltr" name="dateFiltr"  style="display: none" type="text" placeholder="По дате" size="20">
+        <input name ="btn" id="filtrBtn"  style="display: none" type="submit" value="Фильтрация" onclick="return IsEmpty();">
+    </form>
    <br/>
 
     <table class ="tbl" cellspacing='0'>
@@ -77,7 +79,14 @@
             z.style.display = "inline";
 
         }
+    }
 
+    function IsEmpty() {
+        if (document.forms['frm'].nameFiltr.value === "" && document.forms['frm'].dateFiltr.value === "") {
+            alert("Fields are empty");
+            return false;
+        }
+        return true;
     }
 </script>
 
