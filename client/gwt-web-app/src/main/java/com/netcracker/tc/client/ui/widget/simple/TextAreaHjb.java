@@ -10,19 +10,15 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Event;
-import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
 import com.netcracker.tc.client.ui.widget.user.eventHandlers.*;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
-* before use the event insight this class
-* you must to set alertBlock variable
-* */
+ * before use the event insight this class
+ * you must to set alertBlock variable
+ * */
 
 public class TextAreaHjb extends TextArea implements HasHandlers {
-    private static Logger LOGGER = Logger.getLogger(DevResumeWidget.class.toString());
     private HandlerManager handlerManager;
     private AlertBlock alertBlock;
     private TextChangeEventHandler textChangeEventHandler;
@@ -54,33 +50,31 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
         this.alertBlock = alertBlock;
     }
 
-    public void setTripleHandlers(TripleHandler tripleHandler){
+    public void setTripleHandlers(TripleHandler tripleHandler) {
         addFocusEventHandler((FocusHandlerNew) tripleHandler);
         addBlurEventHandler((BlurHandlerNew) tripleHandler);
         addTextChangeEventHandler((TextChangeEventHandler) tripleHandler);
     }
 
-    private void setDefaultListeners(){
-        TripleHandler tripleHandler = new TripleHandler(){
+    private void setDefaultListeners() {
+        TripleHandler tripleHandler = new TripleHandler() {
             @Override
             public void onTextChange(TextChangeEvent textChangeEvent) {
                 int len = getText().length();
-                if ( len > 4000){
+                if (len > 4000) {
                     alertBlock.setType(AlertType.ERROR);
                 } else {
                     alertBlock.setType(AlertType.INFO);
                 }
-                LOGGER.log(Level.INFO, "symbol pressed in dev resume");
                 alertBlock.setText("Введено " + len + " символов из " + "4000");
                 setHeight("auto");
 
                 //getElement().getInnerText().length()
-            if ( getElement().getScrollHeight() < 500){
+                if (getElement().getScrollHeight() < 500) {
                     setHeight(getElement().getScrollHeight() + "px");
                 } else {
-                setHeight(500 + "px");
-            }
-
+                    setHeight(500 + "px");
+                }
             }
 
             @Override
@@ -134,12 +128,11 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
 
     // тригер события Focus
     private void onFocusHandler(Event event) {
-        LOGGER.log(Level.INFO, "onFocusHandler in TextAreaHjb");
         fireEvent(new BlurEventNew()); // тут я передаю по сути только класс события который потм использую в fireEvent
     }
 
     public HandlerRegistration addTextChangeEventHandler(TextChangeEventHandler handler) {
-        if (handlerManager.isEventHandled(TextChangeEvent.TYPE)){
+        if (handlerManager.isEventHandled(TextChangeEvent.TYPE)) {
             handlerManager.removeHandler(TextChangeEvent.TYPE, textChangeEventHandler);
         }
         textChangeEventHandler = handler;
@@ -148,7 +141,7 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
 
     // установка обработчика из вне
     public HandlerRegistration addBlurEventHandler(BlurHandlerNew handler) {
-        if (handlerManager.isEventHandled(BlurEventNew.TYPE)){
+        if (handlerManager.isEventHandled(BlurEventNew.TYPE)) {
             handlerManager.removeHandler(BlurEventNew.TYPE, blurHandlerNew);
         }
         blurHandlerNew = handler;
@@ -157,18 +150,16 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
 
     // установка обработчика Focus из вне
     public HandlerRegistration addFocusEventHandler(FocusHandlerNew handler) {
-        if (handlerManager.isEventHandled(FocusEventNew.TYPE)){
+        if (handlerManager.isEventHandled(FocusEventNew.TYPE)) {
             handlerManager.removeHandler(FocusEventNew.TYPE, focusHandlerNew);
         }
         focusHandlerNew = handler;
-        //LOGGER.log(Level.INFO, "addFocusEventHandler in TextAreaHjb");
         return handlerManager.addHandler(FocusEventNew.TYPE, handler);
     }
 
     //тригер всех событий установленных ранее в handlerManager
     @Override
     public void fireEvent(GwtEvent<?> event) {
-        LOGGER.log(Level.INFO, "fireEvent in TextAreaHjb");
         handlerManager.fireEvent(event);
     }
 
@@ -176,13 +167,11 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
     @Override
     public void onBrowserEvent(Event event) {
         super.onBrowserEvent(event);
-        if (alertBlock==null){
-            LOGGER.log(Level.SEVERE, "You must set the alertBlock value for " + this.getClass().getSimpleName());
+        if (alertBlock == null) {
         }
-            switch (event.getTypeInt()) {
+        switch (event.getTypeInt()) {
             case Event.ONKEYUP:
             case Event.ONPASTE: {
-                LOGGER.log(Level.INFO, "case Event.ONPASTE");
                 // Scheduler needed so pasted data shows up in TextBox before we fire event
                 Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
                     @Override
@@ -193,7 +182,6 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
                 break;
             }
             case Event.ONBLUR: {
-                LOGGER.log(Level.INFO, "case Event.ONBLUR:");
                 Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
                     @Override
                     public void execute() {
@@ -203,7 +191,6 @@ public class TextAreaHjb extends TextArea implements HasHandlers {
                 break;
             }
             case Event.ONFOCUS: {
-                LOGGER.log(Level.INFO, "case Event.ONFOCUS");
                 // Scheduler - планировщик
                 // передача планировщику задачи на выполнение
                 // задача выполнится по возвращению цикла браузера
