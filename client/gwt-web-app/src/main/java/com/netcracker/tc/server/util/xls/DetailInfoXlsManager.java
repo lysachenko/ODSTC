@@ -59,10 +59,10 @@ public class DetailInfoXlsManager {
 
             row.createCell(0).setCellValue(report.getStudent());
             row.createCell(1).setCellValue(report.getDateInterview().toString());
-            row.createCell(2).setCellValue(report.getStartTimeHr().toString());
-            row.createCell(3).setCellValue(report.getEndTimeHr().toString());
-            row.createCell(4).setCellValue(report.getStartTimeInterviewer().toString());
-            row.createCell(5).setCellValue(report.getEndTimeInterviewer().toString());
+            row.createCell(2).setCellValue(report.getStartInterview().toString());
+            row.createCell(3).setCellValue(report.getEndInterview().toString());
+            row.createCell(4).setCellValue(report.getHrTime().toString());
+            row.createCell(5).setCellValue(report.getInterviewTime().toString());
 
         }
 

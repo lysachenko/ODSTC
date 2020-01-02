@@ -40,6 +40,9 @@ public class PDFServiceImpl implements PDFService {
     @Autowired
     ImageService imageService;
 
+    @Autowired
+    ReportDao reportDao;
+
     private DevResumePDFCreator devResumePDFCreator;
     private QAResumePDFCreator qaResumePDFCreator;
     private DetailInfoPDFCreator detailInfoPDFCreator;
@@ -94,7 +97,6 @@ public class PDFServiceImpl implements PDFService {
 
     @Override
     public void createActiveDetailInfoPDF(OutputStream outputStream) {
-        ReportDao reportDao = new ReportDao();
         detailInfoPDFCreator.setList(reportDao.getReportList());
         detailInfoPDFCreator.createPDF(outputStream);
         LOGGER.info("Created pdf for DetailInfoReport");

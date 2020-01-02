@@ -39,10 +39,10 @@
         <tr>
             <th>Студент</th>
             <th>Дата интервью</th>
-            <th>Начало интервью с HR</th>
-            <th>Конец интервью с HR</th>
-            <th>Начало  интервью с INTERVIEWER</th>
-            <th>Конец интервью с INTERVIEWER</th>
+            <th>Начало интервью</th>
+            <th>Конец интервью</th>
+            <th>Время интервью с HR</th>
+            <th>Время интервью с INTERVIEWER</th>
         </tr>
 
         <%
@@ -55,10 +55,10 @@
         <tr>
             <td><%=report.getStudent()%></td>
             <td><%=report.getDateInterview()%></td>
-            <td><%=report.getStartTimeHr()%></td>
-            <td><%=report.getEndTimeHr()%></td>
-            <td><%=report.getStartTimeInterviewer()%></td>
-            <td><%=report.getEndTimeInterviewer()%></td>
+            <td><%=report.getStartInterview()%></td>
+            <td><%=report.getEndInterview()%></td>
+            <td><%=report.getHrTime()%></td>
+            <td><%=report.getInterviewTime()%></td>
         </tr>
         <%
             }

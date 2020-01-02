@@ -53,6 +53,12 @@
         <property name="password" value="a1111" />
     </bean>
 
+    <bean id="reportDao" class="com.netcracker.tc.server.persistence.dao.impl.ReportDao">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+
+
 
     <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="org.postgresql.Driver" />

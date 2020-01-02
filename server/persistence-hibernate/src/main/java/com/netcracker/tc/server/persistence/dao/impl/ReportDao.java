@@ -1,23 +1,33 @@
-package com.netcracker.tc.server.servlet;
+package com.netcracker.tc.server.persistence.dao.impl;
 
+import com.netcracker.tc.server.persistence.dao.common.AbstractHibernateDao;
 import com.netcracker.tc.server.persistence.model.report.Report;
+import com.netcracker.tc.server.persistence.model.resume.Resume;
+import com.netcracker.tc.server.persistence.model.user.User;
 import org.hibernate.*;
-import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
+import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-@Transactional
-@Service
+
 public class ReportDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReportDao.class);
+    private DataSource dataSource;
+    private Connection con = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
 
-    private SessionFactory sessionFactory;
-    private String queryString ="select r.name || ' ' || r.surname as student, i.login,\n" +
+
+    private String queryString = "select r.name || ' ' || r.surname as student, i.login,\n" +
             "i.start_time, i.end_time, i.hr_time_for_interview,\n" +
             "i.interview_time_for_interview\n" +
             "from resume r, interview_slot isl, interview i, users u\n" +
@@ -25,32 +35,44 @@ public class ReportDao {
             "and isl.interview_id = i.id \n" +
             "and isl.user_id =u.id";
 
-    public ReportDao(){}
 
-
-    public ReportDao(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
-        LOGGER.info("created reportdao");
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
 
-    public List<Report> getReportList(){
-        LOGGER.info("intro reportlist");
-        Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
-        SQLQuery query = session.createSQLQuery(queryString);
-        List<Object[]> rows = query.list();
+    public List<Report> getReportList() {
         List<Report> reportList = new ArrayList<Report>();
-        for(Object[] row : rows) {
-            Report report = new Report();
-            report.setStudent(row[0].toString());
-            report.setDateInterview((Date) row[1]);
-            report.setStartInterview(Long.parseLong(row[2].toString()));
-            report.setEndInterview(Long.parseLong(row[3].toString()));
-            report.setHrTime(Integer.parseInt(row[4].toString()));
-            report.setInterviewTime(Integer.parseInt(row[5].toString()));
-            reportList.add(report);
+        try {
+            con = dataSource.getConnection();
+            ps = con.prepareStatement(queryString);
+            rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                Report report = new Report();
+                report.setStudent(rs.getString(1));
+                report.setDateInterview(rs.getDate(2));
+                report.setStartInterview(rs.getLong(3));
+                report.setEndInterview(rs.getLong(4));
+                report.setHrTime(rs.getInt(5));
+                report.setInterviewTime(rs.getInt(6));
+                reportList.add(report);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return reportList;
     }
+
 }
+
+

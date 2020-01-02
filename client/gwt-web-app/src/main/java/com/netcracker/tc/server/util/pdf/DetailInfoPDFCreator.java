@@ -20,14 +20,15 @@ public class DetailInfoPDFCreator {
     private static Font smallFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 10);
 
+
     private static final Logger LOGGER = LoggerFactory.getLogger(DetailInfoPDFCreator.class);
 
     private final static String[] columns = {"Студент",
             "Дата",
-            "Начало интервью с HR",
-            "Конец интервью с HR",
-            "Начало интервью с INT-WER",
-            "Конец интервью с INT-WER"
+            "Начало интервью",
+            "Конец интервью",
+            "Длительность интервью HR",
+            "Длительность с INT-WER"
     };
     private List<Report> list = new ArrayList<Report>();
 
@@ -80,13 +81,15 @@ public class DetailInfoPDFCreator {
     }
 
     private void addTableContent(PdfPTable table) {
+
+        float [] pointColumnWidths = {150F, 150F, 150F};
         for(int i=0; i<list.size(); i++) {
             table.addCell(list.get(i).getStudent());
             table.addCell(list.get(i).getDateInterview().toString());
-            table.addCell(list.get(i).getStartTimeHr().toString());
-            table.addCell(list.get(i).getEndTimeHr().toString());
-            table.addCell(list.get(i).getStartTimeInterviewer().toString());
-            table.addCell(list.get(i).getEndTimeInterviewer().toString());
+            table.addCell(list.get(i).getStartInterview().toString());
+            table.addCell(list.get(i).getEndInterview().toString());
+            table.addCell(list.get(i).getHrTime().toString());
+            table.addCell(list.get(i).getInterviewTime().toString());
         }
     }
 

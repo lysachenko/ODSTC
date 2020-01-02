@@ -1,26 +1,18 @@
 package com.netcracker.tc.server.persistence.model.report;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Report {
+public class Report implements Serializable {
 
     private String student;
-    private Date dateInterview;
-    private Long startTimeHr;
-    private Long endTimeHr;
-    private Long startTimeInterviewer;
-    private Long endTimeInterviewer;
+    private String dateInterview;
+    private Long startInterview;
+    private Long endInterview;
+    private Integer hrTime;
+    private Integer interviewTime;
 
     public Report() {
-    }
-
-    public Report(String student, Date dateInterview, Long startTimeHr, Long endTimeHr, Long startTimeInterviewer, Long endTimeInterviewer) {
-        this.student = student;
-        this.dateInterview = dateInterview;
-        this.startTimeHr = startTimeHr;
-        this.endTimeHr = endTimeHr;
-        this.startTimeInterviewer = startTimeInterviewer;
-        this.endTimeInterviewer = endTimeInterviewer;
     }
 
     public String getStudent() {
@@ -31,44 +23,43 @@ public class Report {
         this.student = student;
     }
 
-    public Date getDateInterview() {
+    public String getDateInterview() {
         return dateInterview;
     }
 
     public void setDateInterview(Date dateInterview) {
-        this.dateInterview = dateInterview;
+        this.dateInterview = dateInterview.toString();
     }
 
-    public Long getStartTimeHr() {
-        return startTimeHr;
+    public Long getStartInterview() {
+        return startInterview;
     }
 
-    public void setStartTimeHr(Long startTimeHr) {
-        this.startTimeHr = startTimeHr;
+    public void setStartInterview(Long startInterview) {
+        this.startInterview = startInterview;
     }
 
-    public Long getEndTimeHr() {
-        return endTimeHr;
+    public Long getEndInterview() {
+        return endInterview;
     }
 
-    public void setEndTimeHr(Long endTimeHr) {
-        this.endTimeHr = endTimeHr;
+    public void setEndInterview(Long endInterview) {
+        this.endInterview = endInterview;
     }
 
-    public Long getStartTimeInterviewer() {
-        return startTimeInterviewer;
+    public Integer getHrTime() {
+        return hrTime;
     }
 
-    public void setStartTimeInterviewer(Long startTimeInterviewer) {
-        this.startTimeInterviewer = startTimeInterviewer;
+    public void setHrTime(Integer hrTime) {
+        this.hrTime = hrTime;
     }
 
-    public Long getEndTimeInterviewer() {
-        return endTimeInterviewer;
+    public Integer getInterviewTime() {
+        return interviewTime;
     }
 
-    public void setEndTimeInterviewer(Long endTimeInterviewer) {
-        this.endTimeInterviewer = endTimeInterviewer;
+    public void setInterviewTime(Integer interviewTime) {
+        this.interviewTime = interviewTime;
     }
-
 }

@@ -46,6 +46,9 @@ public class XlsServiceImpl implements XlsService {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    ReportDao reportDao;
+
     private String templatePath;
 
     @Autowired
@@ -116,7 +119,6 @@ public class XlsServiceImpl implements XlsService {
 
     @Override
     public void createDetailInfoXls(ServletOutputStream outputStream) throws ServiceException {
-        ReportDao reportDao = new ReportDao();
         List<Report> reportList = reportDao.getReportList();
 
         if(!reportList.isEmpty()){
