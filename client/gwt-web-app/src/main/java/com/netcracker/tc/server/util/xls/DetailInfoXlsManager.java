@@ -11,12 +11,12 @@ import java.util.List;
 
 public class DetailInfoXlsManager {
 
-    private final static String[] columns = {"Student",
-            "Date",
-            "BeginWithHr",
-            "endWithHR",
-            "beginWithInterview",
-            "endWithInterview"
+    private final static String[] columns = {"Студент",
+            "Дата интервью",
+            "Начало интервью",
+            "Конец интервью",
+            "Время интервью с HR",
+            "Время интервью Inter-wer"
     };
 
     private Workbook workbook;
@@ -49,7 +49,7 @@ public class DetailInfoXlsManager {
             cell.setCellValue(columns[i]);
             cell.setCellStyle(headerCellStyle);
         }
-        //convert into data-format
+
 
 
         // Create Other rows and cells with employees data
@@ -58,9 +58,9 @@ public class DetailInfoXlsManager {
             Row row = sheet.createRow(rowNum++);
 
             row.createCell(0).setCellValue(report.getStudent());
-            row.createCell(1).setCellValue(report.getDateInterview().toString());
-            row.createCell(2).setCellValue(report.getStartInterview().toString());
-            row.createCell(3).setCellValue(report.getEndInterview().toString());
+            row.createCell(1).setCellValue(report.getDateInterview());
+            row.createCell(2).setCellValue(report.getStartInterview());
+            row.createCell(3).setCellValue(report.getEndInterview());
             row.createCell(4).setCellValue(report.getHrTime().toString());
             row.createCell(5).setCellValue(report.getInterviewTime().toString());
 
