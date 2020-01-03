@@ -60,6 +60,7 @@ public class PDFServiceImpl implements PDFService {
         try {
             devResumePDFCreator.setTimesFontPath(servletContext.getRealPath("") + PDF_FOLDER + TIMES_FONT);
             qaResumePDFCreator.setTimesFontPath(servletContext.getRealPath("") + PDF_FOLDER + TIMES_FONT);
+            detailInfoPDFCreator.setTimesFontPath(servletContext.getRealPath("") + PDF_FOLDER + TIMES_FONT);
         } catch (IOException e) {
             LOGGER.error("Can't load font [Times_New_Roman.ttf]", e);
         } catch (DocumentException e) {

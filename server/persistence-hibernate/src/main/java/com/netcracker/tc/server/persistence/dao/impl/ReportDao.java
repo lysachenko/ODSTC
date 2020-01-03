@@ -1,21 +1,10 @@
 package com.netcracker.tc.server.persistence.dao.impl;
 
-import com.netcracker.tc.server.persistence.dao.common.AbstractHibernateDao;
 import com.netcracker.tc.server.persistence.model.report.Report;
-import com.netcracker.tc.server.persistence.model.resume.Resume;
-import com.netcracker.tc.server.persistence.model.user.User;
-import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.sql.DataSource;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 

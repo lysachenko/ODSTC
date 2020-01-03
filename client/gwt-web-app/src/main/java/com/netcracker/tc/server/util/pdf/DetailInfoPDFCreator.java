@@ -19,6 +19,7 @@ public class DetailInfoPDFCreator {
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static Font smallFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 10);
+    private BaseFont timesFont;
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DetailInfoPDFCreator.class);
@@ -69,6 +70,7 @@ public class DetailInfoPDFCreator {
 
     public  void createTable(Document document) throws DocumentException {
         PdfPTable table = new PdfPTable(columns.length);
+        table.setWidths(new int[]{2, 1, 1, 1, 1, 1});
 
         try {
             addTableHeaders(table);
@@ -115,6 +117,10 @@ public class DetailInfoPDFCreator {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }
+    }
+
+    public void setTimesFontPath(String timesFontPath) throws IOException, DocumentException {
+        timesFont = BaseFont.createFont(timesFontPath, "cp1251", BaseFont.EMBEDDED);
     }
 
 }

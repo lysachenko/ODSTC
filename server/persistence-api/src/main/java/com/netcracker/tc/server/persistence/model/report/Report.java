@@ -7,8 +7,8 @@ public class Report implements Serializable {
 
     private String student;
     private String dateInterview;
-    private Long startInterview;
-    private Long endInterview;
+    private String startInterview;
+    private String endInterview;
     private Integer hrTime;
     private Integer interviewTime;
 
@@ -31,20 +31,21 @@ public class Report implements Serializable {
         this.dateInterview = dateInterview.toString();
     }
 
-    public Long getStartInterview() {
+    public String getStartInterview() {
         return startInterview;
     }
 
     public void setStartInterview(Long startInterview) {
-        this.startInterview = startInterview;
+        this.startInterview =formatLongToStrTime(startInterview);
+
     }
 
-    public Long getEndInterview() {
+    public String getEndInterview() {
         return endInterview;
     }
 
     public void setEndInterview(Long endInterview) {
-        this.endInterview = endInterview;
+        this.endInterview = formatLongToStrTime(endInterview);
     }
 
     public Integer getHrTime() {
@@ -61,5 +62,28 @@ public class Report implements Serializable {
 
     public void setInterviewTime(Integer interviewTime) {
         this.interviewTime = interviewTime;
+    }
+
+    public  String formatLongToStrTime(long time) {
+        long mod = time % 3600000;
+        long hours = 0;
+        long mint = 0;
+
+        if (mod != 0)
+            mint = mod / 60000;
+        else
+            mint = 0;
+
+        hours = time / 3600000;
+
+        String hoursStr = String.valueOf(hours);
+        String mintsStr = String.valueOf(mint);
+        if (hoursStr.length() == 1)
+            hoursStr = "0" + hoursStr;
+
+        if (mintsStr.length() == 1)
+            mintsStr = "0" + mintsStr;
+
+        return hoursStr + ":" + mintsStr;
     }
 }
