@@ -25,6 +25,10 @@
             <column name="APPROVED_DATE" />
         </property>
 
+        <property name="preparedStatus" type="integer">
+            <column name="PREPARED_STATUS" />
+        </property>
+
         <property name="name" type="string">
             <column name="NAME" length="30"/>
         </property>

@@ -23,6 +23,8 @@ import com.netcracker.tc.client.application.NameTokens;
 import com.netcracker.tc.client.callback.DefaultAsyncCallback;
 import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
+import com.netcracker.tc.server.persistence.model.resume.Resume;
+import com.netcracker.tc.server.persistence.model.resume.ResumePreparedStatus;
 import com.netcracker.tc.shared.action.interview.*;
 import com.netcracker.tc.shared.action.resume.CreateDevResumeAction;
 import com.netcracker.tc.shared.action.resume.IsDevResumeValid;
@@ -82,6 +84,7 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
         getView().getEditResumeButton().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
+//                setResumeStatus(ResumePreparedStatus.EDITED);
                 editResume();
             }
         });
@@ -89,7 +92,16 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
         getView().getSubmitResumeButton().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
-                //TODO: submit resume
+
+//                setResumeStatus(ResumePreparedStatus.SUBMITTED);
+
+//                dispatcher.execute(new GetUserInformationAction(currentUser.getUser().getId()), new DefaultAsyncCallback<GetUserInformationResult>() {
+//                    @Override
+//                    public void onSuccess(GetUserInformationResult result) {
+//                        resume.setIsFinalVersion(true);
+//                    }
+//                });
+
             }
         });
 

@@ -74,7 +74,9 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
             @Override
             public void onClick(ClickEvent clickEvent) {
 //                if (currentUser.getPosition().isDev()) {
-                saveDevResume();
+
+                //saveDevResume();
+
 //                } else {
 //                    saveQAResume();
 //                }
