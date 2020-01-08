@@ -138,30 +138,20 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
     private void saveDevResume() {
         if (devResumeWidget.isValid()) {
 
-            ResumeDTO resumeDTO = devResumeWidget.getDevResume();
-            resumeDTO.setPreparedStatus(ResumePreparedStatus.CREATED);
-
-            dispatcher.execute(new CreateDevResumeAction(resumeDTO),
+            dispatcher.execute(
+                    new CreateDevResumeAction(
+                            devResumeWidget.getDevResume(
+                                    ResumePreparedStatus.CREATED
+                            )),
                     new DefaultAsyncCallback<IsDevResumeValid>() {
-                @Override
-                public void onSuccess(IsDevResumeValid result) {
-                    redirectToVerification();
-                }
-            });
+                        @Override
+                        public void onSuccess(IsDevResumeValid result) {
+                            redirectToVerification();
+                        }
+                    });
+
         }
     }
-
-//    private void setResumePreparedStatus(int status) {
-//        if (devResumeWidget.isValid()) {
-//            ResumeDTO resumeDTO = devResumeWidget.getDevResume();
-//            resumeDTO.setPreparedStatus(status);
-//            dispatcher.execute(new CreateDevResumeAction(resumeDTO), new DefaultAsyncCallback<IsDevResumeValid>() {
-//                @Override
-//                public void onSuccess(IsDevResumeValid result) {
-//                }
-//            });
-//        }
-//    }
 
     private void redirectToExit() {
         placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.User.BAD_RESUME).build());
