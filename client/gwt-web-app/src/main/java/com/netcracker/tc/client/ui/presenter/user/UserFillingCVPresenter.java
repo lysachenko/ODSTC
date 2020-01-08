@@ -23,6 +23,7 @@ import com.netcracker.tc.client.callback.DefaultAsyncCallback;
 import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
 import com.netcracker.tc.client.ui.widget.resume.QAResumeWidget;
+import com.netcracker.tc.server.persistence.model.resume.ResumePreparedStatus;
 import com.netcracker.tc.shared.action.resume.*;
 import com.netcracker.tc.shared.model.resume.ResumeDTO;
 import com.netcracker.tc.shared.model.user.CurrentUser;
@@ -138,7 +139,7 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
         if (devResumeWidget.isValid()) {
 
             ResumeDTO resumeDTO = devResumeWidget.getDevResume();
-            resumeDTO.setPreparedStatus(1); //TODO: change to enum ResumePreparedStatus
+            resumeDTO.setPreparedStatus(ResumePreparedStatus.CREATED);
 
             dispatcher.execute(new CreateDevResumeAction(resumeDTO),
                     new DefaultAsyncCallback<IsDevResumeValid>() {
