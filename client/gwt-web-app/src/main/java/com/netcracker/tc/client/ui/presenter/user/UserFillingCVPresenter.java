@@ -24,6 +24,7 @@ import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
 import com.netcracker.tc.client.ui.widget.resume.QAResumeWidget;
 import com.netcracker.tc.shared.action.resume.*;
+import com.netcracker.tc.shared.model.resume.ResumeDTO;
 import com.netcracker.tc.shared.model.user.CurrentUser;
 import com.netcracker.tc.shared.model.user.RoleDTO;
 
@@ -75,7 +76,7 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
             public void onClick(ClickEvent clickEvent) {
 //                if (currentUser.getPosition().isDev()) {
 
-                //saveDevResume();
+                saveDevResume();
 
 //                } else {
 //                    saveQAResume();
@@ -135,7 +136,14 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
 
     private void saveDevResume() {
         if (devResumeWidget.isValid()) {
-            dispatcher.execute(new CreateDevResumeAction(devResumeWidget.getDevResume()), new DefaultAsyncCallback<IsDevResumeValid>() {
+
+            ResumeDTO resumeDTO = devResumeWidget.getDevResume();
+            resumeDTO.setPreparedStatus(1); // не меняется
+            resumeDTO.setVersion(100L);     // не меняется
+            resumeDTO.setName("NAME");      // меняется
+
+            dispatcher.execute(new CreateDevResumeAction(resumeDTO),
+                    new DefaultAsyncCallback<IsDevResumeValid>() {
                 @Override
                 public void onSuccess(IsDevResumeValid result) {
                     redirectToVerification();
@@ -143,6 +151,18 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
             });
         }
     }
+
+//    private void setResumePreparedStatus(int status) {
+//        if (devResumeWidget.isValid()) {
+//            ResumeDTO resumeDTO = devResumeWidget.getDevResume();
+//            resumeDTO.setPreparedStatus(status);
+//            dispatcher.execute(new CreateDevResumeAction(resumeDTO), new DefaultAsyncCallback<IsDevResumeValid>() {
+//                @Override
+//                public void onSuccess(IsDevResumeValid result) {
+//                }
+//            });
+//        }
+//    }
 
     private void redirectToExit() {
         placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.User.BAD_RESUME).build());
