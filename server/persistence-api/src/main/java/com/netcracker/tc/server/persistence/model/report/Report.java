@@ -1,6 +1,7 @@
 package com.netcracker.tc.server.persistence.model.report;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Report implements Serializable {
@@ -28,7 +29,7 @@ public class Report implements Serializable {
     }
 
     public void setDateInterview(Date dateInterview) {
-        this.dateInterview = dateInterview.toString();
+        this.dateInterview = formatDateToEurDate(dateInterview);
     }
 
     public String getStartInterview() {
@@ -64,7 +65,7 @@ public class Report implements Serializable {
         this.interviewTime = interviewTime;
     }
 
-    public  String formatLongToStrTime(long time) {
+    private  String formatLongToStrTime(long time) {
         long mod = time % 3600000;
         long hours = 0;
         long mint = 0;
@@ -85,5 +86,11 @@ public class Report implements Serializable {
             mintsStr = "0" + mintsStr;
 
         return hoursStr + ":" + mintsStr;
+    }
+
+    private String formatDateToEurDate(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate= formatter.format(date);
+        return strDate;
     }
 }
