@@ -10,10 +10,6 @@
     <name>TC [${project.packaging}] - Training Center Super {${project.version}}</name>
 
     <properties>
-
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
-
         <!-- client -->
         <gwt.version>2.6.1</gwt.version>
         <gwtp.version>1.2.1</gwtp.version>
