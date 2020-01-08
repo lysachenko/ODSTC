@@ -17,4 +17,7 @@ public class ServicePath {
 
     public static final String INTERVIEW_RESULT_SERVLET_NAME = "interview-result-xls";
     public static final String INTERVIEW_RESULT_SERVLET_PATH = GWT.getHostPageBaseURL() + "interview-result-xls";
+
+    public static final String DETAIL_INFO_SERVLET_NAME = "detail-info";
+    public static final String DETAIL_INFO_SERVLET_PATH = GWT.getHostPageBaseURL() + "detail-info";
 }

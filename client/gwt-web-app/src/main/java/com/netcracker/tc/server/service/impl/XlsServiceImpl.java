@@ -2,11 +2,14 @@ package com.netcracker.tc.server.service.impl;
 
 import com.netcracker.tc.server.persistence.dao.api.InterviewDao;
 import com.netcracker.tc.server.persistence.dao.api.UserDao;
+import com.netcracker.tc.server.persistence.dao.impl.ReportDao;
 import com.netcracker.tc.server.persistence.model.interview.InterviewResult;
 import com.netcracker.tc.server.persistence.model.interview.InterviewSlot;
+import com.netcracker.tc.server.persistence.model.report.Report;
 import com.netcracker.tc.server.persistence.model.user.User;
 import com.netcracker.tc.server.service.api.XlsService;
 import com.netcracker.tc.server.service.exception.ServiceException;
+import com.netcracker.tc.server.util.xls.DetailInfoXlsManager;
 import com.netcracker.tc.server.util.xls.QAResumeXlsManager;
 import com.netcracker.tc.server.util.xls.TotalDevReportXlsManagerImpl;
 import com.netcracker.tc.server.util.xls.XlsManagerI;
@@ -20,6 +23,7 @@ import javax.servlet.ServletOutputStream;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -38,8 +42,12 @@ public class XlsServiceImpl implements XlsService {
 
     @Autowired
     InterviewDao interviewDao;
+
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    ReportDao reportDao;
 
     private String templatePath;
 
@@ -108,4 +116,27 @@ public class XlsServiceImpl implements XlsService {
             throw new ServiceException("There aren't data for report!");
         }
     }
+
+    @Override
+    public void createDetailInfoXls(ServletOutputStream outputStream) throws ServiceException {
+        List<Report> reportList = reportDao.getReportList();
+
+        if(!reportList.isEmpty()){
+            try {
+                DetailInfoXlsManager manager = new DetailInfoXlsManager();
+                manager.createWorkbook();
+                manager.writeWorkbook(reportList);
+                manager.writeToStream(outputStream);
+            } catch (IOException e) {
+                LOGGER.error("Error on create xlsx document", e);
+                throw new ServiceException("Can't create xls document");
+            }
+
+        } else {
+            LOGGER.error("There aren't data for report!");
+            throw new ServiceException("There aren't data for report!");
+        }
+
+        }
+
 }

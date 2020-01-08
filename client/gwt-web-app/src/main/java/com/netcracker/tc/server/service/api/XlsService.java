@@ -7,4 +7,5 @@ import javax.servlet.ServletOutputStream;
 public interface XlsService {
     public void createInterviewResultXls(Long paramLong, ServletOutputStream paramServletOutputStream) throws ServiceException;
     public void createTotalDevReport(ServletOutputStream outputStream) throws ServiceException;
+    public void createDetailInfoXls(ServletOutputStream outputStream) throws ServiceException;
 }
