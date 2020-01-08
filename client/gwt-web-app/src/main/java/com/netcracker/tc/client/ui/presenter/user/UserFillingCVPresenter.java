@@ -138,9 +138,7 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
         if (devResumeWidget.isValid()) {
 
             ResumeDTO resumeDTO = devResumeWidget.getDevResume();
-            resumeDTO.setPreparedStatus(1); // не меняется
-            resumeDTO.setVersion(100L);     // не меняется
-            resumeDTO.setName("NAME");      // меняется
+            resumeDTO.setPreparedStatus(1); //TODO: change to enum ResumePreparedStatus
 
             dispatcher.execute(new CreateDevResumeAction(resumeDTO),
                     new DefaultAsyncCallback<IsDevResumeValid>() {
