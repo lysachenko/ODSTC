@@ -8,20 +8,27 @@ body{
 
 .container{
     background-color:white;
+    margin-top:5px;
     border-radius:8px;
     padding-left:10px;
     padding-right: 13px;
 }
 .btns{
     padding-bottom:5px;
-    padding-top:10px;
-
+    padding-top:5px;
 }
-.btn{
+
+.btns_class{
     background-color:#4AB0CE;
     color:white;
-    padding: 5px 15px 5px 15px;
+}
 
+.filtr_inputs{
+    width: 15%;
+    font-size: 12px;
+    padding: 12px 12px 12px 12px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
 }
 
 .tbl {
@@ -30,10 +37,12 @@ body{
     font-size:12px;
     text-shadow: 1px 1px 0px #fff;
     background-color:white;
-    margin:10px;
     border:white 1px solid;
     border-collapse:separate;
-
+    margin-bottom: 10px;
+}
+.tbl tr:hover td {
+    background-color: #E8E8FF;
 }
 
 .tbl th {

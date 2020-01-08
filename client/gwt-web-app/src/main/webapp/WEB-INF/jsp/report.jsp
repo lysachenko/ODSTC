@@ -15,27 +15,23 @@
 
 <div class="container">
     <div class ="btns">
-        <button style="display: inline-block" onclick="func()">Фильтрация</button>
+        <button class ="btns_class" id ="filtrateBtn" style="display: inline-block" onclick="func()">Фильтрация</button>
 
         <form style="display: inline-block"   action="downloadDetailInfo">
-             <input   type="submit"  id="downloadBtn"  value="Загрузить"/>
+             <input  class ="btns_class" type="submit"  id="downloadBtn"  value="Загрузить"/>
         </form>
 
         <form  style="display: inline-block" action="downloadDetailInfoPdf">
-            <input   id="printBtn" type="submit" value="Печать"/>
+            <input class ="btns_class"  id="printBtn" type="submit" value="Печать"/>
         </form>
 
     </div>
 
-    <br/>
-    <form name="frm" action="filtrate" method="post">
-        <input  id="nameFiltr" name="nameFiltr" style="display: none" type="text" placeholder="По студенту" size="20">
-        <input  id="dateFiltr" name="dateFiltr"  style="display: none" type="text" placeholder="По дате" size="20">
-        <input name ="btn" id="filtrBtn"  style="display: none" type="submit" value="Фильтрация" onclick="return IsEmpty();">
-    </form>
-   <br/>
+        <input class="filtr_inputs" id="nameFiltr" name="nameFiltr"  style="display: none" type="text" onkeyup="filtrateStudents()" placeholder="Поиск по студенту" size="12" >
+        <input class="filtr_inputs" id="dateFiltr" name="dateFiltr"  style="display: none" type="text" onkeyup="filtrateDates()" placeholder="Поиск по дате" size="12" >
 
-    <table class ="tbl" cellspacing='0'>
+
+    <table class ="tbl" id ="tbl" cellspacing='0'>
         <tr>
             <th>Студент</th>
             <th>Дата интервью</th>
@@ -72,21 +68,55 @@
     function func(){
         var x = document.getElementById("nameFiltr");
         var y = document.getElementById("dateFiltr");
-        var z = document.getElementById("filtrBtn");
-        if (x.style.display === "none" && y.style.display === "none" && z.style.display === "none") {
+        if (x.style.display === "none" && y.style.display === "none") {
             x.style.display = "inline";
             y.style.display = "inline";
-            z.style.display = "inline";
-
         }
     }
 
-    function IsEmpty() {
-        if (document.forms['frm'].nameFiltr.value === "" && document.forms['frm'].dateFiltr.value === "") {
-            alert("Fields are empty");
-            return false;
+    function filtrateStudents() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("nameFiltr");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tbl");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
         }
-        return true;
+    }
+
+
+    function filtrateDates() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("dateFiltr");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tbl");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
 </script>
 
