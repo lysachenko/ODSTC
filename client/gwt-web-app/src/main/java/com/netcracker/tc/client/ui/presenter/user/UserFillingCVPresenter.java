@@ -74,7 +74,9 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
             @Override
             public void onClick(ClickEvent clickEvent) {
 //                if (currentUser.getPosition().isDev()) {
+
                 saveDevResume();
+
 //                } else {
 //                    saveQAResume();
 //                }
@@ -133,12 +135,16 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
 
     private void saveDevResume() {
         if (devResumeWidget.isValid()) {
-            dispatcher.execute(new CreateDevResumeAction(devResumeWidget.getDevResume()), new DefaultAsyncCallback<IsDevResumeValid>() {
-                @Override
-                public void onSuccess(IsDevResumeValid result) {
-                    redirectToVerification();
-                }
-            });
+
+            dispatcher.execute(
+                    new CreateDevResumeAction(devResumeWidget.getDevResume()),
+                    new DefaultAsyncCallback<IsDevResumeValid>() {
+                        @Override
+                        public void onSuccess(IsDevResumeValid result) {
+                            redirectToVerification();
+                        }
+                    });
+
         }
     }
 

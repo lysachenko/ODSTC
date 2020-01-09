@@ -65,7 +65,7 @@ public class ResumeDTO implements Serializable {
     @Size(min = 0, max = 50, message = "Максимальная длина email - 50 символов")
     @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Неправильный email")
     private String email;
-//    @Pattern(regexp = "^(\\([0-9]{3}\\))+([0-9]{3}\\-)+([0-9]{2}\\-)+([0-9]{2})$", message = "Неправильный номер телефона")
+    //    @Pattern(regexp = "^(\\([0-9]{3}\\))+([0-9]{3}\\-)+([0-9]{2}\\-)+([0-9]{2})$", message = "Неправильный номер телефона")
     private String telephoneNum;
     @Size(max = 30, message = "Максимальная длина skype - 30 символов")
     private String skype;

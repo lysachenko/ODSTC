@@ -1,11 +1,6 @@
 package com.netcracker.tc.client.ui.widget.resume;
 
 import com.github.gwtbootstrap.client.ui.*;
-import com.github.gwtbootstrap.client.ui.CheckBox;
-import com.github.gwtbootstrap.client.ui.ListBox;
-import com.github.gwtbootstrap.client.ui.TextArea;
-import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.Tooltip;
 import com.github.gwtbootstrap.datetimepicker.client.ui.DateTimeBoxAppended;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -13,25 +8,22 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 import com.netcracker.tc.client.ui.widget.simple.CheckListBox;
 import com.netcracker.tc.client.ui.widget.simple.InstituteListBox;
 import com.netcracker.tc.client.ui.widget.simple.ResumeKnowledgeWidget;
 import com.netcracker.tc.client.ui.widget.simple.SkillLevelListBox;
 import com.netcracker.tc.client.validation.ValidationFactory;
-import com.netcracker.tc.server.service.impl.UserServiceImpl;
 import com.netcracker.tc.shared.model.resume.DevResumeDetailDTO;
 import com.netcracker.tc.shared.model.resume.InstituteDTO;
 import com.netcracker.tc.shared.model.resume.KnowledgeTypeDTO;
 import com.netcracker.tc.shared.model.resume.ResumeDTO;
-import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.apache.poi.ss.formula.functions.NumericFunction.LOG;
 
 
 public class DevResumeWidget extends Composite {

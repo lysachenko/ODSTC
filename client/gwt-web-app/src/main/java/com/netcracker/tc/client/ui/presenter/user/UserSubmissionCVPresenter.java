@@ -3,12 +3,11 @@ package com.netcracker.tc.client.ui.presenter.user;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
-import com.gwtplatform.dispatch.rpc.shared.NoResult;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.GatekeeperParams;
@@ -26,34 +25,28 @@ import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
 import com.netcracker.tc.shared.action.interview.GetUserInformationAction;
 import com.netcracker.tc.shared.action.interview.GetUserInformationResult;
-import com.netcracker.tc.shared.action.resume.EditDevResumeAction;
 import com.netcracker.tc.shared.model.user.CurrentUser;
 import com.netcracker.tc.shared.model.user.RoleDTO;
 
-public class UserEditingCVPresenter
-        extends Presenter<UserEditingCVPresenter.ViewImpl, UserEditingCVPresenter.Proxy> {
+public class UserSubmissionCVPresenter extends Presenter<UserSubmissionCVPresenter.ViewImpl, UserSubmissionCVPresenter.Proxy> {
 
     @ProxyCodeSplit
     @UseGatekeeper(LoggedInGatekeeper.class)
     @GatekeeperParams(value = {RoleDTO.ROLE_USER})
-    @NameToken(NameTokens.User.STEP_EDITING_CV)
-    public interface Proxy extends ProxyPlace<UserEditingCVPresenter> {
+    @NameToken(NameTokens.User.STEP_SUBMISSION_CV)
+    public interface Proxy extends ProxyPlace<UserSubmissionCVPresenter> {
     }
 
     public interface ViewImpl extends View {
-
         void updateMessage();
 
         void setMessage(String message);
 
+        HTMLPanel getResumePanel();
+
         DevResumeWidget getDevResumeWidget();
 
         void setResumePanel(Widget widget);
-
-        Button getCancelChangesButton();
-
-        Button getSaveChangesButton();
-
     }
 
     @Inject
@@ -62,12 +55,9 @@ public class UserEditingCVPresenter
     private CurrentUser currentUser;
     @Inject
     private final DispatchAsync dispatcher;
-    @Inject
-    private PlaceManager placeManager;
-
 
     @Inject
-    public UserEditingCVPresenter(
+    public UserSubmissionCVPresenter(
             final EventBus eventBus,
             final ViewImpl view,
             final Proxy proxy,
@@ -81,20 +71,6 @@ public class UserEditingCVPresenter
     protected void onBind() {
         super.onBind();
 
-        getView().getCancelChangesButton().addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent clickEvent) {
-                cancelChanges();
-            }
-        });
-
-        getView().getSaveChangesButton().addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent clickEvent) {
-                saveResume();
-            }
-        });
-
         loadUserInformation();
     }
 
@@ -103,6 +79,7 @@ public class UserEditingCVPresenter
         super.onReset();
         getView().updateMessage();
         getView().setResumePanel(devResumeWidget);
+        getView().getDevResumeWidget().disableFields();
     }
 
     @Override
@@ -123,33 +100,5 @@ public class UserEditingCVPresenter
 
             }
         });
-    }
-
-
-    private void saveResume() {
-        if (devResumeWidget.isValid()) {
-
-            dispatcher.execute(
-                    new EditDevResumeAction(devResumeWidget.getDevResume()),
-                    new DefaultAsyncCallback<NoResult>() {
-                        @Override
-                        public void onSuccess(NoResult result) {
-                            Window.alert("Изменения сохранены");
-                            redirectToVerification();
-                        }
-                    }
-            );
-
-        }
-    }
-
-    private void cancelChanges() {
-        if (devResumeWidget.isValid()) {
-            redirectToVerification();
-        }
-    }
-
-    private void redirectToVerification() {
-        placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.User.STEP_VERIFICATION_CV).build());
     }
 }
