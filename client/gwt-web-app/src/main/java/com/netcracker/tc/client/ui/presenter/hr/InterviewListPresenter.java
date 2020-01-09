@@ -95,6 +95,16 @@ public class InterviewListPresenter extends Presenter<InterviewListPresenter.Vie
                 Window.open(ServicePath.INTERVIEW_RESULT_SERVLET_PATH, "", "");
             }
         });
+
+        getView().getDetailInfoButton().addClickHandler(
+                (new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        Window.open(ServicePath.DETAIL_INFO_SERVLET_PATH, "", "");
+                    }
+                }));
+
+
+
     }
 
     protected void onReset() {
@@ -138,5 +148,9 @@ public class InterviewListPresenter extends Presenter<InterviewListPresenter.Vie
         public Button getStopRegistrationButton();
 
         public Button getGetInterviewResultsButton();
+
+        public Button getDetailInfoButton();
+
+
     }
 }
