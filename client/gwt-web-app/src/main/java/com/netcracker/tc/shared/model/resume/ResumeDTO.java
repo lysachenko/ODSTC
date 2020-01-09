@@ -22,6 +22,8 @@ public class ResumeDTO implements Serializable {
     private Date modifiedDate;
     private Date approvedDate;
 
+    private int preparedStatus;
+
     @NotNull(message = "Введите имя")
     @Size(min = 1, max = 30, message = "Максимальная длина имени - 30 символов")
     @Pattern(regexp = "^[^!^~#$%^&*()<>]+$", message = "Нельзя использовать спецсимволы")
@@ -217,5 +219,13 @@ public class ResumeDTO implements Serializable {
 
     public void setResumeKnowledges(List<ResumeKnowledgeDTO> resumeKnowledges) {
         this.resumeKnowledges = resumeKnowledges;
+    }
+
+    public int getPreparedStatus() {
+        return preparedStatus;
+    }
+
+    public void setPreparedStatus(int preparedStatus) {
+        this.preparedStatus = preparedStatus;
     }
 }

@@ -19,6 +19,7 @@ import com.netcracker.tc.client.ui.widget.simple.InstituteListBox;
 import com.netcracker.tc.client.ui.widget.simple.ResumeKnowledgeWidget;
 import com.netcracker.tc.client.ui.widget.simple.SkillLevelListBox;
 import com.netcracker.tc.client.validation.ValidationFactory;
+import com.netcracker.tc.server.persistence.model.resume.ResumePreparedStatus;
 import com.netcracker.tc.server.service.impl.UserServiceImpl;
 import com.netcracker.tc.shared.model.resume.DevResumeDetailDTO;
 import com.netcracker.tc.shared.model.resume.InstituteDTO;
@@ -191,6 +192,12 @@ public class DevResumeWidget extends Composite {
                 otherInstituteRow.setVisible(instituteListBox.getSelectedInstitute().isOtherInstitute());
             }
         });
+    }
+
+    public ResumeDTO getDevResume(int resumePrepareStatus) {
+        ResumeDTO resumeDTO = getDevResume();
+        resumeDTO.setPreparedStatus(resumePrepareStatus);
+        return resumeDTO;
     }
 
     public ResumeDTO getDevResume() {
