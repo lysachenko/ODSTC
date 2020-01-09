@@ -30,6 +30,7 @@ public class DetailInfoPdfDownloadServlet extends AutoinjectingRemoteServiceServ
 
         response.setContentType("application/pdf");
         response.addHeader("Content-Disposition", "attachment; filename=" + "detailInfo.pdf");
+
         LOGGER.info("DetailInfoPDF send");
     }
 

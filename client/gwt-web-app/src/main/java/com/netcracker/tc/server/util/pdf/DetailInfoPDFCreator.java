@@ -10,26 +10,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class DetailInfoPDFCreator {
 
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font smallFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 10);
-    private BaseFont timesFont;
-
-
+    private Font font;
     private static final Logger LOGGER = LoggerFactory.getLogger(DetailInfoPDFCreator.class);
 
     private final static String[] columns = {"Студент",
             "Дата",
             "Начало интервью",
             "Конец интервью",
-            "Длительность интервью HR",
-            "Длительность с INT-WER"
+            "Время интервью с HR",
+            "Время интервью с INT-WER"
     };
     private List<Report> list = new ArrayList<Report>();
 
@@ -45,10 +42,11 @@ public class DetailInfoPDFCreator {
 
     public void createPDF(OutputStream stream){
         Document document = new Document();
+
         try {
             PdfWriter.getInstance(document, stream);
             document.open();
-            addTitlePage(document);
+            addTitle(document);
             addContent(document);
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -58,19 +56,64 @@ public class DetailInfoPDFCreator {
             document.close();
         }
     }
-    public  void addTitlePage(Document document) throws DocumentException {
+
+    protected void addTitle(Document document) throws DocumentException {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
-        preface.add(new Paragraph("Necracker", catFont));
+
+        Phrase title = new Phrase("Necracker", setFontProperties(font, 25, 1)); //BOLD=1
+        Paragraph paragraph = new Paragraph(title);
+        preface.add(paragraph);
         addEmptyLine(preface, 1);
-        preface.add(new Paragraph("This is detailed information of interviews:", smallFont));
-        addEmptyLine(preface, 2);
+
         document.add(preface);
     }
 
+    protected void addContent(Document document) throws DocumentException {
+        addCurrentDateAndTime(document);
+        addExplainingTitle(document);
+        createTable(document);
+
+    }
+
+    private void addExplainingTitle(Document document) throws DocumentException {
+        Phrase phrase = new Phrase("This is detailed information of interviews:", setFontProperties(font, 14, 0));
+        Paragraph paragraph = new Paragraph(phrase);
+        addEmptyLine(paragraph, 1);
+
+        document.add(paragraph);
+    }
+
+    private void addCurrentDateAndTime(Document document) throws DocumentException {
+        Date currentDate = new Date();
+
+        String datePattern = "dd MMMM yyyy";
+        String timePattern ="HH:mm";
+
+        SimpleDateFormat formatter1 = new SimpleDateFormat(datePattern);
+        SimpleDateFormat formatter2 = new SimpleDateFormat(timePattern);
+
+        StringBuilder date = new StringBuilder("Date: ");
+        StringBuilder time = new StringBuilder("Time: ");
+
+        date.append(formatter1.format(currentDate));
+        time.append(formatter2.format(currentDate));
+
+        Phrase phraseDate = new Phrase(date.toString(), setFontProperties(font, 14, 0));
+        Paragraph paragraph = new Paragraph(phraseDate);
+
+        Phrase phraseTime = new Phrase(time.toString(), setFontProperties(font, 14, 0));
+        Paragraph paragraph2 = new Paragraph(phraseTime);
+
+        document.add(paragraph);
+        document.add(paragraph2);
+    }
+
+
+
     public  void createTable(Document document) throws DocumentException {
         PdfPTable table = new PdfPTable(columns.length);
-        table.setWidths(new int[]{2, 1, 1, 1, 1, 1});
+        table.setWidths(new float[]{2, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f});
 
         try {
             addTableHeaders(table);
@@ -84,34 +127,35 @@ public class DetailInfoPDFCreator {
 
     private void addTableContent(PdfPTable table) {
 
-        float [] pointColumnWidths = {150F, 150F, 150F};
         for(int i=0; i<list.size(); i++) {
-            table.addCell(list.get(i).getStudent());
-            table.addCell(list.get(i).getDateInterview().toString());
-            table.addCell(list.get(i).getStartInterview().toString());
-            table.addCell(list.get(i).getEndInterview().toString());
+            table.addCell(new Phrase(list.get(i).getStudent(), setFontProperties(font, 12, 0)));
+            table.addCell(list.get(i).getDateInterview());
+            table.addCell(list.get(i).getStartInterview());
+            table.addCell(list.get(i).getEndInterview());
             table.addCell(list.get(i).getHrTime().toString());
             table.addCell(list.get(i).getInterviewTime().toString());
         }
+
+        table.addCell(new Phrase());
     }
 
     private void addTableHeaders(PdfPTable table) throws IOException, DocumentException {
 
-        //РУССКАЯ КОДИРОВКА ?
-        BaseFont helvetica = BaseFont.createFont( BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.NOT_EMBEDDED);
-        Font russianFont =new Font(helvetica, 12);
-
         for(int i=0; i<columns.length; i++){
-            PdfPCell c1 = new PdfPCell(new Phrase(columns[i], russianFont));
+            PdfPCell c1 = new PdfPCell(new Phrase(columns[i], setFontProperties(font, 12, 1)));
             c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
         }
         table.setHeaderRows(1);
     }
 
-    public   void addContent(Document document) throws DocumentException {
-        createTable(document);
-    }
+
+
+
+
+
+
+
 
     private  void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
@@ -120,7 +164,13 @@ public class DetailInfoPDFCreator {
     }
 
     public void setTimesFontPath(String timesFontPath) throws IOException, DocumentException {
-        timesFont = BaseFont.createFont(timesFontPath, "cp1251", BaseFont.EMBEDDED);
+        font = FontFactory.getFont(timesFontPath, "cp1251", BaseFont.EMBEDDED);
     }
 
+    private Font setFontProperties(Font font, int size, int style){
+        Font anotherFont = font;
+        anotherFont.setSize(size);
+        anotherFont.setStyle(style);
+        return anotherFont;
+    }
 }
