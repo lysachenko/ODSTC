@@ -97,7 +97,11 @@ public class PDFServiceImpl implements PDFService {
     }
 
     @Override
-    public void createActiveDetailInfoPDF(OutputStream outputStream) {
+    public void createActiveDetailInfoPDF(OutputStream outputStream) throws ServiceException {
+        if(reportDao.getReportList().isEmpty()){
+            LOGGER.info("ReportList in reportDao is empty");
+            throw new ServiceException("Ошибка создания PDF. Нет элементов для отчета.");
+        }
         detailInfoPDFCreator.setList(reportDao.getReportList());
         detailInfoPDFCreator.createPDF(outputStream);
         LOGGER.info("Created pdf for DetailInfoReport");

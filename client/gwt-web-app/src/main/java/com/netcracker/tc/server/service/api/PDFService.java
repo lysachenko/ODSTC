@@ -7,5 +7,5 @@ import java.io.OutputStream;
 public interface PDFService {
 
     void createActiveInterviewDevResumePDF(Long userID, OutputStream outputStream) throws ServiceException;
-    void createActiveDetailInfoPDF(OutputStream outputStream);
+    void createActiveDetailInfoPDF(OutputStream outputStream) throws ServiceException;
 }
