@@ -22,8 +22,6 @@ public class ResumeDTO implements Serializable {
     private Date modifiedDate;
     private Date approvedDate;
 
-    private int preparedStatus;
-
     @NotNull(message = "Введите имя")
     @Size(min = 1, max = 30, message = "Максимальная длина имени - 30 символов")
     @Pattern(regexp = "^[^!^~#$%^&*()<>]+$", message = "Нельзя использовать спецсимволы")
@@ -67,7 +65,7 @@ public class ResumeDTO implements Serializable {
     @Size(min = 0, max = 50, message = "Максимальная длина email - 50 символов")
     @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Неправильный email")
     private String email;
-//    @Pattern(regexp = "^(\\([0-9]{3}\\))+([0-9]{3}\\-)+([0-9]{2}\\-)+([0-9]{2})$", message = "Неправильный номер телефона")
+    //    @Pattern(regexp = "^(\\([0-9]{3}\\))+([0-9]{3}\\-)+([0-9]{2}\\-)+([0-9]{2})$", message = "Неправильный номер телефона")
     private String telephoneNum;
     @Size(max = 30, message = "Максимальная длина skype - 30 символов")
     private String skype;
@@ -219,13 +217,5 @@ public class ResumeDTO implements Serializable {
 
     public void setResumeKnowledges(List<ResumeKnowledgeDTO> resumeKnowledges) {
         this.resumeKnowledges = resumeKnowledges;
-    }
-
-    public int getPreparedStatus() {
-        return preparedStatus;
-    }
-
-    public void setPreparedStatus(int preparedStatus) {
-        this.preparedStatus = preparedStatus;
     }
 }

@@ -60,8 +60,6 @@ public class ResumeServiceImpl implements ResumeService {
             resumeDao.deleteResumeKnowledges(resume.getResumeKnowledges());
         }
 
-        resume.setPreparedStatus(resumeDTO.getPreparedStatus());
-
         resume.setLastName(resumeDTO.getLastName());
         resume.setTelephoneNum(resumeDTO.getTelephoneNum());
         resume.setSkype(resumeDTO.getSkype());
@@ -113,6 +111,18 @@ public class ResumeServiceImpl implements ResumeService {
 
         resumeDao.createOrUpdate(resume);
         saveKnowledges(resume, resumeDTO.getResumeKnowledges());
+
+        StudentDetail studentDetail = user.getStudentDetail();
+        studentDetail.setUserStatus(userDao.getUserStatus(UserStatusDTO.EDITING_CV));
+        userDao.update(studentDetail);
+    }
+
+    @Override
+    public void submitDevResume(Long userId, ResumeDTO resumeDTO) throws ServiceException {
+        User user = userDao.get(userId);
+        StudentDetail studentDetail = user.getStudentDetail();
+        studentDetail.setUserStatus(userDao.getUserStatus(UserStatusDTO.SUBMISSION_CV));
+        userDao.update(studentDetail);
     }
 
     @Override
@@ -163,8 +173,6 @@ public class ResumeServiceImpl implements ResumeService {
         if (resume == null) {
             resume = new Resume();
         }
-
-        resume.setPreparedStatus(qaResumeDTO.getPreparedStatus());
 
         resume.setLastName(qaResumeDTO.getLastName());
         resume.setTelephoneNum(qaResumeDTO.getTelephoneNum());

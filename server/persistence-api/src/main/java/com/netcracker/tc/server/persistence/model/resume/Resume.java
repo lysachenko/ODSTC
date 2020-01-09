@@ -15,8 +15,6 @@ public class Resume implements Serializable {
     private Date modifiedDate;
     private Date approvedDate;
 
-    private int preparedStatus;
-
     private String name;
     private String surname;
     private String engName;
@@ -188,13 +186,5 @@ public class Resume implements Serializable {
 
     public void setResumeKnowledges(Set<ResumeKnowledge> resumeKnowledges) {
         this.resumeKnowledges = resumeKnowledges;
-    }
-
-    public int getPreparedStatus() {
-        return preparedStatus;
-    }
-
-    public void setPreparedStatus(int preparedStatus) {
-        this.preparedStatus = preparedStatus;
     }
 }
