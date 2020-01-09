@@ -3,11 +3,13 @@ package com.netcracker.tc.client.ui.presenter.user;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
+import com.gwtplatform.dispatch.rpc.shared.NoResult;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.GatekeeperParams;
@@ -23,14 +25,11 @@ import com.netcracker.tc.client.application.NameTokens;
 import com.netcracker.tc.client.callback.DefaultAsyncCallback;
 import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
-import com.netcracker.tc.server.persistence.model.resume.Resume;
-import com.netcracker.tc.server.persistence.model.resume.ResumePreparedStatus;
-import com.netcracker.tc.shared.action.interview.*;
-import com.netcracker.tc.shared.action.resume.CreateDevResumeAction;
-import com.netcracker.tc.shared.action.resume.IsDevResumeValid;
+import com.netcracker.tc.shared.action.interview.GetUserInformationAction;
+import com.netcracker.tc.shared.action.interview.GetUserInformationResult;
+import com.netcracker.tc.shared.action.resume.SubmitDevResumeAction;
 import com.netcracker.tc.shared.model.user.CurrentUser;
 import com.netcracker.tc.shared.model.user.RoleDTO;
-import com.netcracker.tc.shared.model.user.UserDTO;
 
 public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPresenter.ViewImpl, UserVerificationCVPresenter.Proxy> {
 
@@ -141,14 +140,15 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
         if (devResumeWidget.isValid()) {
 
             dispatcher.execute(
-                    new CreateDevResumeAction(devResumeWidget.getDevResume(
-                            ResumePreparedStatus.SUBMITTED)),
-                    new DefaultAsyncCallback<IsDevResumeValid>() {
+                    new SubmitDevResumeAction(devResumeWidget.getDevResume()),
+                    new DefaultAsyncCallback<NoResult>() {
                         @Override
-                        public void onSuccess(IsDevResumeValid result) {
+                        public void onSuccess(NoResult result) {
+                            Window.alert("Анкета отправлена");
                             redirectToSubmission();
                         }
-                    });
+                    }
+            );
         }
     }
 
