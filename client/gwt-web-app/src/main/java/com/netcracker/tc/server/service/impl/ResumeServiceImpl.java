@@ -60,6 +60,8 @@ public class ResumeServiceImpl implements ResumeService {
             resumeDao.deleteResumeKnowledges(resume.getResumeKnowledges());
         }
 
+        resume.setPreparedStatus(resumeDTO.getPreparedStatus());
+
         resume.setLastName(resumeDTO.getLastName());
         resume.setTelephoneNum(resumeDTO.getTelephoneNum());
         resume.setSkype(resumeDTO.getSkype());
@@ -161,6 +163,8 @@ public class ResumeServiceImpl implements ResumeService {
         if (resume == null) {
             resume = new Resume();
         }
+
+        resume.setPreparedStatus(qaResumeDTO.getPreparedStatus());
 
         resume.setLastName(qaResumeDTO.getLastName());
         resume.setTelephoneNum(qaResumeDTO.getTelephoneNum());

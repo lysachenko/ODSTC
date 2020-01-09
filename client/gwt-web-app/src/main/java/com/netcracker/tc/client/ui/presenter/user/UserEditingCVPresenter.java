@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
+import com.gwtplatform.dispatch.rpc.shared.NoResult;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.GatekeeperParams;
@@ -22,10 +23,13 @@ import com.netcracker.tc.client.application.NameTokens;
 import com.netcracker.tc.client.callback.DefaultAsyncCallback;
 import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
+import com.netcracker.tc.server.persistence.model.resume.ResumePreparedStatus;
 import com.netcracker.tc.shared.action.interview.GetUserInformationAction;
 import com.netcracker.tc.shared.action.interview.GetUserInformationResult;
 import com.netcracker.tc.shared.action.resume.CreateDevResumeAction;
+import com.netcracker.tc.shared.action.resume.EditDevResumeAction;
 import com.netcracker.tc.shared.action.resume.IsDevResumeValid;
+import com.netcracker.tc.shared.model.resume.ResumeDTO;
 import com.netcracker.tc.shared.model.user.CurrentUser;
 import com.netcracker.tc.shared.model.user.RoleDTO;
 
@@ -124,16 +128,23 @@ public class UserEditingCVPresenter
         });
     }
 
+
+    //TODO: use EditDevResumeAction instead of CreateDevResumeAction
     private void saveResume() {
         if (devResumeWidget.isValid()) {
-            dispatcher.execute(new CreateDevResumeAction(devResumeWidget.getDevResume()), new DefaultAsyncCallback<IsDevResumeValid>() {
-                @Override
-                public void onSuccess(IsDevResumeValid result) {
 
-                    redirectToVerification();
+            dispatcher.execute(
+                    new CreateDevResumeAction(
+                            devResumeWidget.getDevResume(
+                                    ResumePreparedStatus.EDITED
+                            )),
+                    new DefaultAsyncCallback<IsDevResumeValid>() {
+                        @Override
+                        public void onSuccess(IsDevResumeValid result) {
+                            redirectToVerification();
+                        }
+                    });
 
-                }
-            });
         }
     }
 

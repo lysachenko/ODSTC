@@ -1,18 +1,15 @@
 package com.netcracker.tc.server.persistence.model.resume;
 
-public enum ResumePreparedStatus {
-    EMPTY(0),
-    CREATED(1),
-    EDITED(2),
-    SUBMITTED(3);
+public class ResumePreparedStatus {
+    public final static int EMPTY = 0; // пользователь создан. резюме пусто и закрыто для HR
 
-    private int value;
+    public final static int CREATED = 1;// резюме заполнено первый раз.
+    // открыто для HR, открыто для редактирования и повторной отправки
 
-    ResumePreparedStatus(int value) {
-        this.value = value;
-    }
+    public final static int EDITED = 2;// резюме редактируется.
+    // закрыто для HR, открыто для редактирования и повторной отправки
 
-    public int getValue() {
-        return value;
-    }
+    public final static int SUBMITTED = 3;// резюме отправлено окончательно.
+    // открыто для HR, закрыто для редактирования и повторной отправки
+
 }

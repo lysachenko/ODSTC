@@ -23,7 +23,9 @@ import com.netcracker.tc.client.callback.DefaultAsyncCallback;
 import com.netcracker.tc.client.ui.layout.MainLayoutPresenter;
 import com.netcracker.tc.client.ui.widget.resume.DevResumeWidget;
 import com.netcracker.tc.client.ui.widget.resume.QAResumeWidget;
+import com.netcracker.tc.server.persistence.model.resume.ResumePreparedStatus;
 import com.netcracker.tc.shared.action.resume.*;
+import com.netcracker.tc.shared.model.resume.ResumeDTO;
 import com.netcracker.tc.shared.model.user.CurrentUser;
 import com.netcracker.tc.shared.model.user.RoleDTO;
 
@@ -75,7 +77,7 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
             public void onClick(ClickEvent clickEvent) {
 //                if (currentUser.getPosition().isDev()) {
 
-                //saveDevResume();
+                saveDevResume();
 
 //                } else {
 //                    saveQAResume();
@@ -135,12 +137,17 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
 
     private void saveDevResume() {
         if (devResumeWidget.isValid()) {
-            dispatcher.execute(new CreateDevResumeAction(devResumeWidget.getDevResume()), new DefaultAsyncCallback<IsDevResumeValid>() {
-                @Override
-                public void onSuccess(IsDevResumeValid result) {
-                    redirectToVerification();
-                }
-            });
+
+            dispatcher.execute(
+                    new CreateDevResumeAction(devResumeWidget.getDevResume(
+                                    ResumePreparedStatus.CREATED)),
+                    new DefaultAsyncCallback<IsDevResumeValid>() {
+                        @Override
+                        public void onSuccess(IsDevResumeValid result) {
+                            redirectToVerification();
+                        }
+                    });
+
         }
     }
 
