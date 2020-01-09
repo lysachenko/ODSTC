@@ -139,10 +139,8 @@ public class UserFillingCVPresenter extends Presenter<UserFillingCVPresenter.Vie
         if (devResumeWidget.isValid()) {
 
             dispatcher.execute(
-                    new CreateDevResumeAction(
-                            devResumeWidget.getDevResume(
-                                    ResumePreparedStatus.CREATED
-                            )),
+                    new CreateDevResumeAction(devResumeWidget.getDevResume(
+                                    ResumePreparedStatus.CREATED)),
                     new DefaultAsyncCallback<IsDevResumeValid>() {
                         @Override
                         public void onSuccess(IsDevResumeValid result) {
