@@ -13,6 +13,8 @@ public interface ResumeService {
 
     void editDevResume(Long userId, ResumeDTO resumeDTO) throws ServiceException;
 
+    void submitDevResume(Long userId, ResumeDTO resumeDTO) throws ServiceException;
+
     void createDevResume(Long userId, ResumeDTO resumeDTO, boolean isValid) throws ServiceException;
 
     ResumeDTO getQAResume(Long userId) throws ServiceException;

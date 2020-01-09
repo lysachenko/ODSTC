@@ -28,6 +28,8 @@ INSERT INTO user_status(id, description) VALUES (2, 'STEP_2');
 INSERT INTO user_status(id, description) VALUES (3, 'STEP_3');
 INSERT INTO user_status(id, description) VALUES (4, 'BAD_RESUME');
 INSERT INTO user_status(id, description) VALUES (5, 'VERIFICATION');
+INSERT INTO user_status(id, description) VALUES (6, 'EDITING');
+INSERT INTO user_status(id, description) VALUES (7, 'SUBMISSION');
 
 INSERT INTO institute(id, description) VALUES (1, 'Одесский национальный политехнический университет');
 INSERT INTO institute(id, description) VALUES (2, 'Одесский национальный университет им.И.И.Мечникова');
