@@ -64,6 +64,36 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>detail-info</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.DetailInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>detail-info</servlet-name>
+        <url-pattern>/detail-info</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>downloadDetailInfo</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.DetailInfoDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>downloadDetailInfo</servlet-name>
+        <url-pattern>/downloadDetailInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>downloadDetailInfoPdf</servlet-name>
+        <servlet-class>com.netcracker.tc.server.servlet.DetailInfoPdfDownloadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>downloadDetailInfoPdf</servlet-name>
+        <url-pattern>/downloadDetailInfoPdf</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>interviewResultServlet</servlet-name>
         <servlet-class>com.netcracker.tc.server.servlet.InterviewResultServlet</servlet-class>
     </servlet>

@@ -19,16 +19,16 @@ public class DevResumeDetailDTO implements Serializable {
     @Size(min = 1, max = 100, message = "Максимальная длина названия специальности - 100 символов")
     private String specialty;
     private Integer graduationYear;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Другие контакты' - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Другие контакты' - 4000 символов")
     private String otherContacts;
     private String trainingCenterInterest;
     private String workInNetCrackerInterest;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Другое' (Интересы) - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Другое' (Интересы) - 4000 символов")
     private String otherJobInterests;
     private String backEndInterest;
     private String frontEndInterest;
     private String dbInterest;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Другое' (Тип работы) - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Другое' (Тип работы) - 4000 символов")
     private String otherWorkTypeSpecific;
 
     private Integer OOPLevel;
@@ -36,18 +36,18 @@ public class DevResumeDetailDTO implements Serializable {
     private Integer webLevel;
     private Integer userInterfaceLevel;
     private Integer umlLevel;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Другие разделы' - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Другие разделы' - 4000 символов")
     private String otherSkillsLevel;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Опыт работы' - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Опыт работы' - 4000 символов")
     private String workExperience;
     private Integer englishReadLevel;
     private Integer englishWriteLevel;
     private Integer englishSpeakLevel;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Откуда вы узнали об Учебном центре' - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Откуда вы узнали об Учебном центре' - 4000 символов")
     private String whereYouKnowAboutTC;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Почемувас нужно взять в УЦ'- 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Почемувас нужно взять в УЦ'- 4000 символов")
     private String whyTakeYouInNetCracker;
-    @Size(max = 250, message = "Максимальное количество символов для поля 'Дополнительные сведения' - 250 символов")
+    @Size(max = 4000, message = "Максимальное количество символов для поля 'Дополнительные сведения' - 4000 символов")
     private String moreInformationAboutYou;
 
     private ResumeDTO resume;

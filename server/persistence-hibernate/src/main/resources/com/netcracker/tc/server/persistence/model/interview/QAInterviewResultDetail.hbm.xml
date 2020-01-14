@@ -18,7 +18,7 @@
         </property>
 
         <property name="hrOtherInformation" type="string">
-            <column name="HR_OTHER_INFORMATION" length="500"/>
+            <column name="HR_OTHER_INFORMATION" length="4000"/>
         </property>
 
         <property name="hrFinalAssessment" type="java.lang.Integer">
@@ -70,11 +70,11 @@
         </property>
 
         <property name="interviewerBasicInformation" type="string">
-            <column name="INTERVIEWER_BASIC_INFORMATION" length="500"/>
+            <column name="INTERVIEWER_BASIC_INFORMATION" length="4000"/>
         </property>
 
         <property name="interviewerOther" type="string">
-            <column name="INTERVIEWER_OTHER_INFORMATION" length="500"/>
+            <column name="INTERVIEWER_OTHER_INFORMATION" length="4000"/>
         </property>
 
         <property name="interviewerWorkWithUser" type="boolean">
@@ -84,7 +84,6 @@
         <property name="interviewerComeToInterview" type="boolean">
             <column name="INTERVIEWER_COME_TO_INTERVIEW" />
         </property>
-
 
         <many-to-one name="interviewResult" class="com.netcracker.tc.server.persistence.model.interview.InterviewResult"
                     column="INTERVIEW_RESULT_ID" unique="true" not-null="true">

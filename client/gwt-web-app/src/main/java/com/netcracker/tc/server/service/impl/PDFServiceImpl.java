@@ -1,8 +1,10 @@
 package com.netcracker.tc.server.service.impl;
 
 import com.itextpdf.text.DocumentException;
+import com.netcracker.tc.server.persistence.dao.impl.ReportDao;
 import com.netcracker.tc.server.service.api.*;
 import com.netcracker.tc.server.service.exception.ServiceException;
+import com.netcracker.tc.server.util.pdf.DetailInfoPDFCreator;
 import com.netcracker.tc.server.util.pdf.DevResumePDFCreator;
 import com.netcracker.tc.server.util.pdf.QAResumePDFCreator;
 import com.netcracker.tc.shared.model.interview.InterviewSlotDTO;
@@ -38,12 +40,17 @@ public class PDFServiceImpl implements PDFService {
     @Autowired
     ImageService imageService;
 
+    @Autowired
+    ReportDao reportDao;
+
     private DevResumePDFCreator devResumePDFCreator;
     private QAResumePDFCreator qaResumePDFCreator;
+    private DetailInfoPDFCreator detailInfoPDFCreator;
 
     public PDFServiceImpl(){
         devResumePDFCreator = new DevResumePDFCreator();
         qaResumePDFCreator = new QAResumePDFCreator();
+        detailInfoPDFCreator = new DetailInfoPDFCreator();
     }
 
     @Autowired
@@ -53,6 +60,7 @@ public class PDFServiceImpl implements PDFService {
         try {
             devResumePDFCreator.setTimesFontPath(servletContext.getRealPath("") + PDF_FOLDER + TIMES_FONT);
             qaResumePDFCreator.setTimesFontPath(servletContext.getRealPath("") + PDF_FOLDER + TIMES_FONT);
+            detailInfoPDFCreator.setTimesFontPath(servletContext.getRealPath("") + PDF_FOLDER + TIMES_FONT);
         } catch (IOException e) {
             LOGGER.error("Can't load font [Times_New_Roman.ttf]", e);
         } catch (DocumentException e) {
@@ -86,6 +94,17 @@ public class PDFServiceImpl implements PDFService {
         } else {
             createQAPDF(resume, activeUserInterview, outputStream);
         }
+    }
+
+    @Override
+    public void createActiveDetailInfoPDF(OutputStream outputStream) throws ServiceException {
+        if(reportDao.getReportList().isEmpty()){
+            LOGGER.info("ReportList in reportDao is empty");
+            throw new ServiceException("Ошибка создания PDF. Нет элементов для отчета.");
+        }
+        detailInfoPDFCreator.setList(reportDao.getReportList());
+        detailInfoPDFCreator.createPDF(outputStream);
+        LOGGER.info("Created pdf for DetailInfoReport");
     }
 
     private void createQAPDF(ResumeDTO resume, InterviewSlotDTO activeUserInterview, OutputStream outputStream) throws ServiceException {

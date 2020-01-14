@@ -3,41 +3,38 @@ package com.netcracker.tc.client.ui.widget.resume;
 import com.github.gwtbootstrap.client.ui.*;
 import com.github.gwtbootstrap.client.ui.CheckBox;
 import com.github.gwtbootstrap.client.ui.ListBox;
-import com.github.gwtbootstrap.client.ui.TextArea;
 import com.github.gwtbootstrap.client.ui.TextBox;
 import com.github.gwtbootstrap.client.ui.Tooltip;
 import com.github.gwtbootstrap.datetimepicker.client.ui.DateTimeBoxAppended;
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
-import com.netcracker.tc.client.ui.widget.simple.CheckListBox;
-import com.netcracker.tc.client.ui.widget.simple.InstituteListBox;
-import com.netcracker.tc.client.ui.widget.simple.ResumeKnowledgeWidget;
-import com.netcracker.tc.client.ui.widget.simple.SkillLevelListBox;
+import com.netcracker.tc.client.ui.widget.simple.*;
 import com.netcracker.tc.client.validation.ValidationFactory;
-import com.netcracker.tc.server.service.impl.UserServiceImpl;
 import com.netcracker.tc.shared.model.resume.DevResumeDetailDTO;
 import com.netcracker.tc.shared.model.resume.InstituteDTO;
 import com.netcracker.tc.shared.model.resume.KnowledgeTypeDTO;
 import com.netcracker.tc.shared.model.resume.ResumeDTO;
-import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.apache.poi.ss.formula.functions.NumericFunction.LOG;
-
+    /*
+    Composite A type of widget that can wrap another widget,
+    hiding the wrapped widget's methods. When added to a panel,
+    a composite behaves exactly as if the widget it wraps had been added.
+    */
 
 public class DevResumeWidget extends Composite {
 
+
     private static Logger LOGGER = Logger.getLogger(DevResumeWidget.class.toString());
-//private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DevResumeWidget.class);
+    //private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DevResumeWidget.class);
     private static Binder uiBinder = GWT.create(Binder.class);
     @UiField
     UploadPhotoWidget uploadPhotoWidget;
@@ -74,13 +71,19 @@ public class DevResumeWidget extends Composite {
     @UiField
     TextBox skypeField;
     @UiField
-    TextArea otherContactField;
+    TextAreaHjb otherContactField;
+    // I insert it
+    @UiField
+    AlertBlock otherContactFieldLengthInfo;
     @UiField
     CheckListBox trainingCenterInterestListBox;
     @UiField
     CheckListBox workInNetCrackerInterestListBox;
     @UiField
-    TextArea otherJobInterestTextArea;
+    TextAreaHjb otherJobInterestTextArea;
+    // I insert it
+    @UiField
+    AlertBlock otherJobInterestLengthInfo;
     @UiField
     CheckListBox backEndInterestField;
     @UiField
@@ -88,7 +91,9 @@ public class DevResumeWidget extends Composite {
     @UiField
     CheckListBox dbInterestField;
     @UiField
-    TextArea otherWorkTypeSpecificField;
+    TextAreaHjb otherWorkTypeSpecificField;
+    @UiField
+    AlertBlock otherWorkTypeSpecificFieldLengthInfo;
     @UiField
     ResumeKnowledgeWidget resumeKnowledgeWidget;
     @UiField
@@ -102,9 +107,13 @@ public class DevResumeWidget extends Composite {
     @UiField
     SkillLevelListBox umlLevelField;
     @UiField
-    TextArea otherSkillsLevelField;
+    TextAreaHjb otherSkillsLevelField;
     @UiField
-    TextArea workExperienceField;
+    AlertBlock otherSkillsLevelFieldLengthInfo;
+    @UiField
+    TextAreaHjb workExperienceField;
+    @UiField
+    AlertBlock workExperienceFieldLengthInfo;
     @UiField
     SkillLevelListBox englishReadLevelField;
     @UiField
@@ -112,14 +121,19 @@ public class DevResumeWidget extends Composite {
     @UiField
     SkillLevelListBox englishSpeakLevelField;
     @UiField
-    TextArea whereYouKnowAboutTCField;
+    TextAreaHjb whereYouKnowAboutTCField;
     @UiField
-    TextArea whyTakeYouInNetCrackerField;
+    AlertBlock whereYouKnowAboutTCFieldLengthInfo;
     @UiField
-    TextArea moreInformationAboutYouField;
+    TextAreaHjb whyTakeYouInNetCrackerField;
+    @UiField
+    AlertBlock whyTakeYouInNetCrackerFieldLengthInfo;
+    @UiField
+    TextAreaHjb moreInformationAboutYouField;
+    @UiField
+    AlertBlock moreInformationAboutYouFieldLengthInfo;
     @UiField
     CheckBox agreementCheckBox;
-
     @UiField
     ControlGroup nameGroup;
     @UiField
@@ -185,6 +199,7 @@ public class DevResumeWidget extends Composite {
         tooltips = new HashMap<Widget, Tooltip>();
         actualTooltips = new HashMap<Widget, Tooltip>();
         initWidget(uiBinder.createAndBindUi(this));
+        setAlertBlocks();
         instituteListBox.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -193,8 +208,19 @@ public class DevResumeWidget extends Composite {
         });
     }
 
+    private void setAlertBlocks() {
+        otherJobInterestTextArea.setAlertBlock(otherJobInterestLengthInfo);
+        otherContactField.setAlertBlock(otherContactFieldLengthInfo);
+        otherWorkTypeSpecificField.setAlertBlock(otherWorkTypeSpecificFieldLengthInfo);
+        otherSkillsLevelField.setAlertBlock(otherSkillsLevelFieldLengthInfo);
+        workExperienceField.setAlertBlock(workExperienceFieldLengthInfo);
+        whereYouKnowAboutTCField.setAlertBlock(whereYouKnowAboutTCFieldLengthInfo);
+        whyTakeYouInNetCrackerField.setAlertBlock(whyTakeYouInNetCrackerFieldLengthInfo);
+        moreInformationAboutYouField.setAlertBlock(moreInformationAboutYouFieldLengthInfo);
+    }
+
     public ResumeDTO getDevResume() {
-        LOGGER.log(Level.FINE,"get " + engSurnameField.getText() );
+        LOGGER.log(Level.FINE, "get " + engSurnameField.getText());
         ResumeDTO resume = new ResumeDTO();
 
         resume.setSurname(surnameField.getText());
@@ -256,7 +282,7 @@ public class DevResumeWidget extends Composite {
     public void setDevResume(ResumeDTO resume) {
         otherInstituteRow.setVisible(false);
         if (resume != null) {
-            LOGGER.log(Level.ALL,"set " + resume.getEngSurname() );
+            LOGGER.log(Level.ALL, "set " + resume.getEngSurname());
             DevResumeDetailDTO devResumeDetailDTO = resume.getDevResumeDetail();
 
             uploadPhotoWidget.setUserImage(resume.getPhotoPath());
@@ -461,7 +487,7 @@ public class DevResumeWidget extends Composite {
         }
 
         StringBuffer errorMessageText = new StringBuffer("Ошибка при валидации полей. Проверьте корректность значений. <br> <ul>");
-        for(String errorMessage: errorMessages) {
+        for (String errorMessage : errorMessages) {
             errorMessageText.append("<li>" + errorMessage + "</li>");
         }
         errorMessageText.append("</ul>");
@@ -479,7 +505,7 @@ public class DevResumeWidget extends Composite {
     private void cleanTooltip() {
 //        LOGGER.log(Level.FINE, "clean tooltip");
         for (Tooltip tooltip : tooltips.values())
-            if(!actualTooltips.containsValue(tooltip)) {
+            if (!actualTooltips.containsValue(tooltip)) {
                 tooltip.setText("");
                 tooltip.reconfigure();
                 tooltip.clear();
@@ -492,7 +518,7 @@ public class DevResumeWidget extends Composite {
     private void addTooltip(Widget widget, String message) {
 //        LOGGER.log(Level.FINE, " add addTooltip ");
         if (tooltips.containsKey(widget)) {
-            actualTooltips.put(widget,tooltips.get(widget));
+            actualTooltips.put(widget, tooltips.get(widget));
             return;
         }
 
