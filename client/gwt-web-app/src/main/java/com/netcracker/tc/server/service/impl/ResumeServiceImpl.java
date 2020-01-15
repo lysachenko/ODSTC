@@ -111,6 +111,18 @@ public class ResumeServiceImpl implements ResumeService {
 
         resumeDao.createOrUpdate(resume);
         saveKnowledges(resume, resumeDTO.getResumeKnowledges());
+
+        StudentDetail studentDetail = user.getStudentDetail();
+        studentDetail.setUserStatus(userDao.getUserStatus(UserStatusDTO.EDITING_CV));
+        userDao.update(studentDetail);
+    }
+
+    @Override
+    public void submitDevResume(Long userId, ResumeDTO resumeDTO) throws ServiceException {
+        User user = userDao.get(userId);
+        StudentDetail studentDetail = user.getStudentDetail();
+        studentDetail.setUserStatus(userDao.getUserStatus(UserStatusDTO.SUBMISSION_CV));
+        userDao.update(studentDetail);
     }
 
     @Override

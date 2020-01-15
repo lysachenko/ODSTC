@@ -36,7 +36,6 @@ public class Resume implements Serializable {
     }
 
     public Long getId() {
-
         return id;
     }
 
