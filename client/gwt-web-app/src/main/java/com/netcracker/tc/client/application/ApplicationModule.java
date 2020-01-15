@@ -78,10 +78,12 @@ public class ApplicationModule extends AbstractPresenterModule {
         bindPresenter(UserInterviewPresenter.class, UserInterviewPresenter.ViewImpl.class, UserInterviewView.class, UserInterviewPresenter.Proxy.class);
         bindPresenter(UserJoinInterviewPresenter.class, UserJoinInterviewPresenter.ViewImpl.class, UserJoinInterviewView.class, UserJoinInterviewPresenter.Proxy.class);
 
-        bindPresenter(BadResumePresenter.class, BadResumePresenter.ViewImpl.class, BadResumeView.class, BadResumePresenter.Proxy.class);        
-        
+        bindPresenter(BadResumePresenter.class, BadResumePresenter.ViewImpl.class, BadResumeView.class, BadResumePresenter.Proxy.class);
+
         bindPresenter(UserFirstEntryStep1Presenter.class, UserFirstEntryStep1Presenter.ViewImpl.class, UserFirstEntryStep1View.class, UserFirstEntryStep1Presenter.Proxy.class);
         bindPresenter(UserFillingCVPresenter.class, UserFillingCVPresenter.ViewImpl.class, UserFillingCVView.class, UserFillingCVPresenter.Proxy.class);
+        bindPresenter(UserEditingCVPresenter.class, UserEditingCVPresenter.ViewImpl.class, UserEditingCVView.class, UserEditingCVPresenter.Proxy.class);
+        bindPresenter(UserSubmissionCVPresenter.class, UserSubmissionCVPresenter.ViewImpl.class, UserSubmissionCVView.class, UserSubmissionCVPresenter.Proxy.class);
         bindPresenter(UserRegistrationOnInterviewPresenter.class, UserRegistrationOnInterviewPresenter.ViewImpl.class, UserRegistrationOnInterviewView.class, UserRegistrationOnInterviewPresenter.Proxy.class);
         bindPresenter(UserVerificationCVPresenter.class, UserVerificationCVPresenter.ViewImpl.class, UserVerificationCVView.class, UserVerificationCVPresenter.Proxy.class);
         bindPresenter(QAInformationPresenter.class, QAInformationPresenter.MyView.class, QAInformationView.class, QAInformationPresenter.MyProxy.class);
@@ -99,9 +101,9 @@ public class ApplicationModule extends AbstractPresenterModule {
         bindPresenter(InterviewResultListPresenter.class, InterviewResultListPresenter.ViewImpl.class, InterviewResultListView.class, InterviewResultListPresenter.Proxy.class);
 
         bindPresenter(SettingsPresenter.class, SettingsPresenter.ViewImpl.class, SettingsView.class, SettingsPresenter.Proxy.class);
-        
+
         bindPresenterWidget(AddInterviewPresenter.class, AddInterviewPresenter.AddInterviewView.class, AddInterviewView.class);
-        
-        
+
+
     }
 }

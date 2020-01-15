@@ -13,6 +13,12 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
 import com.netcracker.tc.client.ui.widget.simple.*;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
+import com.netcracker.tc.client.ui.widget.simple.CheckListBox;
+import com.netcracker.tc.client.ui.widget.simple.InstituteListBox;
+import com.netcracker.tc.client.ui.widget.simple.ResumeKnowledgeWidget;
+import com.netcracker.tc.client.ui.widget.simple.SkillLevelListBox;
 import com.netcracker.tc.client.validation.ValidationFactory;
 import com.netcracker.tc.shared.model.resume.DevResumeDetailDTO;
 import com.netcracker.tc.shared.model.resume.InstituteDTO;
@@ -273,7 +279,6 @@ public class DevResumeWidget extends Composite {
             devResumeDetailDTO.setInstituteOtherName(null);
         }
 
-
         resume.setDevResumeDetail(devResumeDetailDTO);
 
         return resume;
@@ -334,6 +339,7 @@ public class DevResumeWidget extends Composite {
                     otherInstituteRow.setVisible(true);
                     otherInstituteField.setText(devResumeDetailDTO.getInstituteOtherName());
                 }
+                agreementCheckBox.setValue(true);
             }
         }
     }
@@ -591,7 +597,7 @@ public class DevResumeWidget extends Composite {
         facultyField.setReadOnly(true);
         departmentField.setReadOnly(true);
         specialtyField.setReadOnly(true);
-        graduationYearField.setReadOnly(false);
+        graduationYearField.setReadOnly(true);
         emailField.setReadOnly(true);
         telephoneField.setReadOnly(true);
         skypeField.setReadOnly(true);
@@ -658,7 +664,7 @@ public class DevResumeWidget extends Composite {
         whereYouKnowAboutTCField.setText("");
         whyTakeYouInNetCrackerField.setText("");
         moreInformationAboutYouField.setText("");
-        agreementCheckBox.setEnabled(false);
+        agreementCheckBox.setValue(false);
     }
 
   /*  public Button getDownloadButton() {

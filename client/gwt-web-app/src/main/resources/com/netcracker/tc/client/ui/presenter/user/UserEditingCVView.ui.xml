@@ -30,8 +30,8 @@
         <g:HTMLPanel ui:field="resumePanel"/>
 
         <b:FormActions>
-            <b:Button type="PRIMARY" ui:field="editResumeButton">Редактировать</b:Button>
-            <b:Button type="PRIMARY" ui:field="submitResumeButton">Отправить</b:Button>
+            <b:Button type="PRIMARY" ui:field="cancelChangesButton">Отмена</b:Button>
+            <b:Button type="PRIMARY" ui:field="saveChangesButton">Сохранить</b:Button>
         </b:FormActions>
 
     </g:HTMLPanel>
