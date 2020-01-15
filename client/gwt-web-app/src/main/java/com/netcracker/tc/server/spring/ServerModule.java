@@ -97,6 +97,7 @@ public class ServerModule extends HandlerModule {
         bindHandler(GetDevResumeAction.class, GetDevResumeHandler.class);
         bindHandler(GetQAResumeAction.class, GetQAResumeHandler.class);
         bindHandler(EditDevResumeAction.class, EditDevResumeHandler.class);
+        bindHandler(SubmitDevResumeAction.class, SubmitDevResumeHandler.class);
         bindHandler(EditQAResumeAction.class, EditQAResumeHandler.class);
         bindHandler(ActivateInterviewAction.class, ActivateInterviewHandler.class);
         bindHandler(CreateDevResumeAction.class, CreateDevResumeHandler.class);
