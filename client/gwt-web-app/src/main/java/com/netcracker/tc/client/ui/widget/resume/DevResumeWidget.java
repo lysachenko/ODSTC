@@ -537,6 +537,7 @@ public class DevResumeWidget extends Composite {
     }
 
     public void setInstitutes(List<InstituteDTO> instituteDTOList) {
+        instituteListBox.clear();
         instituteListBox.setInstituteList(instituteDTOList);
     }
 
@@ -633,7 +634,7 @@ public class DevResumeWidget extends Composite {
         engSurnameField.setText("");
         engNameField.setText("");
         lastNameField.setText("");
-        instituteListBox.setSelectedIndex(-1);
+        instituteListBox.setSelectedIndex(0);
         otherInstituteField.setText("");
         courseField.setSelectedIndex(0);
         facultyField.setText("");
