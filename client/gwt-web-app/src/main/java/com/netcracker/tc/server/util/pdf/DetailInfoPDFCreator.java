@@ -109,8 +109,6 @@ public class DetailInfoPDFCreator {
         document.add(paragraph2);
     }
 
-
-
     public  void createTable(Document document) throws DocumentException {
         PdfPTable table = new PdfPTable(columns.length);
         table.setWidths(new float[]{2, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f});
@@ -148,14 +146,6 @@ public class DetailInfoPDFCreator {
         }
         table.setHeaderRows(1);
     }
-
-
-
-
-
-
-
-
 
     private  void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {

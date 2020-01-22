@@ -1,4 +1,37 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea/
-*.iml
 .gitignore
+.idea/
+client/client.iml
+        client/gwt-web-app/gwt-web-app.iml
+        client/gwt-web-app/target/
+        doc/eav/
+        logs/
+        server/dao-mongodb/dao-mongodb.iml
+        server/dao-mongodb/target/
+        server/persistence-api/persistence-api.iml
+        server/persistence-api/target/
+        server/persistence-hibernate/persistence-hibernate.iml
+        server/persistence-hibernate/target/
+        server/server.iml
+        server/web-server/target/
+        server/web-server/web-server.iml
+        util/commons/commons.iml
+        util/commons/target/
+        util/util.iml
+client/gwt-web-app/gwt-web-app.iml
+client/gwt-web-app/target/
+logs/
+server/dao-mongodb/dao-mongodb.iml
+server/dao-mongodb/target/
+server/persistence-api/persistence-api.iml
+server/persistence-api/target/
+server/persistence-hibernate/persistence-hibernate.iml
+server/persistence-hibernate/target/
+server/server.iml
+server/web-server/target/
+server/web-server/web-server.iml
+util/commons/commons.iml
+util/commons/target/
+util/util.iml
+
+

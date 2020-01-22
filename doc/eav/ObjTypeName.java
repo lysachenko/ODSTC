@@ -1,6 +1,6 @@
-package com.netcracker.tc.server.persistence.model_eav;
+package eav;
 
-public class ObjType {
+public class ObjTypeName {
 
     public static final int TYPE_ID_USERS = 1;
     public static final int TYPE_ID_USER_STATUS = 2;
@@ -40,50 +40,4 @@ public class ObjType {
     public static final String CODE_DEV_RESUME_DETAIL = "DEV_RESUME_DETAIL";
     public static final String CODE_DEV_INTERVIEW_RESULT_DETAIL = "DEV_INTERVIEW_RESULT_DETAIL";
 
-
-    private Integer objectTypeId;
-    private Integer parentId;
-    private String code;
-    private String name;
-    private String description;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getObjectTypeId() {
-        return objectTypeId;
-    }
-
-    public void setObjectTypeId(Integer objectTypeId) {
-        this.objectTypeId = objectTypeId;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
 }
