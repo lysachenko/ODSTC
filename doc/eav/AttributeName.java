@@ -1,4 +1,4 @@
-package com.netcracker.tc.server.persistence.modelEAV;
+package eav.model;
 
 public class AttributeName {
 
