@@ -1,7 +1,7 @@
 package eav.manager;
 
 import eav.model.Attribute;
-import eav.utils.AttributeQueries;
+import eav.queries.AttributeQueries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,14 +56,13 @@ public class AttributesManager {
     public List<Attribute> getAttributesByObjectId(Long objectId) throws SQLException {
 
         List<Attribute> attributes = new ArrayList<Attribute>();
-        Attribute attribute = null;
         PreparedStatement preparedStatement = connection.prepareStatement(AttributeQueries.SELECT_ATTRIBUTES_BY_OBJECT_ID);
         preparedStatement.setLong(1, objectId);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            attribute = new Attribute();
+            Attribute attribute = new Attribute();
             attribute.setAttributeTypeId(resultSet.getLong(ATTR_ID));
             attribute.setObjectId(resultSet.getLong(OBJECT_ID));
             attribute.setValue(resultSet.getString(VALUE));
@@ -78,11 +77,10 @@ public class AttributesManager {
     public void updateAttributeByObjectIdAndAttrId(Attribute attribute, Long objectId, Long attrId) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(AttributeQueries.UPDATE_ATTRIBUTE_BY_OBJECT_ID_AND_ATTR_ID);
         preparedStatement.setLong(1, attribute.getObjectId());
-        preparedStatement.setLong(2, attribute.getAttributeTypeId());
-        preparedStatement.setString(3, attribute.getValue());
-        preparedStatement.setDate(4, attribute.getDate());
-        preparedStatement.setLong(5, objectId);
-        preparedStatement.setLong(6, attrId);
+        preparedStatement.setString(2, attribute.getValue());
+        preparedStatement.setDate(3, attribute.getDate());
+        preparedStatement.setLong(4, objectId);
+        preparedStatement.setLong(5, attrId);
         preparedStatement.execute();
 
         connection.close();
