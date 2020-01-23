@@ -3,9 +3,9 @@ package eav.queries;
 public class ObjectQueries {
 
     public static final String INSERT_NEW_OBJECT
-            = "insert into OBJECTS (OBJECT_ID, PARENT_ID, OBJECT_TYPE_ID, NAME, DESCRIPTION) VALUES (?, ?, ?, ?, ?)";
+            = "insert into OBJECTS (OBJECT_ID, PARENT_ID, OBJECT_TYPE_ID, NAME, DESCRIPTION) VALUES (seq_for_object.nextval, ?, ?, ?, ?)";
     public static final String INSERT_NEW_OBJECT_WITHOUT_PARENT_ID
-            = "insert into OBJECTS (OBJECT_ID, OBJECT_TYPE_ID, NAME, DESCRIPTION) VALUES (?, ?, ?, ?)";
+            = "insert into OBJECTS (OBJECT_ID, OBJECT_TYPE_ID, NAME, DESCRIPTION) VALUES (seq_for_object.nextval, ?, ?, ?)";
 
     public static final String SELECT_ALL_OBJECTS
             = "select OBJECT_ID, PARENT_ID, OBJECT_TYPE_ID, NAME, DESCRIPTION from OBJECTS";

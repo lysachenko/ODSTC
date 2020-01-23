@@ -28,18 +28,16 @@ public class ObjectManager {
 
         if (object.getParentId() != null) {
             PreparedStatement preparedStatement = connection.prepareStatement(ObjectQueries.INSERT_NEW_OBJECT);
-            preparedStatement.setLong(1, object.getObjectId());
-            preparedStatement.setLong(2, object.getParentId());
-            preparedStatement.setLong(3, object.getObjectTypeId());
-            preparedStatement.setString(4, object.getName());
-            preparedStatement.setString(5, object.getDescription());
-            preparedStatement.execute();
-        } else {
-            PreparedStatement preparedStatement = connection.prepareStatement(ObjectQueries.INSERT_NEW_OBJECT_WITHOUT_PARENT_ID);
-            preparedStatement.setLong(1, object.getObjectId());
+            preparedStatement.setLong(1, object.getParentId());
             preparedStatement.setLong(2, object.getObjectTypeId());
             preparedStatement.setString(3, object.getName());
             preparedStatement.setString(4, object.getDescription());
+            preparedStatement.execute();
+        } else {
+            PreparedStatement preparedStatement = connection.prepareStatement(ObjectQueries.INSERT_NEW_OBJECT_WITHOUT_PARENT_ID);
+            preparedStatement.setLong(1, object.getObjectTypeId());
+            preparedStatement.setString(2, object.getName());
+            preparedStatement.setString(3, object.getDescription());
             preparedStatement.execute();
         }
 
