@@ -19,17 +19,16 @@ public class ObjTypeManager {
 
     public void createObjType(ObjType objType) throws SQLException {
         PreparedStatement ps = conn.prepareStatement(Queries.INSERT_NEW_OBJECT_TYPE);
-        ps.setLong(1, objType.getObjectTypeId());
 
         if(objType.getParentId()!=null){
-            ps.setLong(2, objType.getParentId());
+            ps.setLong(1, objType.getParentId());
 
         }
-        else ps.setString(2, null);
+        else ps.setString(1, null);
 
-        ps.setString(3, objType.getCode());
-        ps.setString(4, objType.getName());
-        ps.setString(5, objType.getDescription());
+        ps.setString(2, objType.getCode());
+        ps.setString(3, objType.getName());
+        ps.setString(4, objType.getDescription());
 
         ps.execute();
 

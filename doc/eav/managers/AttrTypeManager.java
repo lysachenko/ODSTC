@@ -23,11 +23,10 @@ public class AttrTypeManager {
 
     public void createAttrType(AttrType attrType) throws SQLException {
         PreparedStatement ps = conn.prepareStatement(Queries.INSERT_NEW_ATTR_TYPE);
-        ps.setLong(1, attrType.getAttributeTypeId());
-        ps.setLong(2, attrType.getObjectTypeId());
-        ps.setLong(3, attrType.getObjectTypeIdRefer());
-        ps.setString(4, attrType.getCode());
-        ps.setString(5, attrType.getName());
+        ps.setLong(1, attrType.getObjectTypeId());
+        ps.setLong(2, attrType.getObjectTypeIdRefer());
+        ps.setString(3, attrType.getCode());
+        ps.setString(4, attrType.getName());
 
         ps.execute();
 
