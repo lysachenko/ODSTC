@@ -126,9 +126,9 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
     }
 
     private void editResume() {
-        if (devResumeWidget.isValid()) {
+//        if (devResumeWidget.isValid()) {
             redirectToEditing();
-        }
+//        }
     }
 
     private void redirectToEditing() {
