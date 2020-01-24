@@ -8,38 +8,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttrTypeManager {
-    public final static String ATTR_ID = "ATTR_ID";
-    public final static String OBJECT_TYPE_ID = "OBJECT_TYPE_ID";
-    public final static String OBJECT_TYPE_ID_REF = "OBJECT_TYPE_ID_REF";
-    public final static String CODE = "CODE";
-    public final static String NAME = "NAME";
+    private static final String ATTR_ID = "ATTR_ID";
+    private static final String OBJECT_TYPE_ID = "OBJECT_TYPE_ID";
+    private static final String OBJECT_TYPE_ID_REF = "OBJECT_TYPE_ID_REF";
+    private static final String CODE = "CODE";
+    private static final String NAME = "NAME";
 
     private Connection conn;
 
-    public void  createAttrType(AttrType attrType) throws SQLException {
-        PreparedStatement preparedStmt = conn.prepareStatement(Queries.INSERT_NEW_ATTR_TYPE);
-        preparedStmt.setInt (1, attrType.getAttributeTypeId());
-        preparedStmt.setInt (2, attrType.getObjectTypeId());
-        preparedStmt.setInt (3, attrType.getObjectTypeIdRefer());
-        preparedStmt.setString(4, attrType.getCode());
-        preparedStmt.setString(5, attrType.getName());
+    public AttrTypeManager(Connection connection) throws SQLException {
+        this.conn =connection;
+        conn.setAutoCommit(false);
+    }
 
-        preparedStmt.execute();
+    public void createAttrType(AttrType attrType) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement(Queries.INSERT_NEW_ATTR_TYPE);
+        ps.setLong(1, attrType.getAttributeTypeId());
+        ps.setLong(2, attrType.getObjectTypeId());
+        ps.setLong(3, attrType.getObjectTypeIdRefer());
+        ps.setString(4, attrType.getCode());
+        ps.setString(5, attrType.getName());
 
+        ps.execute();
+
+        conn.commit();
         conn.close();
     }
 
-    public AttrType getAttrTypeById(int id) throws SQLException {
-        AttrType attrType  = new AttrType();
+    public AttrType getAttrTypeById(Long id) throws SQLException {
         PreparedStatement preparedStmt = conn.prepareStatement(Queries.SELECT_ATTR_TYPE_BY_ID);
-        preparedStmt.setInt (1, id);
+        preparedStmt.setLong (1, id);
 
         ResultSet rs = preparedStmt.executeQuery();
+        AttrType attrType  = new AttrType();
 
-        while (rs.next()){
-            attrType.setAttributeTypeId(rs.getInt(ATTR_ID));
-            attrType.setObjectTypeId(rs.getInt(OBJECT_TYPE_ID));
-            attrType.setObjectTypeIdRefer(rs.getInt(OBJECT_TYPE_ID_REF));
+        while (rs.next()) {
+            attrType.setAttributeTypeId(rs.getLong(ATTR_ID));
+            attrType.setObjectTypeId(rs.getLong(OBJECT_TYPE_ID));
+            attrType.setObjectTypeIdRefer(rs.getLong(OBJECT_TYPE_ID_REF));
             attrType.setCode(rs.getString(CODE));
             attrType.setName(rs.getString(NAME));
         }
@@ -48,21 +54,17 @@ public class AttrTypeManager {
         return attrType;
     }
 
-    //get all attribute_types by object_id
-
-    public List<AttrType> getAllAttrTypeByObjectTypeId(int objectTypeId) throws SQLException {
-        AttrType attrType = new AttrType();
+    public List<AttrType> getAllAttrTypes() throws SQLException {
         List<AttrType> listOfAttrTypes = new ArrayList<AttrType>();
 
-        PreparedStatement statement = conn.prepareStatement(Queries.SELECT_ATTR_TYPE_BY_OBJECT_TYPE_ID);
-        statement.setInt (1, objectTypeId);
-
-        ResultSet rs = statement.executeQuery();;
+        Statement statement = conn.createStatement();
+        ResultSet rs = statement.executeQuery(Queries.SELECT_ALL_ATTR_TYPES);
 
         while (rs.next()){
-            attrType.setAttributeTypeId(rs.getInt(ATTR_ID));
-            attrType.setObjectTypeId(rs.getInt(OBJECT_TYPE_ID));
-            attrType.setObjectTypeIdRefer(rs.getInt(OBJECT_TYPE_ID_REF));
+            AttrType attrType = new AttrType();
+            attrType.setAttributeTypeId(rs.getLong(ATTR_ID));
+            attrType.setObjectTypeId(rs.getLong(OBJECT_TYPE_ID));
+            attrType.setObjectTypeIdRefer(rs.getLong(OBJECT_TYPE_ID_REF));
             attrType.setCode(rs.getString(CODE));
             attrType.setName(rs.getString(NAME));
 
@@ -72,7 +74,47 @@ public class AttrTypeManager {
         return listOfAttrTypes;
     }
 
+    public void deleteAttrTypeById(Long id) throws SQLException {
+        PreparedStatement preparedStmt = conn.prepareStatement(Queries.DELETE_ATTR_TYPE_BY_ID);
+        preparedStmt.setLong (1, id);
+        preparedStmt.execute();
+        conn.commit();
+        conn.close();
+    }
 
+    public void updateAttrTypeCodeById(Long id, String code) throws SQLException {
+        PreparedStatement preparedStmt = conn.prepareStatement(Queries.UPDATE_ATTR_TYPE_CODE_BY_ID);
+        preparedStmt.setString (1, code);
+        preparedStmt.setLong (2, id);
+        preparedStmt.execute();
+        conn.commit();
+        conn.close();
+    }
 
+    public void updateAttrTypeNameById(Long id, String name) throws SQLException {
+        PreparedStatement preparedStmt = conn.prepareStatement(Queries.UPDATE_ATTR_TYPE_NAME_BY_ID);
+        preparedStmt.setString (1, name);
+        preparedStmt.setLong (2, id);
+        preparedStmt.execute();
+        conn.commit();
+        conn.close();
+    }
 
+    public void updateAttrTypeObjTypeById(Long id, Long objTypeId) throws SQLException {
+        PreparedStatement preparedStmt = conn.prepareStatement(Queries.UPDATE_ATTR_TYPE_OBJ_TYPE_BY_ID);
+        preparedStmt.setLong (1, objTypeId);
+        preparedStmt.setLong (2, id);
+        preparedStmt.execute();
+        conn.commit();
+        conn.close();
+    }
+
+    public void updateAttrTypeObjTypeRefById(Long id, Long objTypeRefId) throws SQLException {
+        PreparedStatement preparedStmt = conn.prepareStatement(Queries.UPDATE_ATTR_TYPE_OBJ_TYPE_REF_BY_ID);
+        preparedStmt.setLong (1, objTypeRefId);
+        preparedStmt.setLong (2, id);
+        preparedStmt.execute();
+        conn.commit();
+        conn.close();
+    }
 }
