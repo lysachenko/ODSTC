@@ -10,8 +10,8 @@ import com.google.inject.Inject;
 
 public class UserResumeView extends com.gwtplatform.mvp.client.ViewImpl implements UserResumePresenter.ViewImpl {
 
-    @UiField
-    Button saveButton;
+//    @UiField
+//    Button saveButton;
     @UiField
     Button printButton;
     @UiField
@@ -31,10 +31,10 @@ public class UserResumeView extends com.gwtplatform.mvp.client.ViewImpl implemen
         resumeWidget.add(widget);
     }
 
-    @Override
-    public Button getSaveButton() {
-        return saveButton;
-    }
+//    @Override
+//    public Button getSaveButton() {
+//        return saveButton;
+//    }
 
     @Override
     public Button getPrintButton() {

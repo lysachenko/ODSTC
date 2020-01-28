@@ -3,11 +3,11 @@
              xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
 
     <g:HTMLPanel>
-        <g:HTMLPanel ui:field="resumeWidget" />
+        <g:HTMLPanel ui:field="resumeWidget"/>
 
         <b:FormActions>
-            <b:Button ui:field="saveButton" type="INFO">Сохранить Изменения</b:Button>
-                <b:Button ui:field="printButton" type="INFO">Печать анкеты</b:Button>
+            <!--<b:Button ui:field="saveButton" type="INFO">Сохранить Изменения</b:Button>-->
+            <b:Button ui:field="printButton" type="INFO">Печать анкеты</b:Button>
         </b:FormActions>
     </g:HTMLPanel>
 </ui:UiBinder> 
