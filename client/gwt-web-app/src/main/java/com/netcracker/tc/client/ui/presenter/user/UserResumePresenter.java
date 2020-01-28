@@ -52,16 +52,16 @@ public class UserResumePresenter extends Presenter<UserResumePresenter.ViewImpl,
 
     @Override
     protected void onBind() {
-        getView().getSaveButton().addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                if (currentUser.getPosition().isDev()) {
-                    saveDevResume(devResumeWidget.getDevResume());
-                } else {
-                    saveQAResume(qaResumeWidget.getQAResume());
-                }
-            }
-        });
+//        getView().getSaveButton().addClickHandler(new ClickHandler() {
+//            @Override
+//            public void onClick(ClickEvent event) {
+//                if (currentUser.getPosition().isDev()) {
+//                    saveDevResume(devResumeWidget.getDevResume());
+//                } else {
+//                    saveQAResume(qaResumeWidget.getQAResume());
+//                }
+//            }
+//        });
 
         getView().getPrintButton().addClickHandler(new ClickHandler() {
             @Override
@@ -83,6 +83,7 @@ public class UserResumePresenter extends Presenter<UserResumePresenter.ViewImpl,
                     devResumeWidget.setInstitutes(result.getInstituteDTOList());
                     devResumeWidget.setKnowledgeTypes(result.getKnowledgeTypeDTOList());
                     devResumeWidget.setDevResume(result.getResume());
+                    devResumeWidget.disableFields();
                 }
             });
         } else {
@@ -94,6 +95,7 @@ public class UserResumePresenter extends Presenter<UserResumePresenter.ViewImpl,
                 public void onSuccess(GetQAResumeResult result) {
                     qaResumeWidget.setInstitutes(result.getInstituteDTOList());
                     qaResumeWidget.setQAResume(result.getQaResumeDetailDTO());
+                    qaResumeWidget.disableFields();
                 }
             });
         }
@@ -135,7 +137,7 @@ public class UserResumePresenter extends Presenter<UserResumePresenter.ViewImpl,
 
         void setResumeWidget(Widget widget);
 
-        Button getSaveButton();
+//        Button getSaveButton();
 
         Button getPrintButton();
     }
