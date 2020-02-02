@@ -4,6 +4,7 @@ import com.netcracker.tc.client.application.NameTokens;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class UserStatusDTO implements Serializable {
@@ -21,26 +22,25 @@ public class UserStatusDTO implements Serializable {
     private String description;
     static {
         userStatus = new HashMap<Long, String>();
-        userStatusDesctiprion = new HashMap<Long, String>();
+        userStatusDesctiprion = new LinkedHashMap<Long, String>();
+
+        userStatus.put(SUBMISSION_CV, NameTokens.User.STEP_SUBMISSION_CV);
+        userStatusDesctiprion.put(SUBMISSION_CV,"Ожидание HR проверки (окончательная версия анкеты)");
+
+        userStatus.put(VERIFICATION_CV, NameTokens.User.STEP_VERIFICATION_CV);
+        userStatusDesctiprion.put(VERIFICATION_CV,"Ожидание HR проверки (1 версия анкеты)");
 
         userStatus.put(FILLING_CV, NameTokens.User.STEP_RESUME);
         userStatusDesctiprion.put(FILLING_CV, "Заполнение анкеты");
-
-        userStatus.put(VERIFICATION_CV, NameTokens.User.STEP_VERIFICATION_CV);
-        userStatusDesctiprion.put(VERIFICATION_CV,"Ожидание HR проверки (1 версия)");
 
         userStatus.put(REGISTRATION_ON_INTERVIEW,NameTokens.User.STEP_REGISTRATION_ON_INTERVIEW);
         userStatusDesctiprion.put(REGISTRATION_ON_INTERVIEW,"Регистрация на собеседование");
 
         userStatus.put(USER_HAS_BAD_RESUME,NameTokens.User.BAD_RESUME);
-        userStatusDesctiprion.put(USER_HAS_BAD_RESUME,"Неподходящего резюме");
+        userStatusDesctiprion.put(USER_HAS_BAD_RESUME,"Неподходящее резюме");
 
         userStatus.put(EDITING_CV, NameTokens.User.STEP_VERIFICATION_CV);
         userStatusDesctiprion.put(EDITING_CV,"Редактирование анкеты");
-
-        userStatus.put(SUBMISSION_CV, NameTokens.User.STEP_SUBMISSION_CV);
-        userStatusDesctiprion.put(SUBMISSION_CV,"Ожидание HR проверки (окончательная версия)");
-
     }
 
     public UserStatusDTO(long id, String description) {
