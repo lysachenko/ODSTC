@@ -127,7 +127,7 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
 
     private void editResume() {
 //        if (devResumeWidget.isValid()) {
-            redirectToEditing();
+        redirectToEditing();
 //        }
     }
 
@@ -139,16 +139,20 @@ public class UserVerificationCVPresenter extends Presenter<UserVerificationCVPre
     private void submitResume() {
         if (devResumeWidget.isValid()) {
 
-            dispatcher.execute(
-                    new SubmitDevResumeAction(devResumeWidget.getDevResume()),
-                    new DefaultAsyncCallback<NoResult>() {
-                        @Override
-                        public void onSuccess(NoResult result) {
-                            Window.alert("Анкета отправлена");
-                            redirectToSubmission();
+            String msg = "Вы уверены, что хотите отправить эту версию анкеты?" +
+                    "\nСогласившись, Вы больше не сможете вносить в нее изменения.";
+            if (Window.confirm(msg)) {
+
+                dispatcher.execute(
+                        new SubmitDevResumeAction(devResumeWidget.getDevResume()),
+                        new DefaultAsyncCallback<NoResult>() {
+                            @Override
+                            public void onSuccess(NoResult result) {
+                                redirectToSubmission();
+                            }
                         }
-                    }
-            );
+                );
+            }
         }
     }
 

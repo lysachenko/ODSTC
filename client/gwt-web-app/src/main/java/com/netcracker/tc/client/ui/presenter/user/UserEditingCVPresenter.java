@@ -134,7 +134,6 @@ public class UserEditingCVPresenter
                     new DefaultAsyncCallback<NoResult>() {
                         @Override
                         public void onSuccess(NoResult result) {
-                            Window.alert("Изменения сохранены");
                             redirectToVerification();
                         }
                     }
