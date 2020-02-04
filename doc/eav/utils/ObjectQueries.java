@@ -20,10 +20,6 @@ public class ObjectQueries {
             = "update OBJECTS set PARENT_ID = ?, OBJECT_TYPE_ID = ?, NAME = ?, DESCRIPTION = ? where OBJECT_ID = ?";
     public static final String UPDATE_OBJECT_BY_ID_WITHOUT_PARENT_ID
             = "update OBJECTS set OBJECT_TYPE_ID = ?, NAME = ?, DESCRIPTION = ? where OBJECT_ID = ?";
-    public static final String UPDATE_OBJECT_BY_PARENT_ID
-            = "update OBJECTS set PARENT_ID = ?, OBJECT_TYPE_ID = ?, NAME = ?, DESCRIPTION = ? where PARENT_ID = ?";
-    public static final String UPDATE_OBJECT_BY_OBJECT_TYPE_ID
-            = "update OBJECTS set PARENT_ID = ?, OBJECT_TYPE_ID = ?, NAME = ?, DESCRIPTION = ? where OBJECT_TYPE_ID = ?";
 
     public static final String DELETE_OBJECT_BY_ID
             = "delete from OBJECTS where OBJECT_ID = ?";

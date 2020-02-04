@@ -18,7 +18,7 @@ public class ObjectReferenceManager {
 
     private Connection connection;
 
-    public ObjectReferenceManager(Connection connection) {
+    public ObjectReferenceManager(Connection connection) throws SQLException {
         this.connection = connection;
     }
 
@@ -28,29 +28,6 @@ public class ObjectReferenceManager {
         preparedStatement.setLong(2, objectReference.getReference());
         preparedStatement.setLong(3, objectReference.getObjectId());
         preparedStatement.execute();
-
-        connection.close();
-    }
-
-    public List<ObjectReference> getObjectReferencesByAttrId(Long attrId) throws SQLException {
-
-        List<ObjectReference> objectReferences = new ArrayList<ObjectReference>();
-        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.SELECT_OBJECT_REFERENCE_BY_ATTR_ID);
-        preparedStatement.setLong(1, attrId);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            ObjectReference objectReference = new ObjectReference();
-            objectReference.setAttrId(resultSet.getLong(ATTR_ID));
-            objectReference.setReference(resultSet.getLong(REFERENCE));
-            objectReference.setObjectId(resultSet.getLong(OBJECT_ID));
-
-            objectReferences.add(objectReference);
-        }
-
-        connection.close();
-        return objectReferences;
     }
 
     public List<ObjectReference> getObjectReferencesByReference(Long referenceId) throws SQLException {
@@ -70,41 +47,7 @@ public class ObjectReferenceManager {
             objectReferences.add(objectReference);
         }
 
-        connection.close();
         return objectReferences;
-    }
-
-    public List<ObjectReference> getObjectReferencesByObjectId(Long objectId) throws SQLException {
-
-        List<ObjectReference> objectReferences = new ArrayList<ObjectReference>();
-        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.SELECT_OBJECT_REFERENCE_BY_OBJECT_ID);
-        preparedStatement.setLong(1, objectId);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            ObjectReference objectReference = new ObjectReference();
-            objectReference.setAttrId(resultSet.getLong(ATTR_ID));
-            objectReference.setReference(resultSet.getLong(REFERENCE));
-            objectReference.setObjectId(resultSet.getLong(OBJECT_ID));
-
-            objectReferences.add(objectReference);
-        }
-
-        connection.close();
-        return objectReferences;
-    }
-
-    public void updateObjectReferenceByAttrId(ObjectReference objectReference, Long attrId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.UPDATE_OBJECT_REFERENCE_BY_ATTR_ID);
-        preparedStatement.setLong(1, objectReference.getAttrId());
-        preparedStatement.setLong(2, objectReference.getReference());
-        preparedStatement.setLong(3, objectReference.getObjectId());
-        preparedStatement.setLong(4, attrId);
-
-        preparedStatement.execute();
-
-        connection.close();
     }
 
     public void updateObjectReferenceByReference(ObjectReference objectReference, Long referenceId) throws SQLException {
@@ -115,28 +58,6 @@ public class ObjectReferenceManager {
         preparedStatement.setLong(4, referenceId);
 
         preparedStatement.execute();
-
-        connection.close();
-    }
-
-    public void updateObjectReferenceByObjectId(ObjectReference objectReference, Long objectId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.UPDATE_OBJECT_REFERENCE_BY_OBJECT_ID);
-        preparedStatement.setLong(1, objectReference.getAttrId());
-        preparedStatement.setLong(2, objectReference.getReference());
-        preparedStatement.setLong(3, objectReference.getObjectId());
-        preparedStatement.setLong(4, objectId);
-
-        preparedStatement.execute();
-
-        connection.close();
-    }
-
-    public void deleteObjectReferenceByAttrId(Long attrId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.DELETE_OBJECT_REFERENCE_BY_ATTR_ID);
-        preparedStatement.setLong(1, attrId);
-
-        preparedStatement.execute();
-        connection.close();
     }
 
     public void deleteObjectReferenceByReference(Long referenceId) throws SQLException {
@@ -144,15 +65,14 @@ public class ObjectReferenceManager {
         preparedStatement.setLong(1, referenceId);
 
         preparedStatement.execute();
-        connection.close();
     }
 
-    public void deleteObjectReferenceByObjectId(Long objectId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.DELETE_OBJECT_REFERENCE_BY_OBJECT_ID);
-        preparedStatement.setLong(1, objectId);
+    public void deleteObjectReferenceByReferenceIdAndObjectId(Long referenceId, Long objectId) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(ObjectReferenceQueries.DELETE_OBJECT_REFERENCE_BY_REFERENCE_AND_OBJECT_ID);
+        preparedStatement.setLong(1, referenceId);
+        preparedStatement.setLong(2, objectId);
 
         preparedStatement.execute();
-        connection.close();
     }
 
 }
